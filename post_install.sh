@@ -71,8 +71,8 @@ fi
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
 paru -S gnome-terminal-transparency mate-terminal 
 
-## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR
-paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
+## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR AND PAMAC
+paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur
 
 
 
