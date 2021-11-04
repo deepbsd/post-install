@@ -53,7 +53,7 @@ mkdir $HOME/.nvm
 [[ -d ~/.nvm ]] && cd ~/.nvm && source nvm.sh && cd
 
 ## INSTALL YAY  ## Do this last because of intermittant errors with yay-git
-if $((! which paru &>/dev/null )); then
+if [ ! $(( which paru &>/dev/null )) ]; then
     echo "Installing paru: "
     cd ~/build
     git clone https://aur.archlinux.org/paru.git
