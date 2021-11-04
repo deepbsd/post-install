@@ -50,7 +50,7 @@ sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate
 # NVM
 mkdir $HOME/.nvm
 [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-[[ -d $HOME/.nvm ]] && cd ~/.nvm && source nvm.sh && cd
+[[ -d ~/.nvm ]] && cd ~/.nvm && source nvm.sh && cd
 
 ## INSTALL YAY  ## Do this last because of intermittant errors with yay-git
 if $((! which paru &>/dev/null )); then
@@ -67,9 +67,6 @@ read -p "Want to install anaconda?" yesno
 if [ "$yesno" =~ 'y' ]; then
 	[[ -f /opt/anaconda/bin/anaconda-navigator ]] || yay -S anaconda
 fi
-
-###  Start using paru...
-#yay -S paru
 
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
 paru -S gnome-terminal-transparency mate-terminal 
