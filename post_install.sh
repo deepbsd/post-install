@@ -65,7 +65,7 @@ fi
 ## CHECK ANACONDA
 read -p "Want to install anaconda?" yesno
 if [ "$yesno" =~ 'y' ]; then
-	[[ -f /opt/anaconda/bin/anaconda-navigator ]] || yay -S anaconda
+	[[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
 fi
 
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
