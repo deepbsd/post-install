@@ -2,13 +2,6 @@
 
 # Run this script after system and desktop are already installed
 
-# Make sure systemd-homed is working, or else sudo will not work
-
-#systemctl status systemd-homed
-#echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
-#echo "Also, reinstall pambase if necessary `pacman -S pambase`"
-#echo "Type any to continue..." ; read empty
-
 homed_message=$(systemctl status systemd-homed)
 
 whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
@@ -16,10 +9,10 @@ whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_me
 
 Hit OK to Continue" 40 78
 
-whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.\
-    Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
+whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.  
 
-exit
+Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
+
 
 ## PERSONAL DIRECTORIES AND RESOURCES
 echo "Making personal subdirectories..."
@@ -30,6 +23,9 @@ git clone https://github.com/deepbsd/dotfiles.git
 echo "Download home directory files from what host on network?"; read whathost
 scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+
+exit
+
 
 ## DOTFILES
 cp ~/.bashrc ~/.bashrc.orig
