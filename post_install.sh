@@ -4,10 +4,22 @@
 
 # Make sure systemd-homed is working, or else sudo will not work
 
-systemctl status systemd-homed
-echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
-echo "Also, reinstall pambase if necessary `pacman -S pambase`"
-echo "Type any to continue..." ; read empty
+#systemctl status systemd-homed
+#echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
+#echo "Also, reinstall pambase if necessary `pacman -S pambase`"
+#echo "Type any to continue..." ; read empty
+
+homed_message=$(systemctl status systemd-homed)
+
+whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
+
+
+Hit OK to Continue" 40 78
+
+whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.\
+    Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
+
+exit
 
 ## PERSONAL DIRECTORIES AND RESOURCES
 echo "Making personal subdirectories..."
