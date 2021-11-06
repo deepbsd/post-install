@@ -50,8 +50,10 @@ echo scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
 ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #
 
+sleep 2
+
 TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --infobox \
-"Copying .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78
+"Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78
 
 ## DOTFILES
 #cp ~/.bashrc ~/.bashrc.orig
@@ -60,7 +62,8 @@ TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Lin
 #ln -sf ~/dotfiles/.bash_profile .
 #ln -sf ~/dotfiles/.vimrc .
 
-sleep 3
+sleep 2
+
 exit
 
 # SSH-AGENT SERVICE
