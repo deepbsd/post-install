@@ -4,29 +4,46 @@
 
 homed_message=$(systemctl status systemd-homed)
 
+# CREATE LOGFILE
+LOGFILE=/tmp/logfile
+touch $LOGFILE
+
+# HOMED REMINDER
 whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
 
 
 Hit OK to Continue" 40 78
 
+# PAMBASE REMINDER
 whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.  
 
 Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 
+# FUNCTION: Create home directories and clone everyday repos
+create_clone(){
+    cd ~
+    mkdir tmp repos build  &>>$LOGFILE
+    git clone https://github.com/deepbsd/dotfiles.git &>>$LOGFILE
+}
+
 
 ## PERSONAL DIRECTORIES AND RESOURCES
-TERM=ansi whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized Directories"  --infobox "Creating Personal Folders in Home Directory..."  10 78
+if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
+    Directories" --yesno "Do you want to create your personal files and folders?"  10 78); then
 
-## CHANGE FROM 'ECHO'
-echo mkdir tmp repos build 
-echo git clone https://github.com/deepbsd/dotfiles.git
+    create_clone
+    sleep 2
+else
+    TERM=ansi whiptail --title "Moving on..." --backtitle "FILES NOT CREATED" --infobox "Not creating personal files and directories..." 8 78
+    sleep 2
+fi
 
-sleep 2
-
+# CHOOSE HOST ON NETWORK TO DOWNLOAD FILES AND DIRS FROM
 host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
 --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
 
 
+# CHOOSE FOLDERS TO COPY
 folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
 "Choose Folder Options:" 20 78 13 \
 "adm" " " ON \
