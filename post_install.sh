@@ -64,18 +64,24 @@ TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Lin
 
 sleep 2
 
-TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Select ssh Key to add to ssh-agent" \
---infobox "Select your SSH key to use with ssh-agent."  10 78
-
-sleep 2
 
 # SSH-AGENT SERVICE
-echo "Start the ssh-agent service..."
-eval $(ssh-agent)
-ls ~/.ssh/* ; echo "Add which key? "; read key_name
-ssh-add ~/.ssh/"$key_name"
+TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Adding your ssh secret key" \
+--infobox "Starting your SSH service and Adding your SSH key to ssh-agent...."  10 78
+
+[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
+
+export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
+ssh-add ~/.ssh/id_rsa
+
+#ssh_key=$( ls ~/.ssh/* )
+#echo "Start the ssh-agent service..."
+#eval $(ssh-agent)
+#ls ~/.ssh/* ; echo "Add which key? "; read key_name
+#ssh-add ~/.ssh/"$key_name"
 
 
+sleep 2
 exit
 
 
