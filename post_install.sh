@@ -69,17 +69,25 @@ echo scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
 
 sleep 2
 
-TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --infobox \
-"Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78
+# DOTFILES
+do_dotfiles(){
+    cp ~/.bashrc ~/.bashrc.orig
+    cp ~/.bash_profile ~/.bash_profile.orig
+    ln -sf ~/dotfiles/.bashrc .
+    ln -sf ~/dotfiles/.bash_profile .
+    ln -sf ~/dotfiles/.vimrc .
+    sleep 2
+}
 
-## DOTFILES
-#cp ~/.bashrc ~/.bashrc.orig
-#cp ~/.bash_profile ~/.bash_profile.orig
-#ln -sf ~/dotfiles/.bashrc .
-#ln -sf ~/dotfiles/.bash_profile .
-#ln -sf ~/dotfiles/.vimrc .
+if $(whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --yesno "Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78 3>&1 1>&2 2>&3); 
+then
+    do_dotfiles
+    sleep 2
+else
+    TERM=ansi whiptail --backtitle "NOT CREATING DOTFILES NOW" --title "Not Creating Dotfiles Now"  --infobox "Creat Dotfiles not?" 10 78
+    sleep 2
+fi
 
-sleep 2
 
 
 # SSH-AGENT SERVICE
