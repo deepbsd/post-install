@@ -120,23 +120,47 @@ sleep 1
 
 whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox /tmp/ssh-message  10 78
 
-exit
+# INSTALL MYSTUFF
+install_mystuff(){
+    ## SYNC PACMAN DBs
+    sudo pacman -Syy  &>>$LOGFILE
 
+    ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
+    $(which gkrellm &>/dev/null) || sudo pacman -S gkrellm &>>$LOGFILE
+    sudo pacman -S libdvdread libdvdcss libdvdnav mlocate fzf  &>>$LOGFILE
+    sudo updatedb  &>>$LOGFILE
 
-## SYNC PACMAN DBs
-sudo pacman -Syy
+    ## INSTALL POWERLINE
+    $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts &>>$LOGFILE
+}
 
-## INSTALL GKRELLM, DVD SUPPORT, MLOCATE
-$(which gkrellm &>/dev/null) || sudo pacman -S gkrellm
-sudo pacman -S libdvdread libdvdcss libdvdnav mlocate fzf
-echo "updating locate database..."
-sudo updatedb
+# YESNO FOR CALLING INSTALL MYSTUFF
+if $(whiptail --backtitle "INSTALL MYSTUFF" --title "Install Mystuff?"  --yesno "Install Gkrellm, DVD support, Mlocate, and fzf?" 10 78 3>&1 1>&2 2>&3)
+then
+    install_mystuff
+else
+    term=ANSI  whiptail --backtitle "MYSTUFF NOT INSTALLED NOW" --title "Mystuff not install now" --infobox "Will have to install Mystuff later on" 10 78
+    sleep 2
 
-## INSTALL POWERLINE
-$(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
+fi
 
 ## INSTALL POWERLINE AND DEV STUFF 
-sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate 
+install_devstuff(){
+    sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate 
+}
+
+
+## YESNO TO INSTALL DEV STUFF
+if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
+then
+    install_devstuff
+else
+    term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not install now" --infobox "Will have to install Devstuff later on" 10 78
+    sleep 2
+fi
+
+exit
+
 
 # NVM
 mkdir $HOME/.nvm
