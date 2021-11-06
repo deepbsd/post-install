@@ -15,33 +15,40 @@ Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 
 
 ## PERSONAL DIRECTORIES AND RESOURCES
-TERM=ansi whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing Personal Customized Directories"  --infobox "Creating Personal Folders in Home Directory..."  10 78
+TERM=ansi whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized Directories"  --infobox "Creating Personal Folders in Home Directory..."  10 78
 
-mkdir tmp repos build 
+# UNCOMMENT THESE!!!
+#mkdir tmp repos build 
+#git clone https://github.com/deepbsd/dotfiles.git
 
-git clone https://github.com/deepbsd/dotfiles.git
+sleep 2
+
+host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
+--inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
+
 
 folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
-"Choose Folder Options:" 15 78 15 \
-"adm" "" ON \
-"dotfiles" "" ON \
-".vim" "" ON \
-"public_html" "" ON \
-"sounds" "" ON \
-".gkrellm2" "" ON \
-"wallpaper" "" ON \
-"wallpaper1" "" ON \
-"bin" "" ON \
-".ssh" "" ON \
-".gnupg" "" ON \
-"Music" "" OFF )
+"Choose Folder Options:" 20 78 13 \
+"adm" " " ON \
+"dotfiles" " " ON \
+".vim" " " ON \
+"public_html" " " ON \
+"sounds" " " ON \
+".gkrellm2" " " ON \
+"wallpaper" " " ON \
+"wallpaper1" " " ON \
+"bin" " " ON \
+".ssh" " " ON \
+".gnupg" " " ON \
+"Music" " " OFF 3>&1 1>&2 2>&3 )
+
+homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
 
 
-
-echo "Download home directory files from what host on network?"; read whathost
-scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-#scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-
+#echo "Download home directory files from what host on network?"; read whathost
+#scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+#
 exit
 
 
