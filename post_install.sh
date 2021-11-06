@@ -146,7 +146,7 @@ fi
 
 ## INSTALL POWERLINE AND DEV STUFF 
 install_devstuff(){
-    sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate 
+    sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate  &>>$LOGFILE
 }
 
 
@@ -161,21 +161,43 @@ fi
 
 exit
 
-
 # NVM
-mkdir $HOME/.nvm
-[[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-[[ -d ~/.nvm ]] && cd ~/.nvm && source nvm.sh && cd
+install_nvm(){
+    mkdir $HOME/.nvm
+    [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/. &>>$LOGFILE
+    [[ -d ~/.nvm ]] && cd ~/.nvm && source nvm.sh && cd  &>>$LOGFILE
+}
 
-## INSTALL YAY  ## Do this last because of intermittant errors with yay-git
-if [ ! $(( which paru &>/dev/null )) ]; then
-    echo "Installing paru: "
-    cd ~/build
-    git clone https://aur.archlinux.org/paru.git
-    cd paru
-    makepkg -si
-    cd
+## YESNO TO INSTALL NVM
+if $(whiptail --backtitle "INSTALL NVM" --title "Install NVM?"  --yesno "Install NVM?" 10 78 3>&1 1>&2 2>&3)
+then
+    install_nvm
+else
+    term=ANSI  whiptail --backtitle "NVM NOT INSTALLED NOW" --title "NMV not install now" --infobox "Will have to install NVM later on" 10 78
+    sleep 2
 fi
+
+
+## INSTALL PARU  
+install_paru(){
+    if [ ! $(( which paru &>/dev/null )) ]; then
+        cd ~/build
+        git clone https://aur.archlinux.org/paru.git &>>$LOGFILE
+        cd paru
+        makepkg -si   &>>$LOGFILE
+        cd
+    fi
+}
+
+## YESNO TO INSTALL PARU
+if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
+then
+    install_paru
+else
+    term=ANSI  whiptail --backtitle "PARU NOT INSTALLED NOW" --title "Paru not install now" --infobox "Will have to install Paru later on" 10 78
+    sleep 2
+fi
+
 
 ## CHECK ANACONDA
 read -p "Want to install anaconda?" yesno
