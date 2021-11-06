@@ -72,6 +72,7 @@ TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Adding your ssh s
 [[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
 
 export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
+export SSH_ASKPASS_REQUIRE="prefer"
 ssh-add ~/.ssh/id_rsa
 
 #ssh_key=$( ls ~/.ssh/* )
