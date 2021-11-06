@@ -59,23 +59,34 @@ folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRE
 ".gnupg" " " ON \
 "Music" " " OFF 3>&1 1>&2 2>&3 )
 
+
+
+# CREATE AND COPY HOMEDIRS
 homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
 
-##  REMOVE ECHO!!
-echo scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
+create_homedirs(){
+    scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
+    ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+    sleep 2
+}
 
-##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-#
+if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder" --yesno "Copy directories to home $HOME?"  10 78 3>&1 1>&2 2>&3); 
+then
+    create_homedirs
+    sleep 2
+else
+    TERM=ansi whiptail --backtitle "NOT COPYING DIRS NOW" --title "Not Copying Directories Now"  --infobox "Not copying directories now..." 10 78
+    sleep 2
+fi
 
-sleep 2
 
 # DOTFILES
 do_dotfiles(){
-    cp ~/.bashrc ~/.bashrc.orig
-    cp ~/.bash_profile ~/.bash_profile.orig
-    ln -sf ~/dotfiles/.bashrc .
-    ln -sf ~/dotfiles/.bash_profile .
-    ln -sf ~/dotfiles/.vimrc .
+    cp ~/.bashrc ~/.bashrc.orig  &>>$LOGFILE
+    cp ~/.bash_profile ~/.bash_profile.orig &>>$LOGFILE
+    ln -sf ~/dotfiles/.bashrc .   &>>$LOGFILE
+    ln -sf ~/dotfiles/.bash_profile .  &>>$LOGFILE
+    ln -sf ~/dotfiles/.vimrc .  &>>$LOGFILE
     sleep 2
 }
 
