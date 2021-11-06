@@ -75,18 +75,15 @@ Please enter your ssh passphrase: "  10 78
 
 export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 export SSH_ASKPASS_REQUIRE="prefer"
-ssh-add ~/.ssh/id_rsa  >/tmp/ssh-message
-
-#ssh_key=$( ls ~/.ssh/* )
-#echo "Start the ssh-agent service..."
-#eval $(ssh-agent)
-#ls ~/.ssh/* ; echo "Add which key? "; read key_name
-#ssh-add ~/.ssh/"$key_name"
+ssh-add ~/.ssh/id_rsa  &>/tmp/ssh-message
 
 TERM=ansi whiptail --title "Adding your ssh-key to ssh-agent" --infobox "Adding your ssh secret key to running \
 ssh-agent..." 10 78
 
-sleep 2
+sleep 1
+
+whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox /tmp/ssh-message  10 78
+
 exit
 
 
