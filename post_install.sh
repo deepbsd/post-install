@@ -64,13 +64,20 @@ TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Lin
 
 sleep 2
 
-exit
+TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Select ssh Key to add to ssh-agent" \
+--infobox "Select your SSH key to use with ssh-agent."  10 78
+
+sleep 2
 
 # SSH-AGENT SERVICE
 echo "Start the ssh-agent service..."
 eval $(ssh-agent)
 ls ~/.ssh/* ; echo "Add which key? "; read key_name
 ssh-add ~/.ssh/"$key_name"
+
+
+exit
+
 
 ## SYNC PACMAN DBs
 sudo pacman -Syy
