@@ -95,7 +95,7 @@ then
     do_dotfiles
     sleep 2
 else
-    TERM=ansi whiptail --backtitle "NOT CREATING DOTFILES NOW" --title "Not Creating Dotfiles Now"  --infobox "Creat Dotfiles not?" 10 78
+    TERM=ansi whiptail --backtitle "NOT CREATING DOTFILES NOW" --title "Not Creating Dotfiles Now"  --infobox "NOT Creating Dotfiles now" 10 78
     sleep 2
 fi
 
