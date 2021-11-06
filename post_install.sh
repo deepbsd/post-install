@@ -198,6 +198,7 @@ else
     sleep 2
 fi
 
+exit
 
 ## CHECK ANACONDA
 read -p "Want to install anaconda?" yesno
