@@ -17,9 +17,9 @@ Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 ## PERSONAL DIRECTORIES AND RESOURCES
 TERM=ansi whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized Directories"  --infobox "Creating Personal Folders in Home Directory..."  10 78
 
-# UNCOMMENT THESE!!!
-#mkdir tmp repos build 
-#git clone https://github.com/deepbsd/dotfiles.git
+# CHANGE FROM 'ECHO'
+echo mkdir tmp repos build 
+echo git clone https://github.com/deepbsd/dotfiles.git
 
 sleep 2
 
@@ -44,9 +44,10 @@ folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRE
 
 homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
 
-
-#echo "Download home directory files from what host on network?"; read whathost
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+
+echo scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
+
 ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #
 exit
