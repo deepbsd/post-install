@@ -29,7 +29,7 @@ create_clone(){
 
 ## PERSONAL DIRECTORIES AND RESOURCES
 if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
-    Directories" --yesno "Do you want to create your personal files and folders?"  10 78); then
+    Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
 
     create_clone
     sleep 2
