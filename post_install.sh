@@ -17,7 +17,7 @@ Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 ## PERSONAL DIRECTORIES AND RESOURCES
 TERM=ansi whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized Directories"  --infobox "Creating Personal Folders in Home Directory..."  10 78
 
-# CHANGE FROM 'ECHO'
+## CHANGE FROM 'ECHO'
 echo mkdir tmp repos build 
 echo git clone https://github.com/deepbsd/dotfiles.git
 
@@ -44,21 +44,24 @@ folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRE
 
 homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
 
-#scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-
+##  REMOVE ECHO!!
 echo scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
 
 ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #
-exit
 
+TERM=ansi whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --infobox \
+"Copying .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78
 
 ## DOTFILES
-cp ~/.bashrc ~/.bashrc.orig
-cp ~/.bash_profile ~/.bash_profile.orig
-ln -sf ~/dotfiles/.bashrc .
-ln -sf ~/dotfiles/.bash_profile .
-ln -sf ~/dotfiles/.vimrc .
+#cp ~/.bashrc ~/.bashrc.orig
+#cp ~/.bash_profile ~/.bash_profile.orig
+#ln -sf ~/dotfiles/.bashrc .
+#ln -sf ~/dotfiles/.bash_profile .
+#ln -sf ~/dotfiles/.vimrc .
+
+sleep 3
+exit
 
 # SSH-AGENT SERVICE
 echo "Start the ssh-agent service..."
