@@ -27,8 +27,7 @@ pambase_reminder(){
 }
 
 
-# FUNCTION: Create home directories and clone everyday repos
-## PERSONAL DIRECTORIES AND RESOURCES
+## FUNCTION FOR CREATING PERSONAL DIRECTORIES AND RESOURCES
 create_clone(){
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
