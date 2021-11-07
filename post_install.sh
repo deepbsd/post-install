@@ -41,33 +41,32 @@ create_clone(){
 }
 
 
-# CHOOSE HOST ON NETWORK TO DOWNLOAD FILES AND DIRS FROM
-host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
---inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
-
-
-# CHOOSE FOLDERS TO COPY
-folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
-"Choose Folder Options:" 20 78 13 \
-"adm" " " ON \
-"dotfiles" " " ON \
-".vim" " " ON \
-"public_html" " " ON \
-"sounds" " " ON \
-".gkrellm2" " " ON \
-"wallpaper" " " ON \
-"wallpaper1" " " ON \
-"bin" " " ON \
-".ssh" " " ON \
-".gnupg" " " ON \
-"Music" " " OFF 3>&1 1>&2 2>&3 )
-
-
-
 # CREATE AND COPY HOME DIRS
 create_homedirs(){
-    if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder" --yesno "Copy directories to home $HOME?"  10 78 3>&1 1>&2 2>&3); 
+    if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder"\
+        --yesno "Copy directories to home $HOME?"  10 78 3>&1 1>&2 2>&3); 
     then
+
+        # CHOOSE HOST ON NETWORK TO DOWNLOAD FILES AND DIRS FROM
+        host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
+        --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
+
+        # CHOOSE FOLDERS TO COPY
+        folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
+        "Choose Folder Options:" 20 78 13 \
+        "adm" " " ON \
+        "dotfiles" " " ON \
+        ".vim" " " ON \
+        "public_html" " " ON \
+        "sounds" " " ON \
+        ".gkrellm2" " " ON \
+        "wallpaper" " " ON \
+        "wallpaper1" " " ON \
+        "bin" " " ON \
+        ".ssh" " " ON \
+        ".gnupg" " " ON \
+        "Music" " " OFF 3>&1 1>&2 2>&3 )
+
         # CREATE AND COPY HOMEDIRS
         homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
         scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
