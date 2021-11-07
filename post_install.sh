@@ -237,11 +237,11 @@ main(){
     do_dotfiles
     ssh_agent_service
     install_mystuff
+    install_aur_goodies
 }
 
-install_aur_goodies
 
-
+main
 
 
 
