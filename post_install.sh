@@ -158,16 +158,6 @@ install_devstuff(){
 }
 
 
-## YESNO TO INSTALL DEV STUFF
-if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
-then
-    sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate  &>>$LOGFILE
-else
-    term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not install now" --infobox "Will have to install Devstuff later on" 10 78
-    sleep 2
-fi
-
-
 # NVM
 install_nvm(){
     ## YESNO TO INSTALL NVM
