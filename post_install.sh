@@ -2,17 +2,18 @@
 
 # Run this script after system and desktop are already installed
 
+# CREATE LOGFILE
 create_logfile(){
-    # CREATE LOGFILE
     LOGFILE=/tmp/logfile
     touch $LOGFILE
+    echo "STARTING post_install.sh $date " &>$LOGFILE
 }
 
 
+# HOMED REMINDER
 homed_message(){
     homed_message=$(systemctl status systemd-homed)
 
-    # HOMED REMINDER
     whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
 
 
@@ -83,7 +84,7 @@ create_homedirs(){
 
 
 # DOTFILES
-do_dotfiles(){
+link_dotfiles(){
     if $(whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --yesno "Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78 3>&1 1>&2 2>&3); 
     then
         cp ~/.bashrc ~/.bashrc.orig  &>>$LOGFILE
@@ -228,11 +229,12 @@ install_aur_goodies(){
 
 main(){
     create_logfile
+    exit
     homed_message
     pambase_reminder
     cloning_dotfiles
     create_homedirs
-    do_dotfiles
+    link_dotfiles
     ssh_agent_service
     install_mystuff
     install_devstuff
@@ -244,6 +246,5 @@ main(){
 
 
 main
-
 
 
