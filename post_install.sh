@@ -2,12 +2,15 @@
 
 # Run this script after system and desktop are already installed
 
-homed_message(){
-    homed_message=$(systemctl status systemd-homed)
-
+create_logfile(){
     # CREATE LOGFILE
     LOGFILE=/tmp/logfile
     touch $LOGFILE
+}
+
+
+homed_message(){
+    homed_message=$(systemctl status systemd-homed)
 
     # HOMED REMINDER
     whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
@@ -97,7 +100,6 @@ do_dotfiles(){
 }
 
 
-
 ssh_agent_service(){
     # SSH-AGENT SERVICE
     TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Adding your ssh secret key" \
@@ -106,6 +108,8 @@ ssh_agent_service(){
     Please enter your ssh passphrase: "  10 78
 
     [[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
+
+    ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
 
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
@@ -224,7 +228,7 @@ install_aur_goodies(){
 }
 
 main(){
-
+    create_logfile
     homed_message
     pambase_reminder
     create_clone
