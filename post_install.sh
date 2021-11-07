@@ -111,10 +111,8 @@ ssh_agent_service(){
     export SSH_ASKPASS_REQUIRE="prefer"
     ssh-add ~/.ssh/id_rsa  &>/tmp/ssh-message
 
-    TERM=ansi whiptail --title "Adding your ssh-key to ssh-agent" --infobox "Adding your ssh secret key to running \
-    ssh-agent..." 10 78
-
-    sleep 1
+    TERM=ansi whiptail --title "Adding your ssh-key to ssh-agent" --infobox "Adding your ssh secret key to running ssh-agent..." 10 78
+    sleep 2
 
     whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox /tmp/ssh-message  10 78
 }
