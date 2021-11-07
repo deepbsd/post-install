@@ -2,41 +2,44 @@
 
 # Run this script after system and desktop are already installed
 
-homed_message=$(systemctl status systemd-homed)
+homed_message(){
+    homed_message=$(systemctl status systemd-homed)
 
-# CREATE LOGFILE
-LOGFILE=/tmp/logfile
-touch $LOGFILE
+    # CREATE LOGFILE
+    LOGFILE=/tmp/logfile
+    touch $LOGFILE
 
-# HOMED REMINDER
-whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
+    # HOMED REMINDER
+    whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
 
 
-Hit OK to Continue" 40 78
+    Hit OK to Continue" 40 78
+}
 
 # PAMBASE REMINDER
-whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.  
+pambase_reminder(){
+    whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.  
 
-Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
-
-# FUNCTION: Create home directories and clone everyday repos
-create_clone(){
-    cd ~
-    mkdir tmp repos build  &>>$LOGFILE
-    git clone https://github.com/deepbsd/dotfiles.git &>>$LOGFILE
+    Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 }
 
 
+# FUNCTION: Create home directories and clone everyday repos
 ## PERSONAL DIRECTORIES AND RESOURCES
-if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
-    Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
+create_clone(){
+    if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
+        Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
+        cd ~
+        mkdir tmp repos build  &>>$LOGFILE
+        git clone https://github.com/deepbsd/dotfiles.git &>>$LOGFILE
 
-    create_clone
-    sleep 2
-else
-    TERM=ansi whiptail --title "Moving on..." --backtitle "FILES NOT CREATED" --infobox "Not creating personal files and directories..." 8 78
-    sleep 2
-fi
+        sleep 2
+    else
+        TERM=ansi whiptail --title "Moving on..." --backtitle "FILES NOT CREATED" --infobox "Not creating personal files and directories..." 8 78
+        sleep 2
+    fi
+}
+
 
 # CHOOSE HOST ON NETWORK TO DOWNLOAD FILES AND DIRS FROM
 host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
@@ -77,7 +80,6 @@ create_homedirs(){
     fi
 }
 
-create_homedirs
 
 # DOTFILES
 do_dotfiles(){
@@ -95,7 +97,6 @@ do_dotfiles(){
     fi
 }
 
-do_dotfiles
 
 
 ssh_agent_service(){
@@ -117,7 +118,6 @@ ssh_agent_service(){
     whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox /tmp/ssh-message  10 78
 }
 
-ssh_agent_service
 
 
 # INSTALL MYSTUFF
@@ -142,7 +142,6 @@ install_mystuff(){
     fi
 }
 
-install_mystuff
 
 ## INSTALL POWERLINE AND DEV STUFF 
 install_devstuff(){
@@ -227,6 +226,17 @@ install_aur_goodies(){
         term=ANSI  whiptail --backtitle "NOT INSTALLED AUR GOODIES NOW" --title "Not installing AUR goodies now" --infobox "Will have to install AUR Goodies later on" 10 78
         sleep 2
     fi
+}
+
+main(){
+
+    homed_message
+    pambase_reminder
+    create_clone
+    create_homedirs
+    do_dotfiles
+    ssh_agent_service
+    install_mystuff
 }
 
 install_aur_goodies
