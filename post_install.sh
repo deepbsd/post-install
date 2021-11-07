@@ -233,6 +233,7 @@ main(){
     install_aur_goodies
 }
 
+### START HERE
 
 main
 
