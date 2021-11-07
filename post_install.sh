@@ -203,7 +203,6 @@ install_paru(){
 
 install_paru
 
-exit
 
 ## CHECK ANACONDA
 install_anaconda(){
@@ -218,11 +217,19 @@ install_anaconda(){
 
 install_anaconda
 
-## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
-paru -S gnome-terminal-transparency mate-terminal 
+install_aur_goodies(){
+        if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
+    then
+        [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+        paru -S gnome-terminal-transparency mate-terminal 
+        paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur
+    else
+        term=ANSI  whiptail --backtitle "NOT INSTALLED AUR GOODIES NOW" --title "Not installing AUR goodies now" --infobox "Will have to install AUR Goodies later on" 10 78
+        sleep 2
+    fi
+}
 
-## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR AND PAMAC
-paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur
+install_aur_goodies
 
 
 
