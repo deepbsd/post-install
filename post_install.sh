@@ -219,7 +219,6 @@ install_aur_goodies(){
 
 main(){
     create_logfile
-    exit
     homed_message
     pambase_reminder
     cloning_dotfiles
