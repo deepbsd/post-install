@@ -159,7 +159,6 @@ else
     sleep 2
 fi
 
-exit
 
 # NVM
 install_nvm(){
@@ -201,10 +200,17 @@ fi
 exit
 
 ## CHECK ANACONDA
-read -p "Want to install anaconda?" yesno
-if [ "$yesno" =~ 'y' ]; then
-	[[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
-fi
+install_anaconda(){
+        if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
+    then
+        [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+    else
+        term=ANSI  whiptail --backtitle "PARU NOT INSTALLED NOW" --title "Paru not install now" --infobox "Will have to install Paru later on" 10 78
+        sleep 2
+    fi
+}
+
+install_anaconda
 
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
 paru -S gnome-terminal-transparency mate-terminal 
