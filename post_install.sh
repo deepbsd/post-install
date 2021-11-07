@@ -28,7 +28,7 @@ pambase_reminder(){
 
 
 ## FUNCTION FOR CREATING PERSONAL DIRECTORIES AND RESOURCES
-create_clone(){
+cloning_dotfiles(){
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
         cd ~
@@ -230,7 +230,7 @@ main(){
     create_logfile
     homed_message
     pambase_reminder
-    create_clone
+    cloning_dotfiles
     create_homedirs
     do_dotfiles
     ssh_agent_service
