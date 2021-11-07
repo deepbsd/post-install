@@ -154,7 +154,6 @@ install_devstuff(){
     fi
 }
 
-install_devstuff
 
 ## YESNO TO INSTALL DEV STUFF
 if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
@@ -180,7 +179,6 @@ install_nvm(){
     fi
 }
 
-install_nvm
 
 
 ## INSTALL PARU  
@@ -235,6 +233,8 @@ main(){
     do_dotfiles
     ssh_agent_service
     install_mystuff
+    install_devstuff
+    install_nvm
     install_paru
     install_anaconda
     install_aur_goodies
