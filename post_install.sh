@@ -120,6 +120,7 @@ create_homedirs(){
 
 # LINK THE DOTFILES
 link_dotfiles(){
+    echo "=== Linking dotfiles in $HOME ===" &>>$LOGFILE
     if $(whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --yesno "Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78 3>&1 1>&2 2>&3); 
     then
         cp ~/.bashrc ~/.bashrc.orig  &>>$LOGFILE
@@ -137,6 +138,7 @@ link_dotfiles(){
 
 # SSH-AGENT SERVICE
 ssh_agent_service(){
+    echo "=== Starting SSH_AGENT service; Adding secret key to SSH-AGENT ===" &>>$LOGFILE
     TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Adding your ssh secret key" \
     --infobox "Starting your SSH service and Adding your SSH key to ssh-agent. 
 
@@ -160,7 +162,9 @@ ssh_agent_service(){
 
 # INSTALL MYSTUFF
 install_mystuff(){
-    if $(whiptail --backtitle "INSTALL MYSTUFF" --title "Install Mystuff?"  --yesno "Install Gkrellm, DVD support, Mlocate, and fzf?" 10 78 3>&1 1>&2 2>&3)
+    echo "=== Installing gkrellm, libdvdread, libdvdcss, libdvdnav, mlocate, fzf, powerline, powerline-fonts ===" &>>$LOGFILE
+    if $(whiptail --backtitle "INSTALL MYSTUFF" --title "Install Mystuff?"  \
+        --yesno "Install Gkrellm, DVD support, Mlocate, and fzf?" 10 78 3>&1 1>&2 2>&3)
     then
         ## SYNC PACMAN DBs
         sudo pacman -Syy  &>>$LOGFILE
@@ -183,6 +187,7 @@ install_mystuff(){
 
 ## INSTALL POWERLINE AND DEV STUFF 
 install_devstuff(){
+    echo "=== Installing ruby, nodejs, npm, npm-check-updates, gvim, mlocate ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
     then
         sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate  &>>$LOGFILE
@@ -196,6 +201,7 @@ install_devstuff(){
 # NVM
 install_nvm(){
     ## YESNO TO INSTALL NVM
+    echo "=== Install NVM shell script ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL NVM" --title "Install NVM?"  --yesno "Install NVM?" 10 78 3>&1 1>&2 2>&3)
     then
         mkdir $HOME/.nvm
