@@ -2,6 +2,10 @@
 
 # Run this script on Arch systems after desktop are already installed
 
+##########################
+### VARIABLES, ARRAYS ####
+##########################
+LOGFILE=/tmp/logfile
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
 DEV_PKGS=( ruby nodejs npm npm-check-updates gvim mlocate )
@@ -14,7 +18,6 @@ AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oran
 
 # CREATE LOGFILE
 create_logfile(){
-    LOGFILE=/tmp/logfile
     touch $LOGFILE
     echo "STARTING post_install.sh $date " &>$LOGFILE
 }
