@@ -217,6 +217,7 @@ install_nvm(){
 
 ## INSTALL PARU (THE AUR HELPER)
 install_paru(){
+    echo "=== Clone and install paru ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
     then
         if [ ! $(( which paru &>/dev/null )) ]; then
@@ -236,11 +237,13 @@ install_paru(){
 
 ## CHECK ANACONDA
 install_anaconda(){
-        if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
+    echo "=== Clone and install anaconda ===" &>>$LOGFILE
+    if $(whiptail --backtitle "INSTALL ANACONDA" --title "Install Anaconda?"  --yesno "Install Anaconda?" 10 78 3>&1 1>&2 2>&3)
     then
         [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
     else
-        term=ANSI  whiptail --backtitle "PARU NOT INSTALLED NOW" --title "Paru not install now" --infobox "Will have to install Paru later on" 10 78
+        term=ANSI  whiptail --backtitle "ANACONDA NOT INSTALLED NOW" --title "Anaconda not install now" \
+            --infobox "Will have to install Anaconda later on" 10 78
         sleep 2
     fi
 }
@@ -248,9 +251,9 @@ install_anaconda(){
 
 # FAVORITES FROM AUR
 install_aur_goodies(){
-        if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
+    echo "=== Clone and install gnome-terminal-transparency, mate-terminal, pamac-aur, google-chrome, oranchelo-icons, xcursor-breeze ===" &>>$LOGFILE
+    if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
-        [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
         paru -S gnome-terminal-transparency mate-terminal 
         paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur
     else
