@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-# Run this script after system and desktop are already installed
+# Run this script on Arch systems after desktop are already installed
+
+
+
+####  FUNCTIONS
+
 
 # CREATE LOGFILE
 create_logfile(){
@@ -9,6 +14,9 @@ create_logfile(){
     echo "STARTING post_install.sh $date " &>$LOGFILE
 }
 
+
+
+### SHOW SOME REMINDERS ABOUT SYSTEM CHOICES
 
 # HOMED REMINDER
 homed_message(){
@@ -28,7 +36,9 @@ pambase_reminder(){
 }
 
 
-## FUNCTION FOR CREATING PERSONAL DIRECTORIES AND RESOURCES
+####  START CREATING AND MOVING ASSETS
+
+## DOTFILES DIRECTORY
 cloning_dotfiles(){
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
@@ -46,6 +56,7 @@ cloning_dotfiles(){
 
 # CREATE AND COPY HOME DIRS
 create_homedirs(){
+    # THESE DIRECTORIES ARE STANDARD FOR MY HOME DIRECTORIES ON ALL MY SYSTEMS
     if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder"\
         --yesno "Copy directories to home $HOME?"  10 78 3>&1 1>&2 2>&3); 
     then
@@ -70,7 +81,7 @@ create_homedirs(){
         ".gnupg" " " ON \
         "Music" " " OFF 3>&1 1>&2 2>&3 )
 
-        # CREATE AND COPY HOMEDIRS
+        # CREATE AND COPY HOMEDIRS (Replace each space with a comma between dir names)
         homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
         scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
         ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
