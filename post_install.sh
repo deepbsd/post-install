@@ -94,7 +94,7 @@ create_homedirs(){
 }
 
 
-# DOTFILES
+# LINK THE DOTFILES
 link_dotfiles(){
     if $(whiptail --backtitle "LINKING DOTFILES..." --title "Backing Up and Linking Dotfiles" --yesno "Backing up .bashrc.orig .bash_profile.orig .vimrc.orig and linking new dotfiles to cloned masters"  10 78 3>&1 1>&2 2>&3); 
     then
@@ -111,8 +111,8 @@ link_dotfiles(){
 }
 
 
+# SSH-AGENT SERVICE
 ssh_agent_service(){
-    # SSH-AGENT SERVICE
     TERM=ansi whiptail --backtitle "ADD SSH KEY TO AGENT" --title "Adding your ssh secret key" \
     --infobox "Starting your SSH service and Adding your SSH key to ssh-agent. 
 
@@ -163,7 +163,7 @@ install_devstuff(){
     then
         sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate  &>>$LOGFILE
     else
-        term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not install now" --infobox "Will have to install Devstuff later on" 10 78
+        term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
         sleep 2
     fi
 }
@@ -185,7 +185,7 @@ install_nvm(){
 
 
 
-## INSTALL PARU  
+## INSTALL PARU (THE AUR HELPER)
 install_paru(){
     if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
     then
