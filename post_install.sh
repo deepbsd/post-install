@@ -2,10 +2,15 @@
 
 # Run this script on Arch systems after desktop are already installed
 
+FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
+NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
+DEV_PKGS=( ruby nodejs npm npm-check-updates gvim mlocate )
+CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
+AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
 
-
+#####################
 ####  FUNCTIONS
-
+#####################
 
 # CREATE LOGFILE
 create_logfile(){
