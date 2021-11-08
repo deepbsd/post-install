@@ -26,6 +26,7 @@ create_logfile(){
 # HOMED REMINDER
 homed_message(){
     homed_message=$(systemctl status systemd-homed)
+    echo "=== homed_message ===" &>>$LOGFILE
 
     whiptail --title "Homed Status" --backtitle "HOMED-STATUS"  --msgbox "${homed_message}  
 
@@ -35,6 +36,7 @@ homed_message(){
 
 # PAMBASE REMINDER
 pambase_reminder(){
+    echo "=== pambase_message ===" &>>$LOGFILE
     whiptail --title "Pambase Reminder" --backtitle "PAMBASE REMINDER"  --msgbox "Remember to enable systemd-homed as root or sudo may not work correctly.  
 
     Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
@@ -45,6 +47,7 @@ pambase_reminder(){
 
 ## DOTFILES DIRECTORY
 cloning_dotfiles(){
+    echo "=== Cloning dotfiles ===" &>>$LOGFILE
 
     # adjust as necessary
     MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
@@ -74,6 +77,9 @@ cloning_dotfiles(){
 
 # CREATE AND COPY HOME DIRS
 create_homedirs(){
+
+    echo "=== Creating and Copying Home Directories ===" &>>$LOGFILE
+
     # THESE DIRECTORIES ARE STANDARD FOR MY HOME DIRECTORIES ON ALL MY SYSTEMS
     if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder"\
         --yesno "Copy directories to home $HOME?"  10 78 3>&1 1>&2 2>&3); 
