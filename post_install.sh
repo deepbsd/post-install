@@ -40,11 +40,15 @@ pambase_reminder(){
 
 ## DOTFILES DIRECTORY
 cloning_dotfiles(){
+
+    # adjust as necessary
+    MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
+
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
         cd ~
         mkdir tmp repos build  &>>$LOGFILE
-        git clone https://github.com/deepbsd/dotfiles.git &>>$LOGFILE
+        git clone "$MY_DOTFILES" &>>$LOGFILE
 
         sleep 2
     else

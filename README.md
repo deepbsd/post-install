@@ -16,8 +16,12 @@ hosts.
 A logfile of all transactions is used for each operation.  It is stored in /tmp/logfile using the
 LOGFILE variable.  To change just point that variable to whatever file you want to create and use.
 
-
+## Start Cloning and Copying Assets
 
 It simply copies assets from an often-used host on my network to the current users home directory.  
 This is useful for copy customized dotfiles, music collection, frequently-used tools, and other
-assets.  It then installs a number of frequent 
+assets.
+
+### Dotfiles
+
+If you have a dotfile repository, you can clone it into your new directory.
