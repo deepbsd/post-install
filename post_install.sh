@@ -216,6 +216,7 @@ install_anaconda(){
 }
 
 
+# FAVORITES FROM AUR
 install_aur_goodies(){
         if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
@@ -227,6 +228,10 @@ install_aur_goodies(){
         sleep 2
     fi
 }
+
+###################################
+########        MAIN     ##########
+###################################
 
 main(){
     create_logfile
