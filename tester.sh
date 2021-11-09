@@ -3,7 +3,7 @@
 
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 
-for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done
+#for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done
 
 check_folders(){
     myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done)
