@@ -9,8 +9,10 @@ check_folders(){
 
     folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
     "Choose Folder Options:" 20 78 13 \
-    "$myfolders"
-    3>&1 1>&2 2>&3 )
+    "$myfolders" 3>&1 1>&2 2>&3 )
+
+
+    echo "$folders"
 }
     #"adm" " " ON \
     #"dotfiles" " " ON \
@@ -24,3 +26,6 @@ check_folders(){
     #".ssh" " " ON \
     #".gnupg" " " ON \
     #"Music" " " OFF 3>&1 1>&2 2>&3 )
+
+
+check_folders
