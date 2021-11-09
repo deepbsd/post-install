@@ -92,6 +92,7 @@ create_homedirs(){
         host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
         --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
 
+        ### figure a way to make this work instead of hard-coding the directories
         #myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done)
 
 
