@@ -92,6 +92,9 @@ create_homedirs(){
         host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
         --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
 
+        #myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done)
+
+
         # CHOOSE FOLDERS TO COPY
         folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
         "Choose Folder Options:" 20 78 13 \
@@ -287,6 +290,7 @@ main(){
 
 ### START HERE
 
-main
+#main
+create_homedirs
 
 
