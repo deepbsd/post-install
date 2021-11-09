@@ -154,7 +154,6 @@ ssh_agent_service(){
     [[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
 
     ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
-
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
     ssh-add ~/.ssh/id_rsa  &>/tmp/ssh-message
