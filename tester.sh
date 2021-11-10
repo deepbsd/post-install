@@ -6,7 +6,7 @@ FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper"
 #for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done
 
 check_folders(){
-    myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done)
+    myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON\n" $f; done)
 
     echo -e "$myfolders"
 
