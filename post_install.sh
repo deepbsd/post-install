@@ -6,6 +6,7 @@
 ### VARIABLES, ARRAYS ####
 ##########################
 LOGFILE=/tmp/logfile
+SSH_KEY=$HOME/.ssh/id_rsa
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
 DEV_PKGS=( ruby nodejs npm npm-check-updates gvim mlocate )
@@ -140,7 +141,10 @@ ssh_agent_service(){
 
     Please enter your ssh passphrase: "  10 78
 
-    [[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
+    #[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
+    [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) 2&>/dev/null
+
+    [[ -f /usr/lib/ssh/x11-ssh-ask-pass ]] || sudo pacman -S x11-ssh-askpass
 
     ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
