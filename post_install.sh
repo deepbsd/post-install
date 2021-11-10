@@ -93,24 +93,13 @@ create_homedirs(){
         --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
 
         ### figure a way to make this work instead of hard-coding the directories
-        #myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done)
+        myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \"<---\" ON\n" $f; done)
 
 
         # CHOOSE FOLDERS TO COPY
         folders=$(whiptail --title "Choose directories to copy" --backtitle "CHOOSE DIRECTORIES" --checklist \
         "Choose Folder Options:" 20 78 13 \
-        "adm" " " ON \
-        "dotfiles" " " ON \
-        ".vim" " " ON \
-        "public_html" " " ON \
-        "sounds" " " ON \
-        ".gkrellm2" " " ON \
-        "wallpaper" " " ON \
-        "wallpaper1" " " ON \
-        "bin" " " ON \
-        ".ssh" " " ON \
-        ".gnupg" " " ON \
-        "Music" " " OFF 3>&1 1>&2 2>&3 )
+        $(echo -e "$myfolders") 3>&1 1>&2 2>&3 )
 
         # CREATE AND COPY HOMEDIRS (Replace each space with a comma between dir names)
         homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
@@ -290,7 +279,6 @@ main(){
 
 ### START HERE
 
-#main
-create_homedirs
+main
 
 
