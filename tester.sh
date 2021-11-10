@@ -3,7 +3,7 @@
 
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 
-#for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done
+for f in "${FOLDERS[*]}"; do printf "%s  \" \" ON \ \n" $f; done
 
 check_folders(){
     myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \" \"   ON\n" $f; done)
@@ -13,11 +13,9 @@ check_folders(){
 
     folders=$(whiptail --backtitle "CHOOSE DIRECTORIES" --title "Choose directories to copy" --checklist \
     "Choose Folder Options:" 20 78 13 \
-    $(echo -e $myfolders) 3>&1 1>&2 2>&3 )
-
-
-    echo "$folders"
+    $(echo -e "$myfolders") 3>&1 1>&2 2>&3 )
 }
+
     #"adm" " " ON \
     #"dotfiles" " " ON \
     #".vim" " " ON \
@@ -31,6 +29,7 @@ check_folders(){
     #".gnupg" " " ON \
     #"Music" " " OFF 3>&1 1>&2 2>&3 )
 
-    #"$(echo $myfolders)" 3>&1 1>&2 2>&3 )
+    #$(for f in "${FOLDERS[*]}"; do printf "%s  \" \"  ON\n" $f; done)
 
+echo -e "HERE:  $folders"
 check_folders
