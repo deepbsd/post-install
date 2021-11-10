@@ -144,17 +144,21 @@ ssh_agent_service(){
     #[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
     [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) 2&>/dev/null
 
-    [[ -f /usr/lib/ssh/x11-ssh-ask-pass ]] || sudo pacman -S x11-ssh-askpass
+    password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
+   
+    [[ -f /usr/lib/ssh/x11-ssh-ask-pass ]] || echo "$password" | sudo --user dsj --stdin pacman -S x11-ssh-askpass >>$LOGFILE
+    
+    whiptail --backtitle "DID WE INSTALL ssh-ask-pass?" --title "Did we install ssh-ask-pass?" --textbox $LOGFILE  40 78
 
     ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
-    ssh-add ~/.ssh/id_rsa  &>/tmp/ssh-message
+    ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
 
     TERM=ansi whiptail --title "Adding your ssh-key to ssh-agent" --infobox "Adding your ssh secret key to running ssh-agent..." 10 78
     sleep 2
 
-    whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox /tmp/ssh-message  10 78
+    whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox $LOGFILE  10 78
 }
 
 
