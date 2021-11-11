@@ -59,8 +59,8 @@ cloning_dotfiles(){
     DOTFILE_URL=$(whiptail --title "Set DOTFILE REPO" --inputbox "Your Dotfile URL is $MY_DOTFILES  Change if necessary."\
 --backtitle "SET DOTFILE REPO URL" 3>&1 1>&2 2>&3)
 
-    if $(whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno \
-        "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3); then
+    if $( whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3 ) 
+    then
         MY_DOTFILES="$DOTFILE_URL"
     else
         sleep 1
@@ -177,9 +177,9 @@ install_mystuff(){
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
-        $(which gkrellm &>/dev/null) || sudo --user dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf >>$LOGFILE
+        $(which gkrellm &>/dev/null) || echo $password | sudo --user dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf >>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline &>/dev/null) || sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
+        $(which powerline &>/dev/null) || echo $password | sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
 
         sudo updatedb  &>>$LOGFILE
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
@@ -197,7 +197,7 @@ install_devstuff(){
     if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
-        sudo --user dsj --stdin pacman -S ruby nodejs npm npm-check-updates gvim mlocate >>$LOGFILE
+        echo $password | sudo --user dsj --stdin pacman -S ruby nodejs npm npm-check-updates gvim mlocate >>$LOGFILE
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
