@@ -249,7 +249,8 @@ install_anaconda(){
     echo "=== Clone and install anaconda ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL ANACONDA" --title "Install Anaconda?"  --yesno "Install Anaconda?" 10 78 3>&1 1>&2 2>&3)
     then
-        [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+        [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda  &>>$LOGFILE
+        whiptail --backtitle "PARU INSTALLED" --title "PARU Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "ANACONDA NOT INSTALLED NOW" --title "Anaconda not install now" \
             --infobox "Will have to install Anaconda later on" 10 78
