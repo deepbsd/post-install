@@ -175,13 +175,13 @@ install_mystuff(){
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
-        $(which gkrellm &>/dev/null) || sudo pacman -S gkrellm &>>$LOGFILE
-        sudo pacman -S libdvdread libdvdcss libdvdnav mlocate fzf  &>>$LOGFILE
-        sudo updatedb  &>>$LOGFILE
 
+        $(which gkrellm &>/dev/null) || sudo --user dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf >>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts &>>$LOGFILE
+        $(which powerline &>/dev/null) || sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
 
+        sudo updatedb  &>>$LOGFILE
+        whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "MYSTUFF NOT INSTALLED NOW" --title "Mystuff not install now" --infobox "Will have to install Mystuff later on" 10 78
         sleep 2
