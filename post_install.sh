@@ -8,6 +8,7 @@
 LOGFILE=/tmp/logfile
 SSH_KEY=$HOME/.ssh/id_rsa
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
+EMPTY_FOLDERS=( repos tmp build Downloads )
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
 DEV_PKGS=( ruby nodejs npm npm-check-updates gvim mlocate )
 CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
@@ -68,7 +69,7 @@ cloning_dotfiles(){
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
         cd ~
-        mkdir tmp repos build  &>>$LOGFILE
+        mkdir "${EMPTY_FOLDERS[@]}"  &>>$LOGFILE
         git clone "$MY_DOTFILES" &>>$LOGFILE
 
         sleep 2
@@ -104,10 +105,10 @@ create_homedirs(){
 
         # CREATE AND COPY HOMEDIRS (Replace each space with a comma between dir names)
         homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
-        scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .
+        scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$homedirs"} .  &>>$LOGFILE
         ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-        sleep 2
 
+        whiptail --backtitle "DIRECTORIES COPIED" --title "Folders copied" --infobox $LOGFILE  30 78
     else
         TERM=ansi whiptail --backtitle "NOT COPYING DIRS NOW" --title "Not Copying Directories Now"  --infobox "Not copying directories now..." 10 78
         sleep 2
@@ -264,8 +265,9 @@ install_aur_goodies(){
     echo "=== Clone and install gnome-terminal-transparency, mate-terminal, pamac-aur, google-chrome, oranchelo-icons, xcursor-breeze ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
-        paru -S gnome-terminal-transparency mate-terminal 
-        paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur
+        paru -S gnome-terminal-transparency mate-terminal &>>$LOGFILE
+        paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur  &>>$LOGFILE
+        whiptail --backtitle "AUR GOODIES INSTALLED" --title "AUR Goodies Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "NOT INSTALLED AUR GOODIES NOW" --title "Not installing AUR goodies now" --infobox "Will have to install AUR Goodies later on" 10 78
         sleep 2
