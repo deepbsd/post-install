@@ -171,6 +171,8 @@ install_mystuff(){
     then
         ## SYNC PACMAN DBs
         sudo pacman -Syy  &>>$LOGFILE
+    
+        password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
         $(which gkrellm &>/dev/null) || sudo pacman -S gkrellm &>>$LOGFILE
