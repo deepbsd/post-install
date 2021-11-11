@@ -235,6 +235,7 @@ install_paru(){
             makepkg -si   &>>$LOGFILE
             cd
         fi
+        whiptail --backtitle "PARU INSTALLED" --title "PARU Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "PARU NOT INSTALLED NOW" --title "Paru not install now" --infobox "Will have to install Paru later on" 10 78
         sleep 2
