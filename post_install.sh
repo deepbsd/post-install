@@ -56,8 +56,8 @@ cloning_dotfiles(){
 
     # adjust as necessary
     MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
-    DOTFILE_URL=$(whiptail --title "Set DOTFILE REPO" --inputbox "Your Dotfile URL is $MY_DOTFILES  Change if necessary."\
---backtitle "SET DOTFILE REPO URL" 3>&1 1>&2 2>&3)
+
+    DOTFILE_URL=$( whiptail --title "Set DOTFILE REPO" --inputbox "Your Dotfile URL is $MY_DOTFILES  Change if necessary." --backtitle "SET DOTFILE REPO URL" 3>&1 1>&2 2>&3 )
 
     if $( whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3 ) 
     then
