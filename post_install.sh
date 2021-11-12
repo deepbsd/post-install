@@ -57,6 +57,7 @@ cloning_dotfiles(){
     # adjust as necessary
     MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 
+    # Ask to change repo url
     if $( whiptail --title "Set New DOTFILE Repo?" --yesno "Your Dotfile URL is $MY_DOTFILES  Do you want to change it?" --backtitle "CHANGE DOTFILE REPO URL?" 3>&1 1>&2 2>&3 )
     then
         DOTFILE_URL=$( whiptail --backtitle "YOUR NEW DOTFILE URL" --title "Input your new dotfile repo:" --inputbox  \
@@ -64,22 +65,17 @@ cloning_dotfiles(){
         MY_DOTFILES="$DOTFILE_URL"
     else
         TERM=ansi whiptail --title "Keeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
+        sleep 2
     fi
 
 
-    #if $( whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3 ) 
-    #then
-    #else
-    #    sleep 1
-    #fi
-
+    # Proceed to actually make empty folders and clone dotfiles
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
         cd ~
         mkdir "${EMPTY_FOLDERS[@]}"  &>>$LOGFILE
         git clone "$MY_DOTFILES" &>>$LOGFILE
 
-        sleep 2
     else
         TERM=ansi whiptail --title "Moving on..." --backtitle "FILES NOT CREATED" --infobox "Not creating personal files and directories..." 8 78
         sleep 2
