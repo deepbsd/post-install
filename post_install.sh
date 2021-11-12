@@ -190,7 +190,7 @@ install_mystuff(){
         ## INSTALL POWERLINE
         $(which powerline &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
 
-        echo $password | sudo --user dsj --stdin updatedb  &>>$LOGFILE
+        echo $password | sudo --user dsj --stdin updatedb  
 
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
         sleep 2
