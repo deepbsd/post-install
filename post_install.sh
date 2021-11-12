@@ -173,10 +173,16 @@ install_mystuff(){
     if $(whiptail --backtitle "INSTALL MYSTUFF" --title "Install Mystuff?"  \
         --yesno "Install Gkrellm, DVD support, Mlocate, and fzf?" 10 78 3>&1 1>&2 2>&3)
     then
-        ## SYNC PACMAN DBs
-        sudo pacman -Syy  &>>$LOGFILE
     
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
+        
+        ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
+        export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
+        export SSH_ASKPASS_REQUIRE="prefer"
+        ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
+
+        ## SYNC PACMAN DBs
+        echo $password | sudo --user dsj --stdin pacman -Syy  &>>$LOGFILE
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
@@ -184,8 +190,10 @@ install_mystuff(){
         ## INSTALL POWERLINE
         $(which powerline &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
 
-        sudo updatedb  &>>$LOGFILE
+        echo $password | sudo --user dsj --stdin updatedb  &>>$LOGFILE
+
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
+        sleep 2
     else
         term=ANSI  whiptail --backtitle "MYSTUFF NOT INSTALLED NOW" --title "Mystuff not install now" --infobox "Will have to install Mystuff later on" 10 78
         sleep 2
