@@ -57,14 +57,21 @@ cloning_dotfiles(){
     # adjust as necessary
     MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 
-    DOTFILE_URL=$( whiptail --title "Set DOTFILE REPO" --inputbox "Your Dotfile URL is $MY_DOTFILES  Change if necessary." --backtitle "SET DOTFILE REPO URL" 3>&1 1>&2 2>&3 )
-
-    if $( whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3 ) 
+    if $( whiptail --title "Set New DOTFILE Repo?" --yesno "Your Dotfile URL is $MY_DOTFILES  Do you want to change it?" --backtitle "CHANGE DOTFILE REPO URL?" 3>&1 1>&2 2>&3 )
     then
+        DOTFILE_URL=$( whiptail --backtitle "YOUR NEW DOTFILE URL" --title "Input your new dotfile repo:" --inputbox  \
+        "Your new DOTFILE Repo URL:" 20 78 3>&1 1>&2 2>&3 )
         MY_DOTFILES="$DOTFILE_URL"
     else
-        sleep 1
+        TERM=ansi whiptail --title "Keeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
     fi
+
+
+    #if $( whiptale --title "Replace DOTFILE URL?" --backtitle "REPLACE DOTFILE URL" --yesno "Replace $MY_DOTFILES with $DOTFILE_URL ?" 10 78 3>&1 1>&2 2>&3 ) 
+    #then
+    #else
+    #    sleep 1
+    #fi
 
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
         Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
