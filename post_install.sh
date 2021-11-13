@@ -7,6 +7,8 @@
 ##########################
 LOGFILE=/tmp/logfile
 SSH_KEY=$HOME/.ssh/id_rsa
+# adjust as necessary
+MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 FOLDERS=( "adm" "dotfiles" ".vim" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 EMPTY_FOLDERS=( repos tmp build Downloads )
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
@@ -54,9 +56,6 @@ pambase_reminder(){
 cloning_dotfiles(){
     echo "=== Cloning dotfiles ===" &>>$LOGFILE
 
-    # adjust as necessary
-    MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
-
     # Ask to change repo url
     if $( whiptail --title "Set New DOTFILE Repo?" --yesno "Your Dotfile URL is $MY_DOTFILES  Do you want to change it?" --backtitle "CHANGE DOTFILE REPO URL?" 3>&1 1>&2 2>&3 )
     then
@@ -64,7 +63,7 @@ cloning_dotfiles(){
         "Your new DOTFILE Repo URL:" 20 78 3>&1 1>&2 2>&3 )
         MY_DOTFILES="$DOTFILE_URL"
     else
-        TERM=ansi whiptail --title "Keeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
+        TERM=ansi whiptail --title "teeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
         sleep 2
     fi
 
@@ -146,7 +145,7 @@ ssh_agent_service(){
     Please enter your ssh passphrase: "  10 78
 
     #[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
-    [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) 2&>/dev/null
+    [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) 2&>>$LOGFILE
 
     password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
    
