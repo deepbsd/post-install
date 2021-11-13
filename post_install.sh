@@ -57,13 +57,13 @@ cloning_dotfiles(){
     echo "=== Cloning dotfiles ===" &>>$LOGFILE
 
     # Ask to change repo url
-    if $( whiptail --title "Set New DOTFILE Repo?" --yesno "Your Dotfile URL is $MY_DOTFILES  Do you want to change it?" --backtitle "CHANGE DOTFILE REPO URL?" 3>&1 1>&2 2>&3 )
+    if $( whiptail --backtitle "CHANGE DOTFILE REPO URL?" --title "Set New DOTFILE Repo?" --yesno "Your Dotfile URL is $MY_DOTFILES  Do you want to change it?" 9 78  3>&1 1>&2 2>&3 );
     then
         DOTFILE_URL=$( whiptail --backtitle "YOUR NEW DOTFILE URL" --title "Input your new dotfile repo:" --inputbox  \
         "Your new DOTFILE Repo URL:" 20 78 3>&1 1>&2 2>&3 )
         MY_DOTFILES="$DOTFILE_URL"
     else
-        TERM=ansi whiptail --title "teeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
+        TERM=ansi whiptail --title "Keeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
         sleep 2
     fi
 
