@@ -208,7 +208,7 @@ install_devstuff(){
     if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
-        echo $password | sudo --user dsj --stdin pacman -S ruby nodejs npm npm-check-updates gvim mlocate >>$LOGFILE
+        echo "$password" | sudo --user dsj --stdin pacman -S ruby nodejs npm npm-check-updates gvim mlocate >>$LOGFILE
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
