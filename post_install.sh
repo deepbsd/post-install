@@ -128,6 +128,7 @@ link_dotfiles(){
         ln -sf ~/dotfiles/.bashrc .   &>>$LOGFILE
         ln -sf ~/dotfiles/.bash_profile .  &>>$LOGFILE
         ln -sf ~/dotfiles/.vimrc .  &>>$LOGFILE
+        ln -sf ~/dotfiles/.vim .    &>>$LOGFILE
         sleep 2
     else
         TERM=ansi whiptail --backtitle "NOT CREATING DOTFILES NOW" --title "Not Creating Dotfiles Now"  --infobox "NOT Creating Dotfiles now" 10 78
