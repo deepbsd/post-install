@@ -146,6 +146,7 @@ ssh_agent_service(){
 
     Please enter your ssh passphrase: "  10 78
 
+    sleep 2      # won't see the infobox without a sleep statement
     #[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
     [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) &>>$LOGFILE 
 
