@@ -194,9 +194,9 @@ install_mystuff(){
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
-        $(which gkrellm &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf >>$LOGFILE
+        $(which gkrellm &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S powerline powerline-fonts >>$LOGFILE
+        $(which powerline &>/dev/null) || echo "$password" | sudo --user dsj --stdin pacman -S powerline powerline-fonts &>>$LOGFILE
 
         echo "$password" | sudo --user dsj --stdin updatedb  
 
