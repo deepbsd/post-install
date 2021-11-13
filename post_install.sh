@@ -235,7 +235,7 @@ install_nvm(){
     then
         mkdir $HOME/.nvm
         [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. &>>$LOGFILE
-        [[ -d ~/.nvm ]] && cd ~/.nvm && source nvm.sh && cd  &>>$LOGFILE
+        [[ -d $HOME/.nvm ]] && cd $HOME/.nvm && source nvm.sh && cd  &>>$LOGFILE
         whiptail --backtitle "NVM INSTALLED" --title "NVM Installation Status" --infobox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "NVM NOT INSTALLED NOW" --title "NMV not install now" --infobox "Will have to install NVM later on" 10 78
