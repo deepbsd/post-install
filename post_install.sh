@@ -156,10 +156,16 @@ ssh_agent_service(){
     ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
-    ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
+    #ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
+    ssh-add "$SSH_KEY"   &>>$LOGFILE
 
-    TERM=ansi whiptail --title "Adding your ssh-key to ssh-agent" --infobox "Adding your ssh secret key to running ssh-agent..." 10 78
-    sleep 2
+    # determine whether the key got added properly or not and inform the user
+    if [[ $? ]]; then
+        TERM=ansi whiptail --title "Success adding your ssh-key to ssh-agent" --msgbox "Adding your ssh secret key to running ssh-agent..." 10 78
+    else
+        TERM=ansi whiptail --title "Failure adding your ssh-key to ssh-agent" --msgbox "Adding your ssh secret key to running ssh-agent..." 10 78
+
+    fi
 
     whiptail --backtitle "SSH-ADD STATUS" --title "Status for ssh-add command: " --textbox $LOGFILE  10 78
 }
