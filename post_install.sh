@@ -70,9 +70,10 @@ cloning_dotfiles(){
 
 
     # Proceed to actually make empty folders and clone dotfiles
-    if $(whiptail --title "Personal Directories and dotfiles..." --backtitle "Installing and Cloning Personal Customized
-        Directories" --yesno "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
-        cd ~
+    if $(whiptail --title "Personal Directories and dotfiles..." --backtitle \
+        "Installing and Cloning Personal Customized Directories" --yesno \
+        "Do you want to create your personal files and folders?"  10 78 3>&1 1>&2 2>&3); then
+        cd $HOME 
         mkdir "${EMPTY_FOLDERS[@]}"  &>>$LOGFILE
         git clone "$MY_DOTFILES" &>>$LOGFILE
 
@@ -198,10 +199,19 @@ install_mystuff(){
         ## INSTALL POWERLINE
         #$(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
         #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
-        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
 
-        echo "$password" | sudo --user=root --stdin updatedb  
+        if $(which powerline &>/dev/null) 
+            then
+                echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
 
+                echo "$password" | sudo --user=root --stdin updatedb  
+                term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS{@}} " 10 78
+                sleep 2
+            else
+
+                term=ANSI  whiptail --backtitle "MYSTUFF ALREADY INSTALLED" --title "Mystuff already installed" --infobox "${NORMAL_PKGS{@}} already installed" 10 78
+                sleep 2
+        fi
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
         sleep 2
     else
