@@ -196,7 +196,7 @@ install_mystuff(){
 
         $(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts &>>$LOGFILE
+        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
 
         echo "$password" | sudo --user=root --stdin updatedb  
 
