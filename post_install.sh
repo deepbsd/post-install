@@ -190,15 +190,15 @@ install_mystuff(){
         ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
 
         ## SYNC PACMAN DBs
-        echo "$password" | sudo --user=dsj --stdin pacman -Syy  &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin pacman -Syy  &>>$LOGFILE
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
-        $(which gkrellm &>/dev/null) || echo "$password" | sudo --user=dsj --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
+        $(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline &>/dev/null) || echo "$password" | sudo --user=dsj --stdin pacman -S powerline powerline-fonts &>>$LOGFILE
+        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman -S powerline powerline-fonts &>>$LOGFILE
 
-        echo "$password" | sudo --user=dsj --stdin updatedb  
+        echo "$password" | sudo --user=root --stdin updatedb  
 
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
         sleep 2
