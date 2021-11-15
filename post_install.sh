@@ -12,8 +12,8 @@ MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 # remove .vim directory.  That will be linked from dotfiles dir
 FOLDERS=( "adm" "dotfiles" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 EMPTY_FOLDERS=( repos tmp build Downloads )
-NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts )
-DEV_PKGS=( ruby nodejs npm npm-check-updates gvim mlocate )
+NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
+DEV_PKGS=( ruby nodejs npm npm-check-updates gvim )
 CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
 AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
 
@@ -194,9 +194,11 @@ install_mystuff(){
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
-        $(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
+        #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
         ## INSTALL POWERLINE
-        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
+        #$(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
+        #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
+        $(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
 
         echo "$password" | sudo --user=root --stdin updatedb  
 
