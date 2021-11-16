@@ -205,7 +205,7 @@ install_mystuff(){
                 echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
 
                 echo "$password" | sudo --user=root --stdin updatedb  
-                term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS{@}} " 10 78
+                term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
                 sleep 2
             else
 
