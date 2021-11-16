@@ -78,7 +78,7 @@ cloning_dotfiles(){
         git clone "$MY_DOTFILES" &>>$LOGFILE
 
     else
-        TERM=ansi whiptail --title "Moving on..." --backtitle "FILES NOT CREATED" --infobox "Not creating personal files and directories..." 8 78
+        TERM=ansi whiptail --backtitle "FILES NOT CREATED" --title "Moving on..." --infobox "Not creating personal files and directories..." 8 78
         sleep 2
     fi
 }
