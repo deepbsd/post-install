@@ -209,7 +209,7 @@ install_mystuff(){
                 sleep 2
             else
 
-                term=ANSI  whiptail --backtitle "MYSTUFF ALREADY INSTALLED" --title "Mystuff already installed" --infobox "${NORMAL_PKGS{@}} already installed" 10 78
+                term=ANSI  whiptail --backtitle "MYSTUFF ALREADY INSTALLED" --title "Mystuff already installed" --infobox "${NORMAL_PKGS[@]} already installed" 10 78
                 sleep 2
         fi
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
