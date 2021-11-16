@@ -246,7 +246,7 @@ install_nvm(){
     if $(whiptail --backtitle "INSTALL NVM" --title "Install NVM?"  --yesno "Install NVM?" 10 78 3>&1 1>&2 2>&3)
     then
         mkdir $HOME/.nvm
-        [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. 
+        [[ -x $(which git >/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. 
         [[ -d $HOME/.nvm ]] && cd $HOME/.nvm && source nvm.sh && cd  &>>$LOGFILE
         whiptail --backtitle "NVM INSTALLED" --title "NVM Installation Status" --infobox $LOGFILE 30 78
     else
