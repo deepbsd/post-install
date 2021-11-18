@@ -229,7 +229,10 @@ install_devstuff(){
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
-        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S ruby nodejs npm npm-check-updates gvim mlocate &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S ruby nodejs npm npm-check-updates mlocate &>>$LOGFILE
+
+        echo "$password" | sudo --user=root --stdin pacman -R vim &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin pacman -S gvim &>>$LOGFILE
 
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --infobox $LOGFILE 30 78
     else
