@@ -13,7 +13,7 @@ MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 FOLDERS=( "adm" "dotfiles" "public_html" "sounds" ".gkrellm2" "wallpaper" "wallpaper1" ".ssh" ".gnupg" ".gnupg" "Music")
 EMPTY_FOLDERS=( repos tmp build Downloads )
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
-DEV_PKGS=( ruby nodejs npm npm-check-updates gvim )
+DEV_PKGS=( ruby nodejs npm npm-check-updates )
 CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
 AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
 
