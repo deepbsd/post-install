@@ -231,10 +231,10 @@ install_devstuff(){
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
-        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${DEV_PKGS[*]}" &>>$LOGFILE
+        echo "$password" | sudo -S pacman --noconfirm -S "${DEV_PKGS[*]}" &>>$LOGFILE
 
-        echo "$password" | sudo --user=root --stdin pacman -R vim &>>$LOGFILE
-        echo "$password" | sudo --user=root --stdin pacman -S gvim &>>$LOGFILE
+        echo "$password" | sudo -S pacman -R vim &>>$LOGFILE
+        echo "$password" | sudo -S pacman -S gvim &>>$LOGFILE
 
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --infobox $LOGFILE 30 78
     else
