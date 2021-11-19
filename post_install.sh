@@ -164,10 +164,12 @@ ssh_agent_service(){
     ssh-add "$SSH_KEY"   &>>$LOGFILE
 
     # determine whether the key got added properly or not and inform the user
-    if [[ $? ]]; then
+    if [[ $? == 0 ]]; then
+        echo "===SUCCESS!!  Added ssh identify to ssh-agent!!===">>$LOGFILE
         TERM=ansi whiptail --title "Success adding your ssh-key to ssh-agent" --msgbox "Adding your ssh secret key to running ssh-agent..." 10 78
     else
-        TERM=ansi whiptail --title "Failure adding your ssh-key to ssh-agent" --msgbox "Adding your ssh secret key to running ssh-agent..." 10 78
+        echo "===FAILURE!!  No ssh identity added to ssh-agent!!===">>$LOGFILE
+        TERM=ansi whiptail --title "Failure adding your ssh-key to ssh-agent" --msgbox "Failure adding your ssh secret key to running ssh-agent..." 10 78
 
     fi
 
