@@ -153,7 +153,7 @@ ssh_agent_service(){
 
     password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
    
-    [[ -f /usr/lib/ssh/x11-ssh-ask-pass ]] || echo "$password" | sudo pacman --stdin --noconfirm -S x11-ssh-askpass &>>$LOGFILE
+    [[ -f /usr/lib/ssh/x11-ssh-ask-pass ]] || echo "$password" | sudo --user=dsj --stdin  pacman --noconfirm -S x11-ssh-askpass &>>$LOGFILE
     
     whiptail --backtitle "DID WE INSTALL ssh-ask-pass?" --title "Did we install ssh-ask-pass?" --textbox $LOGFILE  40 78
 
