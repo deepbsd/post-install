@@ -200,8 +200,8 @@ install_mystuff(){
         #$(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
         #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
 
-        if ! which powerline >/dev/null; then 
-                echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
+        if $(! which powerline >/dev/null); then 
+                echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[*]}" &>>$LOGFILE
 
                 echo "$password" | sudo --user=root --stdin updatedb  
                 term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
@@ -228,7 +228,7 @@ install_devstuff(){
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
-        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S ruby nodejs npm npm-check-updates mlocate &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${DEV_PKGS[*]}" &>>$LOGFILE
 
         echo "$password" | sudo --user=root --stdin pacman -R vim &>>$LOGFILE
         echo "$password" | sudo --user=root --stdin pacman -S gvim &>>$LOGFILE
