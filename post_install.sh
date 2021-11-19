@@ -161,7 +161,7 @@ ssh_agent_service(){
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
     #ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
-    ssh-add "$SSH_KEY"   &>>$LOGFILE
+    eval $(ssh-agent) && ssh-add "$SSH_KEY"   &>>$LOGFILE
 
     # determine whether the key got added properly or not and inform the user
     if [[ $? == 0 ]]; then
