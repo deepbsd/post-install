@@ -241,6 +241,8 @@ install_devstuff(){
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
         sleep 2
     fi
+
+    whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
 }
 
 
