@@ -197,27 +197,16 @@ install_mystuff(){
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
 
-        #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
-        ## INSTALL POWERLINE
-        #$(which powerline &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S powerline powerline-fonts powerline-vim &>>$LOGFILE
-        #$(which gkrellm &>/dev/null) || echo "$password" | sudo --user=root --stdin pacman --noconfirm -S gkrellm libdvdread libdvdcss libdvdnav mlocate fzf &>>$LOGFILE
+        term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
+        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[*]}" &>>$LOGFILE
 
-        if $(! which powerline >/dev/null); then 
-                echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[*]}" &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin updatedb  
 
-                echo "$password" | sudo --user=root --stdin updatedb  
-                term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
-                sleep 2
-            else
-
-                term=ANSI  whiptail --backtitle "MYSTUFF ALREADY INSTALLED" --title "Mystuff already installed" --infobox "${NORMAL_PKGS[@]} already installed" 10 78
-                sleep 2
-        fi
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
     else
         term=ANSI  whiptail --backtitle "MYSTUFF NOT INSTALLED NOW" --title "Mystuff not install now" --infobox "Will have to install Mystuff later on" 10 78
         sleep 2
-        whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
+        whiptail --backtitle "MYSTUFF NOT INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
 
     fi
 }
