@@ -196,7 +196,6 @@ install_mystuff(){
         echo "$password" | sudo --user=root --stdin pacman -Syy  &>>$LOGFILE
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
-
         term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
         echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[*]}" &>>$LOGFILE
 
@@ -224,13 +223,13 @@ install_devstuff(){
         echo "$password" | sudo -S pacman -R vim &>>$LOGFILE
         echo "$password" | sudo -S pacman -S gvim &>>$LOGFILE
 
-        whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --infobox $LOGFILE 30 78
+        whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --textbox $LOGFILE 30 78
     else
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
         sleep 2
     fi
 
-    whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --infobox $LOGFILE 30 78
+    whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox $LOGFILE 30 78
 }
 
 
