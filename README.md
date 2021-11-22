@@ -25,3 +25,7 @@ assets.
 ### Dotfiles
 
 If you have a dotfile repository, you can clone it into your new directory.
+
+## Text version
+
+In case you don't need whiptail, the older text version still works.  Just edit as needed.
