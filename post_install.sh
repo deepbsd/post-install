@@ -86,6 +86,7 @@ cloning_dotfiles(){
 
 # CREATE AND COPY HOME DIRS
 create_homedirs(){
+    ## Create the empty directories, copy recursively the non-empty directories
 
     echo "=== Creating and Copying Home Directories ===" &>>$LOGFILE
 
@@ -98,7 +99,7 @@ create_homedirs(){
         host=$(whiptail --backtitle "CHOOSE HOSTNAME" --title "Enter hostname to download from:" \
         --inputbox "What host to download directories from?"  10 40 3>&1 1>&2 2>&3)
 
-        ### figure a way to make this work instead of hard-coding the directories
+        ### GENERATE THE DIRECTORIES FROM THE LIST OF FOLDERS
         myfolders=$(for f in "${FOLDERS[*]}"; do printf "%s  \"<---\" ON\n" $f; done)
 
 
