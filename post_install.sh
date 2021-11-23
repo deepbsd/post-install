@@ -198,7 +198,7 @@ install_mystuff(){
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
         term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
-        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[*]}" &>>$LOGFILE
+        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
 
         echo "$password" | sudo --user=root --stdin updatedb  
 
