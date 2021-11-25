@@ -279,7 +279,7 @@ install_anaconda(){
     if $(whiptail --backtitle "INSTALL ANACONDA" --title "Install Anaconda?"  --yesno "Install Anaconda?" 10 78 3>&1 1>&2 2>&3)
     then
         [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda  &>>$LOGFILE
-        whiptail --backtitle "ANACONDA INSTALLED" --title "Anaconda Installation Status" --infobox $LOGFILE 30 78
+        whiptail --backtitle "ANACONDA INSTALLED" --title "Anaconda Installation Status" --infobox "$LOGFILE" 30 78
     else
         term=ANSI  whiptail --backtitle "ANACONDA NOT INSTALLED NOW" --title "Anaconda not install now" \
             --infobox "Will have to install Anaconda later on" 10 78
