@@ -7,6 +7,7 @@ PERS_DIRECTORIES=( tmp build repos )
 MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .gnupg Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
+DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
 
 systemctl status systemd-homed
 echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
@@ -40,7 +41,7 @@ ls ~/.ssh/* ; echo "Add which key? "; read key_name
 ssh-add ~/.ssh/"$key_name"
 
 ## INSTALL DVD SUPPORT, GKRELLM, MLOCATE
-sudo pacman -S libdvdread libdvdcss libdvdnav gkrellm mlocate fzf
+sudo pacman -S ${BASICS[@]}
 echo "updating locate database..."
 sudo updatedb
 
@@ -49,10 +50,12 @@ $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
 
 ## CHECK FOR OLD FAITHFULS
 $(which gkrellm) || sudo pacman -S gkrellm
-[[ -f /opt/anaconda/bin/anaconda-navigator ]] || yay -S anaconda
+[[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
 
 ## INSTALL DEV STUFF 
-sudo pacman -S  ruby nodejs npm npm-check-updates gvim mlocate gkrellm
+for f in ${DEV_STUFF[@]}; do
+    sudo pacman -S $f
+done
 
 ## DOTFILES
 cp ~/.bashrc ~/.bashrc.orig
@@ -66,21 +69,20 @@ mkdir $HOME/.nvm
 [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
 [[ -d $HOME/.nvm ]] && cd ~/.nvm && source ./nvm.sh && cd
 
-## INSTALL YAY  ## Do this last because of intermittant errors with yay-git
-echo "Installing yay: "
+## INSTALL PARU  
+echo "Installing paru: "
 cd ~/build
-git clone https://aur.archlinux.org/yay-git.git
-cd yay-git
+git clone https://aur.archlinux.org/paru.git
+cd paru
 makepkg -si
 cd
 
-yay -S paru
 
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
-yay -S gnome-terminal-transparency mate-terminal 
+paru -S gnome-terminal-transparency mate-terminal 
 
 ## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR
-yay -S google-chrome oranchelo-icon-theme-git xcursor-breeze
+paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
 
 
 
