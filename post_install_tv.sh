@@ -2,6 +2,12 @@
 
 # Run this script after system and desktop are already installed
 
+### VARIABLES ####
+PERS_DIRECTORIES=( tmp build repos )
+MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .gnupg Music )
+MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
+BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
+
 systemctl status systemd-homed
 echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
 echo "Also, reinstall pambase if necessary `pacman -S pambase`"
@@ -9,19 +15,23 @@ echo "Type any to continue..." ; read empty
 
 ## PERSONAL DIRECTORIES AND RESOURCES
 echo "Making personal subdirectories..."
-mkdir tmp repos build 
+mkdir "${PERS_DIRECTORIES[@]}"
 
 # Pick a host to get stuff from on the local network
 echo "Download home directory files from what host on network?"; read whathost
 
 # get ssh keys...
-scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
+[ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
 
 # clone the latest dotfiles
-git clone https://github.com/deepbsd/dotfiles.git
+git clone $MY_DOTFILES
 
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+#scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+for dir in ${MY_DIRS[@]}; do
+    echo "recursively copying $dir ..."
+    scp -Br dsj@"$whathost".lan:$dir
+done
 
 # SSH-AGENT SERVICE
 echo "Start the ssh-agent service..."
