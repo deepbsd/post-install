@@ -29,7 +29,7 @@ git clone $MY_DOTFILES
 
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
-for dir in ${MY_DIRS[@]}; do
+for dir in "${MY_DIRS[@]}" ; do
     echo "recursively copying $dir ..."
     scp -Br dsj@"$whathost".lan:$dir
 done
