@@ -31,7 +31,7 @@ git clone $MY_DOTFILES
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 for dir in "${MY_DIRS[@]}" ; do
     echo "recursively copying $dir ..."
-    scp -Br dsj@"$whathost".lan:$dir
+    scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
 done
 
 # SSH-AGENT SERVICE
