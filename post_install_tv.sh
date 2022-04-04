@@ -37,8 +37,11 @@ git clone $MY_DOTFILES
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 
-echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
+eval $(ssh-agent) 
+ssh-add $HOME/.ssh/id_rsa
+$? && echo "Starting ssh-agent for ssh recursive copying..."
 
+echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
 for dir in "${MY_DIRS[@]}" ; do
     echo "recursively copying $dir ..."
     scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
