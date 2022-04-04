@@ -37,21 +37,17 @@ git clone $MY_DOTFILES
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 
-eval $(ssh-agent) 
-ssh-add $HOME/.ssh/id_rsa
-( $? && echo "Starting ssh-agent for ssh recursive copying..." ) || echo "Problem with starting ssh-agent!!!"
+# SSH-AGENT SERVICE
+echo "Start the ssh-agent service..."
+eval $(ssh-agent)
+ls ~/.ssh/* ; echo "Add which key? "; read key_name
+ssh-add ~/.ssh/"$key_name"
 
 echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
 for dir in "${MY_DIRS[@]}" ; do
     echo "recursively copying $dir ..."
     scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
 done
-
-# SSH-AGENT SERVICE
-echo "Start the ssh-agent service..."
-eval $(ssh-agent)
-ls ~/.ssh/* ; echo "Add which key? "; read key_name
-ssh-add ~/.ssh/"$key_name"
 
 ## INSTALL DVD SUPPORT, GKRELLM, MLOCATE
 sudo pacman -S ${BASICS[@]}
