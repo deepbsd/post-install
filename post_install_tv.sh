@@ -36,6 +36,9 @@ git clone $MY_DOTFILES
 
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+
+echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
+
 for dir in "${MY_DIRS[@]}" ; do
     echo "recursively copying $dir ..."
     scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
@@ -53,18 +56,23 @@ echo "updating locate database..."
 sudo updatedb
 
 ## INSTALL POWERLINE
+echo "Install powerline if not already installed."
 $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
 
 ## CHECK FOR OLD FAITHFULS
+echo "Install gkrellm if not already installed."
 $(which gkrellm) || sudo pacman -S gkrellm
+echo "Install anaconda if not already installed."
 [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
 
 ## INSTALL DEV STUFF 
+echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
 for f in ${DEV_STUFF[@]}; do
     sudo pacman -S $f
 done
 
 ## DOTFILES
+echo "Link dotfiles from cloned dotfiles repo..."
 cp ~/.bashrc ~/.bashrc.orig
 cp ~/.bash_profile ~/.bash_profile.orig
 ln -sf ~/dotfiles/.bashrc .
@@ -72,12 +80,14 @@ ln -sf ~/dotfiles/.bash_profile .
 ln -sf ~/dotfiles/.vimrc .
 
 # NVM
+echo "Create NVM clone..."
 mkdir $HOME/.nvm
 [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
 [[ -d $HOME/.nvm ]] && cd ~/.nvm && source ./nvm.sh && cd
 
 ## INSTALL PARU  
 echo "Installing paru: "
+[ -d $HOME/build ] || mkdir $HOME/build
 cd ~/build
 git clone https://aur.archlinux.org/paru.git
 cd paru
