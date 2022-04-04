@@ -92,7 +92,8 @@ cd ~/build
 git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
-cd
+($? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
+cd  # return to $HOME
 
 
 ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
