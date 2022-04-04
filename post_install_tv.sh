@@ -32,6 +32,8 @@ echo "Did we get keys from $whathost ?"; read empty
 echo "Ready to clone dotfiles?" ; read dotfiles
 git clone $MY_DOTFILES
 
+( $? && echo "Dotfiles clone successful." ) || echo "Problem with dotfiles clone..."
+
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
 #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 for dir in "${MY_DIRS[@]}" ; do
