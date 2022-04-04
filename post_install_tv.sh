@@ -17,6 +17,7 @@ echo "Type any to continue..." ; read empty
 ## PERSONAL DIRECTORIES AND RESOURCES
 echo "Making personal subdirectories..."
 mkdir "${PERS_DIRECTORIES[@]}"
+echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
 
 # Pick a host to get stuff from on the local network
 echo "Download home directory files from what host on network?"; read whathost
