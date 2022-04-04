@@ -82,7 +82,7 @@ ln -sf ~/dotfiles/.vimrc .
 echo "Create NVM clone..."
 mkdir $HOME/.nvm
 [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-[[ -d $HOME/.nvm ]] && cd ~/.nvm && source ./nvm.sh && cd
+[[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
 
 ## INSTALL PARU  
 echo "Installing paru: "
