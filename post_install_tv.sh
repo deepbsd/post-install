@@ -39,7 +39,7 @@ git clone $MY_DOTFILES
 
 eval $(ssh-agent) 
 ssh-add $HOME/.ssh/id_rsa
-$? && echo "Starting ssh-agent for ssh recursive copying..."
+( $? && echo "Starting ssh-agent for ssh recursive copying..." ) || echo "Problem with starting ssh-agent!!!"
 
 echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
 for dir in "${MY_DIRS[@]}" ; do
