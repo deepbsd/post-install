@@ -25,7 +25,11 @@ echo "Download home directory files from what host on network?"; read whathost
 # get ssh keys...
 [ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
 
+# check progress of getting ssh keys
+echo "Did we get keys from $whathost ?"; read empty
+
 # clone the latest dotfiles
+echo "Ready to clone dotfiles?" ; read dotfiles
 git clone $MY_DOTFILES
 
 #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
