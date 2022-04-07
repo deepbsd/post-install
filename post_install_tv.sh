@@ -10,7 +10,7 @@ BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
 
 # get status of systemd-homed
-systemd-homed-status(){
+systemd_homed_status(){
     systemctl status systemd-homed
     echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
     echo "Also, reinstall pambase if necessary `pacman -S pambase`"
@@ -18,7 +18,7 @@ systemd-homed-status(){
 }
 
 ## PERSONAL DIRECTORIES AND RESOURCES
-make-directories(){
+make_directories(){
     echo "Making personal subdirectories..."
     mkdir "${PERS_DIRECTORIES[@]}"
     echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
@@ -133,8 +133,8 @@ add_faves(){
 
 
 main(){
-    systemd-homed-status
-    make-directories
+    systemd_homed_status
+    make_directories
     get_keys
     clone_dotfiles
     ssh_agent_start
