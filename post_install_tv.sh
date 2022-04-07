@@ -64,7 +64,7 @@ echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
     done
 }
 
-## INSTALL DVD SUPPORT, GKRELLM, MLOCATE
+## INSTALL DVD SUPPORT, POWERLINE, GKRELLM, MLOCATE
 install_basics(){
     sudo pacman -S ${BASICS[@]}
     echo "updating locate database..."
@@ -83,41 +83,52 @@ install_basics(){
 
 
 ## INSTALL DEV STUFF 
-echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
-for f in ${DEV_STUFF[@]}; do
-    sudo pacman -S $f
-done
+install_dev_stuff(){
+    echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
+    for f in ${DEV_STUFF[@]}; do
+        sudo pacman -S $f
+    done
+
+}
 
 ## DOTFILES
-echo "Link dotfiles from cloned dotfiles repo..."
-cp ~/.bashrc ~/.bashrc.orig
-cp ~/.bash_profile ~/.bash_profile.orig
-ln -sf ~/dotfiles/.bashrc .
-ln -sf ~/dotfiles/.bash_profile .
-ln -sf ~/dotfiles/.vimrc .
+copy_dotfiles(){
+    echo "Link dotfiles from cloned dotfiles repo..."
+    cp ~/.bashrc ~/.bashrc.orig
+    cp ~/.bash_profile ~/.bash_profile.orig
+    ln -sf ~/dotfiles/.bashrc .
+    ln -sf ~/dotfiles/.bash_profile .
+    ln -sf ~/dotfiles/.vimrc .
+}
 
 # NVM
-echo "Create NVM clone..."
-mkdir $HOME/.nvm
-[[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-[[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
+install_nvm(){
+    echo "Create NVM clone..."
+    mkdir $HOME/.nvm
+    [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
+    [[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
+}
+
 
 ## INSTALL PARU  
-echo "Installing paru: "
-[ -d $HOME/build ] || mkdir $HOME/build
-cd ~/build
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-($? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
-cd  # return to $HOME
+install_paru(){
+    echo "Installing paru: "
+    [ -d $HOME/build ] || mkdir $HOME/build
+    cd ~/build
+    git clone https://aur.archlinux.org/paru.git
+    cd paru
+    makepkg -si
+    ($? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
+    cd  # return to $HOME
+}
 
+add_faves(){
+    ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
+    paru -S gnome-terminal-transparency mate-terminal 
 
-## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
-paru -S gnome-terminal-transparency mate-terminal 
-
-## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR
-paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
+    ## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR
+    paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
+}
 
 
 
@@ -129,6 +140,11 @@ main(){
     ssh_agent_start
     start_dir_copy
     install_basics
+    install_dev_stuff
+    copy_dotfiles
+    install_nvm
+    install_paru
+    add_faves
 }
 
 
