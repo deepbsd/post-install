@@ -122,6 +122,7 @@ install_paru(){
     cd  # return to $HOME
 }
 
+# GNOME TRANSPARENCY FORK FOR TERMINAL; ALSO ICONS, CURSORS, CHROME
 add_faves(){
     ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
     paru -S gnome-terminal-transparency mate-terminal 
@@ -131,7 +132,7 @@ add_faves(){
 }
 
 
-
+# MAIN
 main(){
     systemd_homed_status
     make_directories
