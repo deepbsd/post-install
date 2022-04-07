@@ -28,46 +28,59 @@ make-directories(){
 }
 
 # get ssh keys...
-[ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
+get_keys(){
+    [ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
 
-# check progress of getting ssh keys
-echo "Did we get keys from $whathost ?"; read empty
+    # check progress of getting ssh keys
+    echo "Did we get keys from $whathost ?"; read empty
+}
 
 # clone the latest dotfiles
-echo "Ready to clone dotfiles?" ; read dotfiles
-git clone $MY_DOTFILES
+clone_dotfiles(){
+    echo "Ready to clone dotfiles?" ; read dotfiles
+    git clone $MY_DOTFILES
 
-( $? && echo "Dotfiles clone successful." ) || echo "Problem with dotfiles clone..."
+    ( $? && echo "Dotfiles clone successful." ) || echo "Problem with dotfiles clone..."
 
-#scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-#scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+    #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+    #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+}
 
 # SSH-AGENT SERVICE
-echo "Start the ssh-agent service..."
-eval $(ssh-agent)
-ls ~/.ssh/* ; echo "Add which key? "; read key_name
-ssh-add ~/.ssh/"$key_name"
+ssh_agent_start(){
+    echo "Start the ssh-agent service..."
+    eval $(ssh-agent)
+    ls ~/.ssh/* ; echo "Add which key? "; read key_name
+    ssh-add ~/.ssh/"$key_name"
 
+}
+
+# Start dir copy
+start_dir_copy(){
 echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
-for dir in "${MY_DIRS[@]}" ; do
-    echo "recursively copying $dir ..."
-    scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
-done
+    for dir in "${MY_DIRS[@]}" ; do
+        echo "recursively copying $dir ..."
+        scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
+    done
+}
 
 ## INSTALL DVD SUPPORT, GKRELLM, MLOCATE
-sudo pacman -S ${BASICS[@]}
-echo "updating locate database..."
-sudo updatedb
+install_basics(){
+    sudo pacman -S ${BASICS[@]}
+    echo "updating locate database..."
+    sudo updatedb
 
-## INSTALL POWERLINE
-echo "Install powerline if not already installed."
-$(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
+    ## INSTALL POWERLINE
+    echo "Install powerline if not already installed."
+    $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
 
-## CHECK FOR OLD FAITHFULS
-echo "Install gkrellm if not already installed."
-$(which gkrellm) || sudo pacman -S gkrellm
-echo "Install anaconda if not already installed."
-[[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+    ## CHECK FOR OLD FAITHFULS
+    echo "Install gkrellm if not already installed."
+    $(which gkrellm) || sudo pacman -S gkrellm
+    echo "Install anaconda if not already installed."
+    [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+}
+
 
 ## INSTALL DEV STUFF 
 echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
@@ -109,8 +122,13 @@ paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
 
 
 main(){
-   systemd-homed-status
-   make-directories
+    systemd-homed-status
+    make-directories
+    get_keys
+    clone_dotfiles
+    ssh_agent_start
+    start_dir_copy
+    install_basics
 }
 
 
