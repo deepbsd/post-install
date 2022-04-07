@@ -9,18 +9,23 @@ MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
 
-systemctl status systemd-homed
-echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
-echo "Also, reinstall pambase if necessary `pacman -S pambase`"
-echo "Type any to continue..." ; read empty
+# get status of systemd-homed
+systemd-homed-status(){
+    systemctl status systemd-homed
+    echo "Be sure to start and enable systemd-homed (as root) or else sudo may not work properly"
+    echo "Also, reinstall pambase if necessary `pacman -S pambase`"
+    echo "Type any to continue..." ; read empty
+}
 
 ## PERSONAL DIRECTORIES AND RESOURCES
-echo "Making personal subdirectories..."
-mkdir "${PERS_DIRECTORIES[@]}"
-echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
+make-directories(){
+    echo "Making personal subdirectories..."
+    mkdir "${PERS_DIRECTORIES[@]}"
+    echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
 
-# Pick a host to get stuff from on the local network
-echo "Download home directory files from what host on network?"; read whathost
+    # Pick a host to get stuff from on the local network
+    echo "Download home directory files from what host on network?"; read whathost
+}
 
 # get ssh keys...
 [ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
@@ -103,5 +108,9 @@ paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
 
 
 
+main(){
+   systemd-homed-status
+   make-directories
+}
 
 
