@@ -147,4 +147,6 @@ main(){
     add_faves
 }
 
+## CAll MAIN
+main
 
