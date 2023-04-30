@@ -4,7 +4,7 @@
 
 ### VARIABLES ####
 PERS_DIRECTORIES=( tmp build repos )
-MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .gnupg Music )
+MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .gnupg )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
@@ -143,8 +143,8 @@ main(){
     install_basics
     install_dev_stuff
     copy_dotfiles
-    install_nvm
-    install_paru
+    #install_nvm
+    #install_paru
     add_faves
 }
 
