@@ -8,6 +8,7 @@ MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .g
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
+FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
 
 # get status of systemd-homed
 systemd_homed_status(){
@@ -124,11 +125,10 @@ install_paru(){
 
 # GNOME TRANSPARENCY FORK FOR TERMINAL; ALSO ICONS, CURSORS, CHROME
 add_faves(){
-    ## REPLACE GNOME_TERMINAL WITH TRANSPARENCY VERSION (and mate-terminal)
-    paru -S gnome-terminal-transparency mate-terminal 
-
-    ## INSTALL CHROME and ORANCHELO ICONS AND BREEZE CURSOR
-    paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze
+    
+    for pkg in "${FAVES[@]}"; do
+        paru -Qi "$pkg" || paru -S "$pkg"
+    done
 }
 
 
