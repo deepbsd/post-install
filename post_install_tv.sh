@@ -93,7 +93,7 @@ install_basics(){
 
     ## CHECK FOR OLD FAITHFULS
     echo "Install gkrellm if not already installed."
-    $(which gkrellm) || sudo pacman -S gkrellm
+    $( which gkrellm &>/dev/null ) || sudo pacman -S gkrellm
     echo "Install anaconda if not already installed."
     [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
 }
