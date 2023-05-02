@@ -5,10 +5,14 @@
 ### VARIABLES ####
 PERS_DIRECTORIES=( tmp build repos )
 MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .gnupg )
+MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
+## This is the remote hostname (to copy dirs from) make it global for script
+whathost=""
+
 
 # get status of systemd-homed
 systemd_homed_status(){
@@ -63,6 +67,18 @@ echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
         echo "recursively copying $dir ..."
         scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
     done
+}
+
+# Copy Music directory from hostname
+copy_music_dir(){
+   [[ -z ${whathost} ]] && return 0
+   echo "Want to download big Music directory from ${whathost}? (y/n)"
+   read yesno
+   if [[ "$yesno" =~ 'y' ]] ; then
+        scp -r dsj@"${whathost}"/Music ~/.
+   else
+       echo "Skipping Music downloads..." && return 0
+   fi
 }
 
 ## INSTALL DVD SUPPORT, POWERLINE, GKRELLM, MLOCATE
@@ -141,6 +157,7 @@ main(){
     clone_dotfiles
     ssh_agent_start
     start_dir_copy
+    copy_music_dir
     install_basics
     install_dev_stuff
     copy_dotfiles
