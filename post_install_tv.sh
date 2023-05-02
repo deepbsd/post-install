@@ -126,10 +126,16 @@ copy_dotfiles(){
 
 # NVM
 install_nvm(){
-    echo "Create NVM clone..."
-    mkdir $HOME/.nvm
-    [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-    [[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
+    echo "Want to install nvm? " && read nvm_yesno
+    if [[ "$nvm_yesno" =~ 'y' ]] ; then
+        echo "Create NVM clone..."
+        mkdir $HOME/.nvm
+        [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
+        [[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
+    else
+        echo "Skipping install of nvm..."
+        return 0
+    fi
 }
 
 
@@ -148,7 +154,7 @@ install_paru(){
 
 # GNOME TRANSPARENCY FORK FOR TERMINAL; ALSO ICONS, CURSORS, CHROME
 add_faves(){
-    
+    echo "Installing ${FAVES[@]}:"    
     for pkg in "${FAVES[@]}"; do
         paru -Qi "$pkg" || paru -S "$pkg"
     done
@@ -163,13 +169,13 @@ main(){
     clone_dotfiles
     ssh_agent_start
     start_dir_copy
-    install_paru
+    copy_dotfiles
     copy_music_dir
     install_basics
-    install_dev_stuff
-    copy_dotfiles
-    #install_nvm
+    install_paru
     add_faves
+    install_dev_stuff
+    install_nvm
 }
 
 ## CAll MAIN
