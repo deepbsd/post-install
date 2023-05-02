@@ -8,7 +8,7 @@ MY_DIRS=( .ssh adm .vim public_html sounds .gkrellm2 wallpaper wallpaper1 bin .g
 MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
-DEV_STUFF=( nodejs ruby npm npm-check-updates gvim )
+DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
 ## This is the remote hostname (to copy dirs from) make it global for script
 whathost=""
@@ -83,6 +83,7 @@ copy_music_dir(){
 
 ## INSTALL DVD SUPPORT, POWERLINE, GKRELLM, MLOCATE
 install_basics(){
+    echo "Installing $BASICS and powerline and gkrellm..."
     sudo pacman -S ${BASICS[@]}
     echo "updating locate database..."
     sudo updatedb
@@ -94,17 +95,22 @@ install_basics(){
     ## CHECK FOR OLD FAITHFULS
     echo "Install gkrellm if not already installed."
     $( which gkrellm &>/dev/null ) || sudo pacman -S gkrellm
-    echo "Install anaconda if not already installed."
-    [[ -f /opt/anaconda/bin/anaconda-navigator ]] || paru -S anaconda
+
 }
 
 
 ## INSTALL DEV STUFF 
 install_dev_stuff(){
-    echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
-    for f in ${DEV_STUFF[@]}; do
-        sudo pacman -S $f
-    done
+    echo "Want to install dev_stuff? (ie ${DEV_STUFF[@]}) (y/n)?" 
+    read yes_no
+    if [[ "$yes_no" =~ 'y' ]] ; then
+        echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
+        for f in ${DEV_STUFF[@]}; do
+            sudo pacman -S $f
+        done
+    else
+        echo "Skipping dev_stuff..." && return 0
+    fi
 
 }
 
@@ -157,12 +163,12 @@ main(){
     clone_dotfiles
     ssh_agent_start
     start_dir_copy
+    install_paru
     copy_music_dir
     install_basics
     install_dev_stuff
     copy_dotfiles
     #install_nvm
-    #install_paru
     add_faves
 }
 
