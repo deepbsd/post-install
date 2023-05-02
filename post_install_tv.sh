@@ -34,7 +34,7 @@ make_directories(){
 
 # get ssh keys...
 get_keys(){
-    [ -d $HOME/.ssh ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
+    [ -f $HOME/.ssh/id_rsa ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
 
     # check progress of getting ssh keys
     echo "Did we get keys from $whathost ?"; read empty
