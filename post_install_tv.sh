@@ -148,7 +148,7 @@ install_paru(){
     git clone https://aur.archlinux.org/paru.git
     cd paru
     makepkg -si
-    ($? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
+    ( echo $? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
     cd  # return to $HOME
 }
 
