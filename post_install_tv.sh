@@ -141,7 +141,10 @@ install_nvm(){
         if [[ -d $HOME/.nvm ]]; then
             cd $HOME/.nvm && source $HOME/.nvm/nvm.sh && cd
         else
+            echo "NVM directory did NOT get created!!"
+            sleep 4
             cd $HOME
+            mkdir $HOME/.nvm
             cd $HOME/.nvm
             git clone https://github.com/nvm-sh/nvm.git  && echo "\n NVM Installed!!"
         fi
