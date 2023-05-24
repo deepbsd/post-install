@@ -14,6 +14,14 @@ FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-t
 whathost=""
 
 
+check_install(){
+    if $( paru -Qi $1 &>/dev/null ); then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # get status of systemd-homed
 systemd_homed_status(){
     systemctl status systemd-homed
@@ -96,14 +104,6 @@ install_basics(){
     echo "Install gkrellm if not already installed."
     check_install gkrellm || sudo pacman -S gkrellm
 
-}
-
-check_install(){
-    if $( paru -Qi $1 &>/dev/null ); then
-        return 0
-    else
-        return 1
-    fi
 }
 
 ## INSTALL DEV STUFF 
