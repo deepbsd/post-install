@@ -137,8 +137,15 @@ install_nvm(){
     if [[ "$nvm_yesno" =~ 'y' ]] ; then
         echo "Create NVM clone..."
         mkdir $HOME/.nvm
-        [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
-        [[ -d $HOME/.nvm ]] && cd ~/.nvm && source $HOME/.nvm/nvm.sh && cd
+        ## [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
+        if [[ -d $HOME/.nvm ]]; then
+            cd $HOME/.nvm && source $HOME/.nvm/nvm.sh && cd
+        else
+            cd $HOME
+            cd $HOME/.nvm
+            git clone https://github.com/nvm-sh/nvm.git  && echo "\n NVM Installed!!"
+        fi
+
     else
         echo "Skipping install of nvm..."
         return 0
