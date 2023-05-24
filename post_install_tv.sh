@@ -4,7 +4,7 @@
 
 ### VARIABLES ####
 PERS_DIRECTORIES=( tmp build repos )
-MY_DIRS=( .ssh adm .vim bin .gnupg sounds .gkrellm2 public_html wallpaper wallpaper1 )
+MY_DIRS=( .ssh adm .vim .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
