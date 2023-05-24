@@ -147,6 +147,7 @@ install_nvm(){
             mkdir $HOME/.nvm
             cd $HOME/.nvm
             git clone https://github.com/nvm-sh/nvm.git  && echo "\n NVM Installed!!"
+            cd
         fi
 
     else
