@@ -90,16 +90,16 @@ install_basics(){
 
     ## INSTALL POWERLINE
     echo "Install powerline if not already installed."
-    $(which powerline >/dev/null) || sudo pacman -S powerline powerline-fonts
+    check_install powerline || sudo pacman -S powerline powerline-fonts
 
     ## CHECK FOR OLD FAITHFULS
     echo "Install gkrellm if not already installed."
-    $( which gkrellm &>/dev/null ) || sudo pacman -S gkrellm
+    check_install gkrellm || sudo pacman -S gkrellm
 
 }
 
 check_install(){
-    if $( paru -Qi $1 ); then
+    if $( paru -Qi $1 &>/dev/null ); then
         return 0
     else
         return 1
