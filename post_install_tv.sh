@@ -98,6 +98,13 @@ install_basics(){
 
 }
 
+check_install(){
+    if $( paru -Qi $1 ); then
+        return 0
+    else
+        return 1
+    fi
+}
 
 ## INSTALL DEV STUFF 
 install_dev_stuff(){
@@ -106,7 +113,7 @@ install_dev_stuff(){
     if [[ "$yes_no" =~ 'y' ]] ; then
         echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
         for f in ${DEV_STUFF[@]}; do
-            sudo pacman -S $f
+            check_install "$f" || sudo pacman -S $f
         done
     else
         echo "Skipping dev_stuff..." && return 0
