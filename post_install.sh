@@ -365,6 +365,8 @@ startmenu(){
             "A")  install_anaconda; check_tasks 9 ;;
             
             "R")  install_aur_goodies; check_tasks 10 ;;
+            
+            "Q")  echo "Have a nice day!" ; exit 0 ;;
 
         esac
     done
