@@ -371,6 +371,7 @@ startmenu(){
 startmenu
 
 
+##  This is left over from archtail.sh
 ######
 #
 #            "R")  password=$(whiptail --passwordbox "Please set your new root password..." \
