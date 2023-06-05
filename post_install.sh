@@ -32,6 +32,16 @@ create_logfile(){
 }
 
 
+# CHECK IF TASK IS COMPLETED
+check_tasks(){
+
+    # If task already exists in array return falsy
+    # Function takes a task number as an argument
+    # This function might not be needed anymore: STATUS TBD
+
+    # just return an 'X' in the array position of the passed integer parameter
+    completed_tasks[$1]="X"
+}
 
 ### SHOW SOME REMINDERS ABOUT SYSTEM CHOICES
 
