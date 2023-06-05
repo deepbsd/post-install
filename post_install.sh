@@ -307,9 +307,6 @@ install_aur_goodies(){
 ###################################
 
 main(){
-    create_logfile
-    homed_message
-    pambase_reminder
     cloning_dotfiles
     create_homedirs
     link_dotfiles
@@ -322,8 +319,95 @@ main(){
     install_aur_goodies
 }
 
+startmenu(){
+    create_logfile
+    homed_message
+    pambase_reminder
+
+    while true ; do
+        menupick=$(
+        whiptail --backtitle "Post Install Installer" --title "Main Menu" --menu "Your choice?" 30 70 20 \
+            "D"   "[$(echo ${completed_tasks[1]}]    Clone your dotfiles )"  \
+            "H"   "[$(echo ${completed_tasks[2]}]    Creat your home directories )"  \
+            "L"   "[$(echo ${completed_tasks[3]}]    Link your dotfiles )"  \
+            "S"   "[$(echo ${completed_tasks[4]}]    Start SSH Agent service )"  \
+            "M"   "[$(echo ${completed_tasks[5]}]    Install MyStuff )"        \
+            "P"   "[$(echo ${completed_tasks[6]}]    Install Programmer Dev Stuff )"    \
+            "N"   "[$(echo ${completed_tasks[7]}]    Install NVM )"           \
+            "P"   "[$(echo ${completed_tasks[8]}]    Install Paru )"          \
+            "A"   "[$(echo ${completed_tasks[9]}]    Install Anaconda  )" \
+            "R"   "[$(echo ${completed_tasks[10]}]   Install AUR Goodies  ) "   \
+            "Q"   "[$(echo ${completed_tasks[17]}]   Quit Script) "  3>&1 1>&2 2>&3
+        )
+
+        case $menupick in
+
+            "D")  cloning_dotfiles; check_tasks 1 ;;
+
+            "H")  create_homedirs;  check_tasks 2 ;;
+
+            "L")  link_dotfiles;  check_tasks 3 ;;
+
+            "S")  ssh_agent_service; check_tasks 4 ;;
+            
+            "M")  install_mystuff; check_tasks 5 ;;
+
+            "P")  install_devstuff; check_tasks 6 ;;
+
+            "N")  install_nvm; check_tasks 7 ;;
+
+            "P")  install_paru; check_tasks 8 ;;
+            
+            "A")  install_anaconda; check_tasks 9 ;;
+            
+            "R")  install_aur_goodies; check_tasks 10 ;;
+
+        esac
+    done
+}
+
+
 ### START HERE
+startmenu
 
-main
 
-
+######
+#
+#            "R")  password=$(whiptail --passwordbox "Please set your new root password..." \
+#                      --backtitle "SETTING ROOT PASSWORD" --title "Set new root password"   8 48 3>&1 1>&2 2>&3);
+#                  echo -e "$password\n$password" | arch-chroot /mnt passwd;
+#                  check_tasks 8 ;; 
+#
+#            "M")  specialprogressgauge install_essential "Installing dhcpcd, sshd, ssh, networkmanager, etc..." \
+#                  "INSTALLING NETWORK ESSENTIALS "; 
+#                  whiptail --title "Network Essentials Installed" --msgbox "Network Essentials Installed.  OK to continue." 8 78;
+#                  whiptail --title "Current Install Progress" --textbox /tmp/install.log --scrolltext 25 80;
+#                  check_tasks 9 ;;
+#
+#            "U")  add_user_acct; check_tasks 10 ;;
+#
+#            "W")  wl_wifi; check_tasks 11 ;;
+#
+#            "G")  install_grub; check_tasks 12 ;;
+#            
+#            "E")  pick_desktop; find_card; check_tasks 13 ;;
+#
+#            "X")  specialprogressgauge install_desktop "Installing Xorg and Desktop Resources..." "INSTALLING XORG"; 
+#                  whiptail --backtitle "X AND DESKTOPS INSTALLED" --title "Desktops Installed" \
+#                      --msgbox "Xorg and Extras and Desktops are installed.  OK to check install.log." 8 70 ;
+#                  whiptail --backtitle "CHECK INSTALL LOGFILE" --title "Xorg Install Log" \
+#                      --textbox /tmp/install.log --scrolltext 25 80 ;
+#                  check_tasks 14 ;;
+#
+#            "I")  specialprogressgauge install_extra_stuff "Installing All My Xorg Extras" "ALL MY EXTRAS FOR XORG"; 
+#                  whiptail --backtitle "XTRA X STUFF INSTALLED" --title "Extra Desktops Installed" \
+#                      --msgbox "Extra Goodies Installed.  Click OK to see Install Log." 8 70 ;
+#                  whiptail --backtitle "CHECK INSTALL LOGFILE" --title "Extra Xorg Stuff Install Log" \
+#                      --textbox /tmp/install.log --scrolltext 25 80 ;
+#                  check_tasks 15 ;;
+#
+#            "P")  validate_pkgs; check_tasks 16 ;;
+#
+#            "Q")  TERM=ansi whiptail --title "exit installer" \
+#                  --infobox "Type 'shutdown -h now' and then remove USB/DVD, then reboot" 10 60; 
+#                  sleep 2; exit 0 ;;
