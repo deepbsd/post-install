@@ -10,7 +10,7 @@ SSH_KEY=$HOME/.ssh/id_rsa
 # adjust as necessary
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
 # remove .vim directory.  That will be linked from dotfiles dir
-FOLDERS=( adm dotfiles public_html sounds .gkrellm2 wallpaper wallpaper1 .ssh .gnupg .gnupg Music )
+FOLDERS=( adm sounds .gkrellm2 wallpaper wallpaper1 .ssh .gnupg .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads )
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
 DEV_PKGS=( ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
@@ -123,9 +123,10 @@ create_homedirs(){
         $(echo -e "$myfolders") 3>&1 1>&2 2>&3 )
 
         # CREATE AND COPY HOMEDIRS (Replace each space with a comma between dir names)
-        homedirs=$( echo "${folders}" | sed -e 's/\"//g' | sed -e 's/ /,/g' )
+        homedirs=( $( echo "${folders}" | sed -e 's/\"//g' )  )
         for f in "${homedirs[@]}"; do
-            scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:{"$f"} .  &>>$LOGFILE
+            echo "copying dsj@$host.lan/$f ..."
+            scp -o StrictHostKeyChecking=no -r dsj@"$host".lan:"$f" .  #&>>$LOGFILE
         done
         ##scp -Br dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg} .
 
