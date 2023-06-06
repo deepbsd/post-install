@@ -275,9 +275,9 @@ install_paru(){
     then
         if ! which paru >>$LOGFILE  ; then
             cd ~/build
-            git clone https://aur.archlinux.org/paru.git &>>$LOGFILE
+            git clone https://aur.archlinux.org/paru.git 
             cd paru
-            makepkg -si   &>>$LOGFILE
+            makepkg -si   
             cd
         fi
         whiptail --backtitle "PARU INSTALLED" --title "PARU Installation Status" --infobox "$LOGFILE" 30 78
