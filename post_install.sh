@@ -238,7 +238,6 @@ install_devstuff(){
 
         echo "$password" | sudo -S pacman --noconfirm -S "${DEV_PKGS[*]}" &>>$LOGFILE
 
-        echo "$password" | sudo -S pacman -R vim &>>$LOGFILE
         echo "$password" | sudo -S pacman -S gvim &>>$LOGFILE
 
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --textbox "$LOGFILE" 30 78
@@ -349,7 +348,7 @@ startmenu(){
             "L"   "[$(echo ${completed_tasks[3]}]    Link your dotfiles )"  \
             "S"   "[$(echo ${completed_tasks[4]}]    Start SSH Agent service )"  \
             "M"   "[$(echo ${completed_tasks[5]}]    Install MyStuff )"        \
-            "P"   "[$(echo ${completed_tasks[6]}]    Install Programmer Dev Stuff )"    \
+            "V"   "[$(echo ${completed_tasks[6]}]    Install Programmer Dev Stuff )"    \
             "N"   "[$(echo ${completed_tasks[7]}]    Install NVM )"           \
             "P"   "[$(echo ${completed_tasks[8]}]    Install Paru )"          \
             "A"   "[$(echo ${completed_tasks[9]}]    Install Anaconda  )" \
@@ -369,7 +368,7 @@ startmenu(){
             
             "M")  install_mystuff; check_tasks 5 ;;
 
-            "P")  install_devstuff; check_tasks 6 ;;
+            "V")  install_devstuff; check_tasks 6 ;;
 
             "N")  install_nvm; check_tasks 7 ;;
 
