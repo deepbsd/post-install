@@ -46,6 +46,7 @@ check_install(){
     fi
 }
 
+
 # CHECK IF TASK IS COMPLETED
 check_tasks(){
 
@@ -250,13 +251,18 @@ install_devstuff(){
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
-        echo "$password" | sudo -S pacman --noconfirm -S "${DEV_PKGS[*]}" 
+        for f in "${DEV_PKGS[*]}" ; do
+
+            if $( check_install $f ); then
+                echo "$password" | sudo -S pacman --noconfirm "$f" 
+            fi
+        done
 
         if $( check_install gvim ) ; then
-            echo "$password" | sudo -S pacman gvim 
+            echo "$password" | sudo -S pacman --noconfirm gvim 
         fi
 
-        whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --textbox "$LOGFILE" 30 78
+        whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --msgbox "SUCCESS!!!" 30 78
     else
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
         sleep 2
