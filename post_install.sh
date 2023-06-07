@@ -250,9 +250,11 @@ install_devstuff(){
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
-        echo "$password" | sudo -S pacman --noconfirm -S "${DEV_PKGS[*]}" &>>$LOGFILE
+        echo "$password" | sudo -S pacman --noconfirm -S "${DEV_PKGS[*]}" 
 
-        echo "$password" | sudo -S pacman -S gvim &>>$LOGFILE
+        if $( check_install gvim ) ; then
+            echo "$password" | sudo -S pacman gvim 
+        fi
 
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --textbox "$LOGFILE" 30 78
     else
