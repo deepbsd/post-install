@@ -32,6 +32,16 @@ create_logfile(){
 }
 
 
+# check if a program is already installed
+check_install(){
+    app=$1
+    if paru -Qi $app &>>$LOGFILE ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # CHECK IF TASK IS COMPLETED
 check_tasks(){
 
