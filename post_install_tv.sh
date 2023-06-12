@@ -139,7 +139,11 @@ install_nvm(){
         mkdir $HOME/.nvm
         ## [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
         if [[ -d $HOME/.nvm ]]; then
-            cd $HOME/.nvm && source $HOME/.nvm/nvm.sh && cd
+            cd $HOME/.nvm 
+            git clone https://github.com/nvm-sh/nvm.git  
+            echo "\n NVM Installed!!"
+            source $HOME/.nvm/nvm.sh && cd
+            echo "\nnvm.sh sourced in this terminal..."
         else
             echo "NVM directory did NOT get created!!"
             sleep 4
