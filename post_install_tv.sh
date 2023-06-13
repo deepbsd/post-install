@@ -3,6 +3,7 @@
 # Run this script after system and desktop are already installed
 
 ### VARIABLES ####
+user=dsj
 PERS_DIRECTORIES=( tmp build repos )
 MY_DIRS=( .ssh adm .vim .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
@@ -43,7 +44,7 @@ make_directories(){
 
 # get ssh keys...
 get_keys(){
-    [ -f $HOME/.ssh/id_rsa ] || scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:.ssh .
+    [ -f $HOME/.ssh/id_rsa ] || scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:.ssh .
 
     # check progress of getting ssh keys
     echo "Did we get keys from $whathost ?"; read empty
@@ -56,8 +57,8 @@ clone_dotfiles(){
 
     ( $? && echo "Dotfiles clone successful." ) || echo "Problem with dotfiles clone..."
 
-    #scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-    #scp -Br dsj@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
+    #scp -o StrictHostKeyChecking=no -r "$suer"@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
+    #scp -Br "$suer"@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 }
 
 # SSH-AGENT SERVICE
@@ -74,7 +75,7 @@ start_dir_copy(){
 echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
     for dir in "${MY_DIRS[@]}" ; do
         echo "recursively copying $dir ..."
-        scp -o StrictHostKeyChecking=no -r dsj@"$whathost".lan:$dir .
+        scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:$dir .
     done
 }
 
@@ -84,7 +85,7 @@ copy_music_dir(){
    echo "Want to download big Music directory from ${whathost}? (y/n)"
    read yesno
    if [[ "$yesno" =~ 'y' ]] ; then
-        scp -r dsj@"${whathost}"/Music ~/.
+        scp -r "$user"@"${whathost}"/Music ~/.
    else
        echo "Skipping Music downloads..." && return 0
    fi
