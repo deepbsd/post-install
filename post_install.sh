@@ -342,6 +342,20 @@ install_aur_goodies(){
     fi
 }
 
+# INSTALL OPTIONAL PKGS
+install_optional(){
+    echo "=== Install Optional: ${OPTIONAL[@]} ===" &>>$LOGFILE
+    if $(whiptail --backtitle "INSTALL OPTIONAL: ${OPTIONAL[@]}" --title "Install ${OPTIONAL[@]}"  --yesno "Install Optional PKGS?" 10 78 3>&1 1>&2 2>&3)
+    then
+        paru -S "${OPTIONAL[@]}" &>>$LOGFILE
+        
+        whiptail --backtitle "OPTIONAL PKGS INSTALLED" --title "Optional Pkgs Installation Status" --infobox "$LOGFILE" 30 78
+    else
+        term=ANSI  whiptail --backtitle "OPTIONAL PKGS NOT INSTALLED NOW" --title "Not installing optional pkgs now" --infobox "Will have to install optional pkgs later on" 10 78
+        sleep 2
+    fi
+}
+
 ###################################
 ########      MAIN     ############
 ###################################
@@ -357,6 +371,7 @@ main(){
     install_paru
     install_anaconda
     install_aur_goodies
+    install_optional
 }
 
 startmenu(){
