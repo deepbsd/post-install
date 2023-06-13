@@ -7,9 +7,10 @@ PERS_DIRECTORIES=( tmp build repos )
 MY_DIRS=( .ssh adm .vim .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
-BASICS=( libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
+BASICS=( vlc libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
+OPTIONAL=( libreoffice-still  )
 ## This is the remote hostname (to copy dirs from) make it global for script
 whathost=""
 
@@ -178,7 +179,7 @@ install_paru(){
 add_faves(){
     echo "Installing ${FAVES[@]}:"    
     for pkg in "${FAVES[@]}"; do
-        paru -Qi "$pkg" || paru -S "$pkg"
+        check_install "$pkg" || paru -S "$pkg"
     done
 }
 
