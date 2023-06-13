@@ -183,6 +183,17 @@ add_faves(){
     done
 }
 
+add_optional(){
+    echo "Install ${OPTIONS[@]}?"; read yesno
+    if [ "$yesno" =~ [yY] ]; then
+        for f in "${OPTIONS[@]}"; do
+            check_install "$f"
+        done
+    else
+        echo "Okay, moving on..."
+    fi
+}
+
 
 # MAIN
 main(){
@@ -199,6 +210,7 @@ main(){
     add_faves
     install_dev_stuff
     install_nvm
+    add_optional
 }
 
 ## CAll MAIN
