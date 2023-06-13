@@ -164,7 +164,7 @@ install_nvm(){
 
 ## INSTALL PARU  
 install_paru(){
-    $( which paru ) && echo "Paru already installed!!" && sleep 4 && return 0
+    $( check_install paru ) && echo "Paru already installed!!" && sleep 4 && return 0
     echo "Installing paru: "
     [ -d $HOME/build ] || mkdir $HOME/build
     cd ~/build
