@@ -203,51 +203,25 @@ main_menu(){
 
 
     PS3="Please enter your choice: "
-    options=( "make d)irectories" "get k)eys" "c)lone dotfiles" "s)tart ssh-agent" "b)ashrc copy" "i)nstall basics" \
-        "install p)aru" "add f)aves" "install d)ev stuff" "install n)vm" "install o)ptional" )
+    options=( "make directories" "get keys" "clone dotfiles" "start ssh-agent" "bashrc copy" "install basics" \
+        "install paru" "add faves" "install dev stuff" "install nvm" "install optional" )
 
     select opt in "${options[@]}"
     do
         case $opt in 
-            "d" ) 
-                make_directories 
-                ;;
-            "k" )
-                get_keys 
-                ;;
-            "c" ) 
-                clone_dotfiles 
-                ;;
-            "s" )
-                ssh_agent_start 
-                ;;
-            "b" ) 
-                copy_dotfiles 
-                ;;
-            "i" )
-                install_basics 
-                ;;
-            "p" ) 
-                install_paru 
-                ;;
-            "f" )
-                install_faves 
-                ;;
-            "d" )
-                install_dev_stuff 
-                ;;
-            "n" ) 
-                install_nvm 
-                ;;
-            "o" )
-                add_optional 
-                ;; 
-            "q" )
-                break 
-                ;;
-            * ) 
-                echo "invalid option" 
-                ;;
+            1 ) make_directories ;;
+            2 ) get_keys ;;
+            3 ) clone_dotfiles ;;
+            4 ) ssh_agent_start ;;
+            5 ) copy_dotfiles ;;
+            6 ) install_basics ;;
+            7 ) install_paru ;;
+            8 ) install_faves ;;
+            9 ) install_dev_stuff ;;
+            10 ) install_nvm ;;
+            11 ) add_optional ;; 
+            q ) break ;;
+            * ) echo "invalid option" ;;
         esac
     done
 
