@@ -209,19 +209,19 @@ main_menu(){
     select opt in "${options[@]}"
     do
         case $opt in 
-            1 ) make_directories ;;
-            2 ) get_keys ;;
-            3 ) clone_dotfiles ;;
-            4 ) ssh_agent_start ;;
-            5 ) start_dir_copy ;;
-            6 ) copy_dotfiles ;;
-            7 ) install_basics ;;
-            8 ) install_paru ;;
-            9 ) add_faves ;;
-            10 ) install_dev_stuff ;;
-            11 ) install_nvm ;;
-            12 ) add_optional ;; 
-            13 ) break ;;
+            "make directories" ) make_directories ;;
+            "get keys" ) get_keys ;;
+            "clone dotfiles" ) clone_dotfiles ;;
+            "start ssh-agent" ) ssh_agent_start ;;
+            "start dir copy" ) start_dir_copy ;;
+            "bashrc copy" ) copy_dotfiles ;;
+            "install basics" ) install_basics ;;
+            "install paru" ) install_paru ;;
+            "add faves" ) add_faves ;;
+            "install dev stuff" ) install_dev_stuff ;;
+            "install nvm" ) install_nvm ;;
+            "install optional" ) add_optional ;; 
+            "quit" ) break ;;
             * ) echo "invalid option" ;;
         esac
     done
