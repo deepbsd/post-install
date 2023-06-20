@@ -207,7 +207,7 @@ add_optional(){
 main_menu(){
 
     # Not sure if we still need this
-    systemd_homed_status
+    # systemd_homed_status  
 
 
     PS3="Please enter your choice: "
@@ -217,19 +217,19 @@ main_menu(){
     select opt in "${options[@]}"
     do
         case $opt in 
-            "make directories" ) make_directories ;;
-            "get keys" ) get_keys ;;
-            "clone dotfiles" ) clone_dotfiles ;;
-            "start ssh-agent" ) ssh_agent_start ;;
-            "start dir copy" ) start_dir_copy ;;
-            "bashrc copy" ) copy_dotfiles ;;
-            "install basics" ) install_basics ;;
-            "install paru" ) install_paru ;;
-            "add faves" ) add_faves ;;
-            "install dev stuff" ) install_dev_stuff ;;
-            "install nvm" ) install_nvm ;;
-            "install optional" ) add_optional ;; 
-            "quit" ) break ;;
+            "make directories" ) make_directories; break 1 ;;
+            "get keys" ) get_keys; break 1 ;;
+            "clone dotfiles" ) clone_dotfiles; break 1 ;;
+            "start ssh-agent" ) ssh_agent_start; break 1 ;;
+            "start dir copy" ) start_dir_copy; break 1 ;;
+            "bashrc copy" ) copy_dotfiles; break 1 ;;
+            "install basics" ) install_basics; break 1 ;;
+            "install paru" ) install_paru; break 1 ;;
+            "add faves" ) add_faves; break 1 ;;
+            "install dev stuff" ) install_dev_stuff; break 1 ;;
+            "install nvm" ) install_nvm; break 1 ;;
+            "install optional" ) add_optional; break 1 ;; 
+            "quit" ) exit 0 ;;
             * ) echo "invalid option" ;;
         esac
     done
@@ -256,5 +256,5 @@ main(){
 }
 
 ## CAll MAIN
-main_menu
+while : ; do main_menu; done
 
