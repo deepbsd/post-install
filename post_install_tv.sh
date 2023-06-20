@@ -196,7 +196,51 @@ add_optional(){
 }
 
 
-# MAIN
+main_menu(){
+
+    # Not sure if we still need this
+    systemd_homed_status
+
+
+    PS3="Please enter your choice: "
+    options=( "make d)irectories" "get k)eys" "c)lone dotfiles" "s)tart ssh-agent" "b)ashrc copy" "i)nstall basics" \
+        "install p)aru" "add f)aves" "install d)ev stuff" "install n)vm" "install o)ptional" )
+
+    select opt in "${options[@]}"
+    do
+        case $opt in 
+            "d" ) 
+                make_directories ;;
+            "k" )
+                get_keys ;;
+            "c" ) 
+                clone_dotfiles ;;
+            "s" )
+                ssh_agent_start ;;
+            "b" ) 
+                copy_dotfiles ;;
+            "i" )
+                install_basics ;;
+            "p" ) 
+                install_paru ;;
+            "f" )
+                install_faves ;;
+            "d" )
+                install_dev_stuff ;;
+            "n" ) 
+                install_nvm ;;
+            "o" )
+                add_optional ;; 
+            "q" )
+                break ;;
+            * ) echo "invalid option" ;;
+        esac
+    done
+
+
+}
+
+# MAIN  (We'll delete this eventually...)
 main(){
     systemd_homed_status
     make_directories
@@ -215,5 +259,5 @@ main(){
 }
 
 ## CAll MAIN
-main
+main_menu
 
