@@ -204,7 +204,7 @@ main_menu(){
 
     PS3="Please enter your choice: "
     options=( "make directories" "get keys" "clone dotfiles" "start ssh-agent" "bashrc copy" "install basics" \
-        "install paru" "add faves" "install dev stuff" "install nvm" "install optional" )
+        "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
 
     select opt in "${options[@]}"
     do
@@ -220,7 +220,7 @@ main_menu(){
             9 ) install_dev_stuff ;;
             10 ) install_nvm ;;
             11 ) add_optional ;; 
-            q ) break ;;
+            12 ) break ;;
             * ) echo "invalid option" ;;
         esac
     done
