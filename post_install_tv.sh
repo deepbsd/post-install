@@ -192,7 +192,11 @@ add_optional(){
     echo "Install ${OPTIONAL[@]}?"; read yesno
     if [[ "$yesno" =~ [yY] ]]; then
         for f in "${OPTIONS[@]}"; do
-            check_install "$f"
+          if  check_install "$f"; then
+              echo "$f already installed"
+          else
+              paru -S "$f"
+          fi
         done
     else
         echo "Okay, moving on..."
