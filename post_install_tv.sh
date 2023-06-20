@@ -210,30 +210,44 @@ main_menu(){
     do
         case $opt in 
             "d" ) 
-                make_directories ;;
+                make_directories 
+                ;;
             "k" )
-                get_keys ;;
+                get_keys 
+                ;;
             "c" ) 
-                clone_dotfiles ;;
+                clone_dotfiles 
+                ;;
             "s" )
-                ssh_agent_start ;;
+                ssh_agent_start 
+                ;;
             "b" ) 
-                copy_dotfiles ;;
+                copy_dotfiles 
+                ;;
             "i" )
-                install_basics ;;
+                install_basics 
+                ;;
             "p" ) 
-                install_paru ;;
+                install_paru 
+                ;;
             "f" )
-                install_faves ;;
+                install_faves 
+                ;;
             "d" )
-                install_dev_stuff ;;
+                install_dev_stuff 
+                ;;
             "n" ) 
-                install_nvm ;;
+                install_nvm 
+                ;;
             "o" )
-                add_optional ;; 
+                add_optional 
+                ;; 
             "q" )
-                break ;;
-            * ) echo "invalid option" ;;
+                break 
+                ;;
+            * ) 
+                echo "invalid option" 
+                ;;
         esac
     done
 
