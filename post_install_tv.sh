@@ -217,7 +217,7 @@ main_menu(){
             6 ) copy_dotfiles ;;
             7 ) install_basics ;;
             8 ) install_paru ;;
-            9 ) install_faves ;;
+            9 ) add_faves ;;
             10 ) install_dev_stuff ;;
             11 ) install_nvm ;;
             12 ) add_optional ;; 
