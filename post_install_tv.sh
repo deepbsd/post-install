@@ -189,7 +189,7 @@ add_faves(){
 }
 
 add_optional(){
-    echo "Install ${OPTIONS[@]}?"; read yesno
+    echo "Install ${OPTIONAL[@]}?"; read yesno
     if [[ "$yesno" =~ [yY] ]]; then
         for f in "${OPTIONS[@]}"; do
             check_install "$f"
