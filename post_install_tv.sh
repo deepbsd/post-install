@@ -37,7 +37,9 @@ make_directories(){
     echo "Making personal subdirectories..."
     mkdir "${PERS_DIRECTORIES[@]}"
     echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
+}
 
+get_hostname(){
     # Pick a host to get stuff from on the local network
     echo "Download home directory files from what host on network?"; read whathost
 }
@@ -72,7 +74,9 @@ ssh_agent_start(){
 
 # Start dir copy
 start_dir_copy(){
-echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
+    get_hostname
+
+    echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
     for dir in "${MY_DIRS[@]}" ; do
         echo "recursively copying $dir ..."
         scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:$dir .
