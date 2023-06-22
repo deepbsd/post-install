@@ -4,7 +4,7 @@
 
 ### VARIABLES ####
 user=dsj
-PERS_DIRECTORIES=( tmp build repos )
+PERS_DIRECTORIES=( Documents movies Downloads tmp build repos )
 MY_DIRS=( .ssh adm .vim .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
@@ -32,10 +32,25 @@ systemd_homed_status(){
     echo "Type any to continue..." ; read empty
 }
 
+check_dir(){
+    if [ -d "/home/$user/$1" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 ## PERSONAL DIRECTORIES AND RESOURCES
 make_directories(){
     echo "Making personal subdirectories..."
     mkdir "${PERS_DIRECTORIES[@]}"
+    for dir in "${PERS_DIRECTORIES[@]}"; do
+        if check_dir $dir ; then
+            continue
+        else
+            mkdir /home/$user/$dir
+        fi
+    done
     echo "Did the following directories get made?  ${PERS_DIRECTORIES[@]}"; read empty
 }
 
