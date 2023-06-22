@@ -46,7 +46,9 @@ get_hostname(){
 
 # get ssh keys...
 get_keys(){
+
     get_hostname
+
     [ -f $HOME/.ssh/id_rsa ] || scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:.ssh .
 
     # check progress of getting ssh keys
