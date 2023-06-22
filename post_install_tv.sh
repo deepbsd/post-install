@@ -253,7 +253,7 @@ main_menu(){
             "install dev stuff" ) install_dev_stuff; break 1 ;;
             "install nvm" ) install_nvm; break 1 ;;
             "install optional" ) add_optional; break 1 ;; 
-            "quit" ) exit 0 ;;
+            "quit" ) echo "Thanks for using POST-INSTALL!"; exit 0 ;;
             * ) echo "invalid option" ;;
         esac
     done
