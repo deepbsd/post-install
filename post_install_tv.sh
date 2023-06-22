@@ -211,6 +211,11 @@ main_menu(){
 
     # Not sure if we still need this
     # systemd_homed_status  
+    
+    # make some space before the menu
+    echo 
+    echo 
+    echo 
 
 
     PS3="Please enter your choice: "
