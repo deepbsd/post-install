@@ -212,6 +212,7 @@ add_optional(){
         for f in "${OPTIONAL[@]}"; do
           if  check_install "$f"; then
               echo "$f already installed"
+              sleep 1
           else
               paru -S "$f"
           fi
