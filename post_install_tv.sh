@@ -4,7 +4,7 @@
 
 ### VARIABLES ####
 user=dsj
-PERS_DIRECTORIES=( Documents movies Downloads tmp build repos )
+PERS_DIRECTORIES=( dwhelper Documents movies Downloads tmp build repos )
 MY_DIRS=( .ssh adm .vim .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
 MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
