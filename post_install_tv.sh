@@ -101,7 +101,7 @@ start_dir_copy(){
 
 # Copy Music directory from hostname
 copy_music_dir(){
-   [[ -z ${whathost} ]] && return 0
+   [ ! -z ${whathost} ] && get_hostname
    echo "Want to download big Music directory from ${whathost}? (y/n)"
    read yesno
    if [[ "$yesno" =~ 'y' ]] ; then
