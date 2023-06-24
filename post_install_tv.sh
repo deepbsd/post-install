@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Run this script after system and desktop are already installed
+# This is a text version of this script (no whiptail)
 
 ### VARIABLES ####
 user=dsj
