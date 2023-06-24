@@ -62,7 +62,7 @@ get_hostname(){
 # get ssh keys...
 get_keys(){
 
-    get_hostname
+    [ -z $whathost ] && get_hostname
 
     [ -f $HOME/.ssh/id_rsa ] || scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:.ssh .
 
@@ -77,8 +77,6 @@ clone_dotfiles(){
 
     ( $? && echo "Dotfiles clone successful." ) || echo "Problem with dotfiles clone..."
 
-    #scp -o StrictHostKeyChecking=no -r "$suer"@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg,Music} .
-    #scp -Br "$suer"@"$whathost".lan:{adm,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.gnupg,Music} .
 }
 
 # SSH-AGENT SERVICE
@@ -92,7 +90,7 @@ ssh_agent_start(){
 
 # Start dir copy
 start_dir_copy(){
-    get_hostname
+    [ -z $whathost ] && get_hostname
 
     echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
     for dir in "${MY_DIRS[@]}" ; do
