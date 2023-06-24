@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Run this script on Arch systems after desktop are already installed
+# This script uses whiptail
 
 ##########################
 ### VARIABLES, ARRAYS ####
