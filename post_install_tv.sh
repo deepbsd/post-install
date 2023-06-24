@@ -113,18 +113,16 @@ copy_music_dir(){
 
 ## INSTALL DVD SUPPORT, POWERLINE, GKRELLM, MLOCATE
 install_basics(){
-    echo "Installing $BASICS and powerline and gkrellm..."
-    sudo pacman -S ${BASICS[@]}
-    echo "updating locate database..."
-    sudo updatedb
+    echo "Installing $BASICS[@] if not already installed..."
 
-    ## INSTALL POWERLINE
-    echo "Install powerline if not already installed."
-    check_install powerline || sudo pacman -S powerline powerline-fonts
-
-    ## CHECK FOR OLD FAITHFULS
-    echo "Install gkrellm if not already installed."
-    check_install gkrellm || sudo pacman -S gkrellm
+    for f in "${BASICS[@]}"; do
+        if check_install $f; then
+            continue
+        else
+            echo "Installing $f"
+            paru -S $f
+        fi
+    done
 
 }
 
@@ -245,8 +243,8 @@ main_menu(){
             "start ssh-agent" ) ssh_agent_start; break 1 ;;
             "start dir copy" ) start_dir_copy; break 1 ;;
             "bashrc copy" ) copy_dotfiles; break 1 ;;
-            "install basics" ) install_basics; break 1 ;;
             "install paru" ) install_paru; break 1 ;;
+            "install basics" ) install_basics; break 1 ;;
             "add faves" ) add_faves; break 1 ;;
             "install dev stuff" ) install_dev_stuff; break 1 ;;
             "install nvm" ) install_nvm; break 1 ;;
@@ -269,8 +267,8 @@ main(){
     start_dir_copy
     copy_dotfiles
     copy_music_dir
-    install_basics
     install_paru
+    install_basics
     add_faves
     install_dev_stuff
     install_nvm
