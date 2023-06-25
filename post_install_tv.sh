@@ -255,24 +255,7 @@ main_menu(){
 
 }
 
-# MAIN  (We'll delete this eventually...)
-main(){
-    systemd_homed_status
-    make_directories
-    get_keys
-    clone_dotfiles
-    ssh_agent_start
-    start_dir_copy
-    copy_dotfiles
-    copy_music_dir
-    install_paru
-    install_basics
-    add_faves
-    install_dev_stuff
-    install_nvm
-    add_optional
-}
 
-## CAll MAIN
+## CAll MAIN_MENU
 while : ; do main_menu; done
 
