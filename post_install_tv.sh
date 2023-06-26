@@ -121,7 +121,7 @@ install_basics(){
             continue
         else
             echo "Installing $f"
-            paru -S $f
+            sudo pacman -S $f
         fi
     done
 
