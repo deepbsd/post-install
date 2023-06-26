@@ -241,8 +241,8 @@ main_menu(){
             "start ssh-agent" ) ssh_agent_start; break 1 ;;
             "start dir copy" ) start_dir_copy; break 1 ;;
             "bashrc copy" ) copy_dotfiles; break 1 ;;
-            "install paru" ) install_paru; break 1 ;;
             "install basics" ) install_basics; break 1 ;;
+            "install paru" ) install_paru; break 1 ;;
             "add faves" ) add_faves; break 1 ;;
             "install dev stuff" ) install_dev_stuff; break 1 ;;
             "install nvm" ) install_nvm; break 1 ;;
