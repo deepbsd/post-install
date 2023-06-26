@@ -257,5 +257,6 @@ main_menu(){
 
 
 ## CAll MAIN_MENU
+clear
 while : ; do main_menu; done
 
