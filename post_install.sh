@@ -99,7 +99,14 @@ cloning_dotfiles(){
         TERM=ansi whiptail --title "Keeping Dotfile URL of $MY_DOTFILES" --infobox "Your dotfile url is still $MY_DOTFILES" 8 78
         sleep 2
     fi
+}
 
+
+# CREATE AND COPY HOME DIRS
+create_homedirs(){
+    ## Create the empty directories, copy recursively the non-empty directories
+
+    echo "=== Creating and Copying Home Directories ===" &>>$LOGFILE
 
     # Proceed to actually make empty folders and clone dotfiles
     if $(whiptail --title "Personal Directories and dotfiles..." --backtitle \
@@ -113,14 +120,7 @@ cloning_dotfiles(){
         TERM=ansi whiptail --backtitle "FILES NOT CREATED" --title "Moving on..." --infobox "Not creating personal files and directories..." 8 78
         sleep 2
     fi
-}
 
-
-# CREATE AND COPY HOME DIRS
-create_homedirs(){
-    ## Create the empty directories, copy recursively the non-empty directories
-
-    echo "=== Creating and Copying Home Directories ===" &>>$LOGFILE
 
     # THESE DIRECTORIES ARE STANDARD FOR MY HOME DIRECTORIES ON ALL MY SYSTEMS
     if $(whiptail --backtitle "COPYING DIRECTORIES" --title "Copying Directories to Home Folder"\
