@@ -271,7 +271,7 @@ install_devstuff(){
         sleep 2
     fi
 
-    whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
+    whiptail --backtitle "DEVSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
 }
 
 
