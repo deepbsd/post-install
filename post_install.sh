@@ -259,10 +259,6 @@ install_devstuff(){
             fi
         done
 
-        if $( ! check_install gvim ) ; then
-            echo "$password" | sudo -S pacman --noconfirm gvim 
-        fi
-
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --msgbox "SUCCESS!!!" 30 78
     else
         term=ANSI  whiptail --backtitle "DEVSTUFF NOT INSTALLED NOW" --title "Devstuff not installed now" --infobox "Will have to install Devstuff later on" 10 78
