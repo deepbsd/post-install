@@ -330,10 +330,20 @@ install_anaconda(){
 # FAVORITES FROM AUR
 install_aur_goodies(){
     echo "=== Clone and install gnome-terminal-transparency, mate-terminal, pamac-aur, google-chrome, oranchelo-icons, xcursor-breeze ===" &>>$LOGFILE
-    if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install Chrome, gnome-terminal-transparency, mate-terminal, oranchelo icons, xcursor-breeze, pamac-aur?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
+    if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install ${AUR_PKGS[@]}?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
-        paru -S gnome-terminal-transparency mate-terminal &>>$LOGFILE
-        paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur  &>>$LOGFILE
+
+        for app in ${AUR_PKGS[@]} ; do
+            if $( ! check_install $app ); then
+                paru -S $app
+            else
+                continue
+            fi
+        done
+
+        #paru -S gnome-terminal-transparency mate-terminal &>>$LOGFILE
+        #paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur  &>>$LOGFILE
+        
         whiptail --backtitle "AUR GOODIES INSTALLED" --title "AUR Goodies Installation Status" --infobox "$LOGFILE" 30 78
     else
         term=ANSI  whiptail --backtitle "NOT INSTALLED AUR GOODIES NOW" --title "Not installing AUR goodies now" --infobox "Will have to install AUR Goodies later on" 10 78
