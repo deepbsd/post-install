@@ -375,7 +375,7 @@ install_optional(){
 #    install_optional
 #}
 
-startmenu(){
+main_menu(){
     create_logfile
     homed_message
     pambase_reminder
@@ -426,6 +426,6 @@ startmenu(){
 
 
 ### START HERE
-startmenu
+main_menu
 
 
