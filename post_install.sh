@@ -10,9 +10,9 @@ user=dsj
 LOGFILE=/tmp/logfile
 SSH_KEY=$HOME/.ssh/id_rsa
 # adjust as necessary
-MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
+MY_DOTFILES=https://github.com/deepbsd/dotfiles.git
 # remove .vim directory.  That will be linked from dotfiles dir
-FOLDERS=( adm sounds .gkrellm2 wallpaper wallpaper1 .ssh .gnupg .gnupg Music )
+FOLDERS=( adm sounds bin .gkrellm2 wallpaper wallpaper1 public_html .ssh .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads )
 NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
 DEV_PKGS=( ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
