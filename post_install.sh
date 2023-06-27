@@ -351,7 +351,7 @@ install_aur_goodies(){
 # INSTALL OPTIONAL PKGS
 install_optional(){
     echo "=== Install Optional: ${OPTIONAL[@]} ===" &>>$LOGFILE
-    if $(whiptail --backtitle "INSTALL OPTIONAL: ${OPTIONAL[@]}" --title "Install ${OPTIONAL[@]}"  --yesno "Install Optional PKGS?" 10 78 3>&1 1>&2 2>&3)
+    if $(whiptail --backtitle "INSTALL OPTIONAL PKGS" --title "Install Optional PKGS"  --yesno "Install Optional PKGS?" 10 78 3>&1 1>&2 2>&3)
     then
         for app in "${OPTIONAL[@]}"; do
 
@@ -371,22 +371,8 @@ install_optional(){
 }
 
 ###################################
-########      MAIN     ############
+########      MAIN MENU    ########
 ###################################
-
-#main(){
-#    cloning_dotfiles
-#    create_homedirs
-#    link_dotfiles
-#    ssh_agent_service
-#    install_mystuff
-#    install_devstuff
-#    install_nvm
-#    install_paru
-#    install_anaconda
-#    install_aur_goodies
-#    install_optional
-#}
 
 main_menu(){
     create_logfile
