@@ -12,7 +12,7 @@ SSH_KEY=$HOME/.ssh/id_rsa
 MY_DOTFILES=https://github.com/deepbsd/dotfiles.git
 FOLDERS=( adm sounds bin .gkrellm2 wallpaper wallpaper1 public_html .ssh .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads dwhelper )
-NORMAL_PKGS=( gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
+NORMAL_PKGS=( htop gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
 DEV_PKGS=( gvim ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
 CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
 AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
@@ -325,7 +325,8 @@ install_anaconda(){
 
 # FAVORITES FROM AUR
 install_aur_goodies(){
-    echo "=== Clone and install gnome-terminal-transparency, mate-terminal, pamac-aur, google-chrome, oranchelo-icons, xcursor-breeze ===" &>>$LOGFILE
+    echo "=== Installing ${AUR_PKGS[@]} ===" &>>$LOGFILE
+
     if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install ${AUR_PKGS[@]}?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
 
