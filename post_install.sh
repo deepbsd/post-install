@@ -353,11 +353,11 @@ install_optional(){
     if $(whiptail --backtitle "INSTALL OPTIONAL: ${OPTIONAL[@]}" --title "Install ${OPTIONAL[@]}"  --yesno "Install Optional PKGS?" 10 78 3>&1 1>&2 2>&3)
     then
         for app in "${OPTIONAL[@]}"; do
-            #paru -S "${OPTIONAL[@]}" &>>$LOGFILE
+
             if $(! check_install $app) ; then
-                paru -S $app &>>$LOGFILE
+                paru -S $app 
             else
-                continue
+                echo "$app is installed already..."
             fi
         done
         
