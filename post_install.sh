@@ -12,8 +12,8 @@ SSH_KEY=$HOME/.ssh/id_rsa
 MY_DOTFILES=https://github.com/deepbsd/dotfiles.git
 FOLDERS=( adm sounds bin .gkrellm2 wallpaper wallpaper1 public_html .ssh .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads dwhelper )
-NORMAL_PKGS=( htop gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
-DEV_PKGS=( gvim ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
+NORMAL_PKGS=( gvim htop gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
+DEV_PKGS=( ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
 CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
 AUR_PKGS=( anaconda gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
 OPTIONAL=( libreoffice-still aisleriot gparted )
@@ -247,8 +247,8 @@ install_mystuff(){
 
 ## INSTALL POWERLINE AND DEV STUFF 
 install_devstuff(){
-    echo "=== Installing ruby, nodejs, npm, npm-check-updates, gvim, mlocate ===" &>>$LOGFILE
-    if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, gvim, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
+    echo "=== Installing ruby, nodejs, npm, npm-check-updates, mlocate ===" &>>$LOGFILE
+    if $(whiptail --backtitle "INSTALL DEVSTUFF" --title "Install Devstuff?"  --yesno "Install Ruby, node, npm, npm-check-updates?" 10 78 3>&1 1>&2 2>&3)
     then
         password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
 
