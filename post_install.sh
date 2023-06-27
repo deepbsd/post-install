@@ -352,7 +352,14 @@ install_optional(){
     echo "=== Install Optional: ${OPTIONAL[@]} ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL OPTIONAL: ${OPTIONAL[@]}" --title "Install ${OPTIONAL[@]}"  --yesno "Install Optional PKGS?" 10 78 3>&1 1>&2 2>&3)
     then
-        paru -S "${OPTIONAL[@]}" &>>$LOGFILE
+        for app in "${OPTIONAL[@]}"; do
+            #paru -S "${OPTIONAL[@]}" &>>$LOGFILE
+            if $(! check_install $app) ; then
+                paru -S $app &>>$LOGFILE
+            else
+                continue
+            fi
+        done
         
         whiptail --backtitle "OPTIONAL PKGS INSTALLED" --title "Optional Pkgs Installation Status" --infobox "$LOGFILE" 30 78
     else
@@ -397,6 +404,7 @@ main_menu(){
             "P"   "[$(echo ${completed_tasks[8]}]    Install Paru )"          \
             "A"   "[$(echo ${completed_tasks[9]}]    Install Anaconda  )" \
             "R"   "[$(echo ${completed_tasks[10]}]   Install AUR Goodies  ) "   \
+            "O"   "[$(echo ${completed_tasks[11]}]   Install Optional  ) "   \
             "Q"   "[$(echo ${completed_tasks[17]}]   Quit Script) "  3>&1 1>&2 2>&3
         )
 
@@ -421,6 +429,8 @@ main_menu(){
             "A")  install_anaconda; check_tasks 9 ;;
             
             "R")  install_aur_goodies; check_tasks 10 ;;
+            
+            "O")  install_optional; check_tasks 11 ;;
             
             "Q")  echo "Have a nice day!" ; exit 0 ;;
 
