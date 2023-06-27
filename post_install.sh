@@ -358,6 +358,7 @@ install_optional(){
                 paru -S $app 
             else
                 echo "$app is installed already..."
+                sleep 3
             fi
         done
         
