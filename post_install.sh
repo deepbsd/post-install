@@ -361,19 +361,19 @@ install_optional(){
 ########      MAIN     ############
 ###################################
 
-main(){
-    cloning_dotfiles
-    create_homedirs
-    link_dotfiles
-    ssh_agent_service
-    install_mystuff
-    install_devstuff
-    install_nvm
-    install_paru
-    install_anaconda
-    install_aur_goodies
-    install_optional
-}
+#main(){
+#    cloning_dotfiles
+#    create_homedirs
+#    link_dotfiles
+#    ssh_agent_service
+#    install_mystuff
+#    install_devstuff
+#    install_nvm
+#    install_paru
+#    install_anaconda
+#    install_aur_goodies
+#    install_optional
+#}
 
 startmenu(){
     create_logfile
