@@ -256,12 +256,12 @@ install_devstuff(){
 
         for f in "${DEV_PKGS[*]}" ; do
 
-            if $( check_install $f ); then
+            if $( ! check_install $f ); then
                 echo "$password" | sudo -S pacman --noconfirm "$f" 
             fi
         done
 
-        if $( check_install gvim ) ; then
+        if $( ! check_install gvim ) ; then
             echo "$password" | sudo -S pacman --noconfirm gvim 
         fi
 
