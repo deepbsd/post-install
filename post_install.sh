@@ -230,8 +230,17 @@ install_mystuff(){
         echo "$password" | sudo --user=root --stdin pacman -Syy  &>>$LOGFILE
 
         ## INSTALL GKRELLM, DVD SUPPORT, MLOCATE FUZZY FILEFINDER
-        term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing ${NORMAL_PKGS[@]} " 10 78
-        echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "${NORMAL_PKGS[@]}" &>>$LOGFILE
+        term=ANSI  whiptail --backtitle "INSTALLING MYSTUFF " --title "Installing Mystuff " --infobox "Installing Normal Packages " 10 78
+
+        for pkg in "${NORMAL_PKGS[@]}"; do
+            if $( ! check_install $pkg ); then
+                echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "$pkg" &>>$LOGFILE
+            else
+                TERM=ansi whiptail --title "$pkg is already installed" --msgbox "$pkg is already installed" 10 78
+            fi
+
+        done
+
 
         echo "$password" | sudo --user=root --stdin updatedb  
 
