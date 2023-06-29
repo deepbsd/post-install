@@ -237,8 +237,8 @@ install_mystuff(){
                 echo "$password" | sudo --user=root --stdin pacman --noconfirm -S "$pkg" &>>$LOGFILE
             else
                 TERM=ansi whiptail --title "$pkg is already installed" --msgbox "$pkg is already installed" 10 78
-            fi
 
+            fi
         done
 
 
