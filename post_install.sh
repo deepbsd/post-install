@@ -245,7 +245,9 @@ install_mystuff(){
         echo "$password" | sudo --user=root --stdin updatedb  
 
         whiptail --backtitle "MYSTUFF INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
+
     else
+
         term=ANSI  whiptail --backtitle "MYSTUFF NOT INSTALLED NOW" --title "Mystuff not install now" --infobox "Will have to install Mystuff later on" 10 78
         sleep 2
         whiptail --backtitle "MYSTUFF NOT INSTALLED" --title "MyStuff Installation Status" --textbox "$LOGFILE" 30 78
