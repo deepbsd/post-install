@@ -345,7 +345,7 @@ install_aur_goodies(){
             if $( ! check_install $app ); then
                 paru -S $app
             else
-                continue
+                TERM=ansi whiptail --title "$app is already installed" --msgbox "$app is already installed" 10 78
             fi
         done
 
