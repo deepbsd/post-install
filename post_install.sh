@@ -338,7 +338,7 @@ install_anaconda(){
 install_aur_goodies(){
     echo "=== Installing ${AUR_PKGS[@]} ===" &>>$LOGFILE
 
-    if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install ${AUR_PKGS[@]}?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
+    if $(whiptail --backtitle "INSTALL AUR GOODIES" --title "Install AUR Pkgs?"  --yesno "Install Aur Goodies?" 10 78 3>&1 1>&2 2>&3)
     then
 
         for app in ${AUR_PKGS[@]} ; do
