@@ -349,8 +349,6 @@ install_aur_goodies(){
             fi
         done
 
-        #paru -S gnome-terminal-transparency mate-terminal &>>$LOGFILE
-        #paru -S google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur  &>>$LOGFILE
         
         whiptail --backtitle "AUR GOODIES INSTALLED" --title "AUR Goodies Installation Status" --infobox "$LOGFILE" 30 78
     else
