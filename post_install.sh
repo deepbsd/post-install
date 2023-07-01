@@ -349,7 +349,6 @@ install_aur_goodies(){
             fi
         done
 
-        
         whiptail --backtitle "AUR GOODIES INSTALLED" --title "AUR Goodies Installation Status" --infobox "$LOGFILE" 30 78
     else
         term=ANSI  whiptail --backtitle "NOT INSTALLED AUR GOODIES NOW" --title "Not installing AUR goodies now" --infobox "Will have to install AUR Goodies later on" 10 78
