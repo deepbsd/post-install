@@ -416,15 +416,15 @@ main_menu(){
             "L")  link_dotfiles;  check_tasks 3 ;;
 
             "S")  ssh_agent_service; check_tasks 4 ;;
+ 
+            "P")  install_paru; check_tasks 5 ;;
             
-            "M")  install_mystuff; check_tasks 5 ;;
+            "M")  install_mystuff; check_tasks 6 ;;
 
-            "V")  install_devstuff; check_tasks 6 ;;
+            "V")  install_devstuff; check_tasks 7 ;;
 
-            "N")  install_nvm; check_tasks 7 ;;
-
-            "P")  install_paru; check_tasks 8 ;;
-            
+            "N")  install_nvm; check_tasks 8 ;;
+           
             "A")  install_anaconda; check_tasks 9 ;;
             
             "R")  install_aur_goodies; check_tasks 10 ;;
