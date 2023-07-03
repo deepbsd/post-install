@@ -287,7 +287,8 @@ install_nvm(){
     if $(whiptail --backtitle "INSTALL NVM" --title "Install NVM?"  --yesno "Install NVM?" 10 78 3>&1 1>&2 2>&3)
     then
         mkdir $HOME/.nvm
-        cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. 
+        #cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. 
+        cd && git clone "${CLONED_REPOS[2]}" $HOME/.nvm/.
         cd $HOME/.nvm && source nvm.sh && cd  
         whiptail --backtitle "NVM INSTALLED" --title "NVM Installation Status" --infobox "$LOGFILE" 30 78
     else
@@ -305,7 +306,9 @@ install_paru(){
     then
         if ! which paru >>$LOGFILE  ; then
             cd ~/build
-            git clone https://aur.archlinux.org/paru.git 
+            #git clone https://aur.archlinux.org/paru.git 
+            git clone "${CLONED_REPOS[1]}"
+
             cd paru
             makepkg -si   
             cd
