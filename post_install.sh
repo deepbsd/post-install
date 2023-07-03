@@ -394,14 +394,14 @@ main_menu(){
     while true ; do
         menupick=$(
         whiptail --backtitle "Post Install Installer" --title "Main Menu" --menu "Your choice?" 30 70 20 \
-            "H"   "[$(echo ${completed_tasks[2]}]    Creat and copy your home directories )"  \
-            "D"   "[$(echo ${completed_tasks[1]}]    Clone your dotfiles )"  \
+            "H"   "[$(echo ${completed_tasks[1]}]    Creat and copy your home directories )"  \
+            "D"   "[$(echo ${completed_tasks[2]}]    Clone your dotfiles )"  \
             "L"   "[$(echo ${completed_tasks[3]}]    Link your dotfiles )"  \
             "S"   "[$(echo ${completed_tasks[4]}]    Start SSH Agent service )"  \
-            "M"   "[$(echo ${completed_tasks[5]}]    Install MyStuff )"        \
-            "V"   "[$(echo ${completed_tasks[6]}]    Install Programmer Dev Stuff )"    \
-            "N"   "[$(echo ${completed_tasks[7]}]    Install NVM )"           \
-            "P"   "[$(echo ${completed_tasks[8]}]    Install Paru )"          \
+            "P"   "[$(echo ${completed_tasks[5]}]    Install Paru )"          \
+            "M"   "[$(echo ${completed_tasks[6]}]    Install MyStuff )"        \
+            "V"   "[$(echo ${completed_tasks[7]}]    Install Programmer Dev Stuff )"    \
+            "N"   "[$(echo ${completed_tasks[8]}]    Install NVM )"           \
             "A"   "[$(echo ${completed_tasks[9]}]    Install Anaconda  )" \
             "R"   "[$(echo ${completed_tasks[10]}]   Install AUR Goodies  ) "   \
             "O"   "[$(echo ${completed_tasks[11]}]   Install Optional  ) "   \
