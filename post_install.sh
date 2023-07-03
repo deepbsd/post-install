@@ -390,8 +390,8 @@ main_menu(){
     while true ; do
         menupick=$(
         whiptail --backtitle "Post Install Installer" --title "Main Menu" --menu "Your choice?" 30 70 20 \
-            "D"   "[$(echo ${completed_tasks[1]}]    Clone your dotfiles )"  \
             "H"   "[$(echo ${completed_tasks[2]}]    Creat and copy your home directories )"  \
+            "D"   "[$(echo ${completed_tasks[1]}]    Clone your dotfiles )"  \
             "L"   "[$(echo ${completed_tasks[3]}]    Link your dotfiles )"  \
             "S"   "[$(echo ${completed_tasks[4]}]    Start SSH Agent service )"  \
             "M"   "[$(echo ${completed_tasks[5]}]    Install MyStuff )"        \
@@ -406,9 +406,9 @@ main_menu(){
 
         case $menupick in
 
-            "D")  cloning_dotfiles; check_tasks 1 ;;
+            "H")  create_homedirs;  check_tasks 1 ;;
 
-            "H")  create_homedirs;  check_tasks 2 ;;
+            "D")  cloning_dotfiles; check_tasks 2 ;;
 
             "L")  link_dotfiles;  check_tasks 3 ;;
 
