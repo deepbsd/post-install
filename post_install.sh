@@ -32,7 +32,7 @@ completed_tasks=( "X" )
 create_logfile(){
     touch $LOGFILE
     date=$(date)
-    echo "STARTING post_install.sh $date " &>$LOGFILE
+    echo "===== STARTING post_install.sh ==== $date ====" &>$LOGFILE
 }
 
 
