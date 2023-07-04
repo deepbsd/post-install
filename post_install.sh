@@ -9,12 +9,13 @@
 user=dsj
 LOGFILE=/tmp/logfile
 SSH_KEY=$HOME/.ssh/id_rsa
-MY_DOTFILES=https://github.com/deepbsd/dotfiles.git
+CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
+MY_DOTFILES="${CLONED_REPOS[0]}"
+#MY_DOTFILES=https://github.com/deepbsd/dotfiles.git
 FOLDERS=( adm sounds bin .gkrellm2 wallpaper wallpaper1 public_html .ssh .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads dwhelper )
 NORMAL_PKGS=( gvim htop gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
 DEV_PKGS=( ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
-CLONED_REPOS=( "https://github.com/deepbsd/dotfiles.git" "https://aur.archlinux.org/paru.git" "https://github.com/nvm-sh/nvm.git" )
 AUR_PKGS=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
 OPTIONAL=( libreoffice-still aisleriot gparted )
 
