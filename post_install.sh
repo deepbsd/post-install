@@ -31,6 +31,7 @@ completed_tasks=( "X" )
 # CREATE LOGFILE
 create_logfile(){
     touch $LOGFILE
+    date=$(date)
     echo "STARTING post_install.sh $date " &>$LOGFILE
 }
 
