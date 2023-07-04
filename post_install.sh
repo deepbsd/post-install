@@ -270,7 +270,10 @@ install_devstuff(){
 
             if $( ! check_install $f ); then
                 echo "$password" | sudo -S pacman --noconfirm "$f" 
+            else
+                TERM=ansi whiptail --title "$f is already installed" --msgbox "$f is already installed" 10 78
             fi
+
         done
 
         whiptail --backtitle "DEVSTUFF INSTALLED" --title "DevStuff Installation Status" --msgbox "SUCCESS!!!" 30 78
@@ -316,6 +319,9 @@ install_paru(){
             cd paru
             makepkg -si   
             cd
+
+        else
+            TERM=ansi whiptail --title "Paru is already installed" --msgbox "Paru is already installed" 10 78
         fi
         whiptail --backtitle "PARU INSTALLED" --title "PARU Installation Status" --infobox "$LOGFILE" 30 78
     else
@@ -373,8 +379,8 @@ install_optional(){
             if $(! check_install $app) ; then
                 paru -S $app 
             else
-                echo "$app is installed already..."
-                sleep 3
+                TERM=ansi whiptail --title "$app is already installed" --msgbox "$app is already installed" 10 78
+                #echo "$app is installed already..."
             fi
         done
         
