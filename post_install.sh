@@ -11,8 +11,8 @@ LOGFILE=/tmp/logfile
 SSH_KEY=$HOME/.ssh/id_rsa
 declare -A CLONED_REPOS=( [dotfiles]="https://github.com/deepbsd/dotfiles.git" [paru]="https://aur.archlinux.org/paru.git" [nvm]="https://github.com/nvm-sh/nvm.git" )
 MY_DOTFILES="${CLONED_REPOS[dotfiles]}"
-PARU_REPOT="${CLONED_REPOS[paru]}"
-NVM_REPOT="${CLONED_REPOS[nvm]}"
+PARU_REPO="${CLONED_REPOS[paru]}"
+NVM_REPO="${CLONED_REPOS[nvm]}"
 FOLDERS=( adm sounds bin .gkrellm2 wallpaper wallpaper1 public_html .ssh .gnupg Music )
 EMPTY_FOLDERS=( repos tmp build Downloads dwhelper )
 NORMAL_PKGS=( gvim htop gkrellm libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
