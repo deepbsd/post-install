@@ -314,8 +314,7 @@ install_paru(){
             [[ -d $HOME/build ]] || mkdir $HOME/build
             cd $HOME/build
             #git clone https://aur.archlinux.org/paru.git 
-            git clone "${CLONED_REPOS[1]}"
-
+            git clone "$PARU_REPO"
             cd paru
             makepkg -si   
             cd
