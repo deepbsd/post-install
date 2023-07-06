@@ -317,7 +317,6 @@ install_paru(){
             cd paru
             makepkg -si   
             cd
-
         else
             TERM=ansi whiptail --title "Paru is already installed" --msgbox "Paru is already installed" 10 78
         fi
