@@ -313,7 +313,6 @@ install_paru(){
             echo "==== Building Paru ====" >>$LOGFILE
             [[ -d $HOME/build ]] || mkdir $HOME/build
             cd $HOME/build
-            #git clone https://aur.archlinux.org/paru.git 
             git clone "$PARU_REPO"
             cd paru
             makepkg -si   
