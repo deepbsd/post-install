@@ -311,7 +311,8 @@ install_paru(){
     then
         if  $(! which paru &>/dev/null) ; then
             echo "==== Building Paru ====" >>$LOGFILE
-            cd ~/build
+            [[ -d $HOME/build ]] || mkdir $HOME/build
+            cd $HOME/build
             #git clone https://aur.archlinux.org/paru.git 
             git clone "${CLONED_REPOS[1]}"
 
