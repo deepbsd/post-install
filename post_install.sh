@@ -293,7 +293,7 @@ install_nvm(){
     then
         mkdir $HOME/.nvm
         #cd && git clone https://github.com/nvm-sh/nvm.git $HOME/.nvm/. 
-        cd && git clone "${CLONED_REPOS[2]}" $HOME/.nvm/.
+        cd && git clone $NVM_REPO $HOME/.nvm/.
         cd $HOME/.nvm && source nvm.sh && cd  
         whiptail --backtitle "NVM INSTALLED" --title "NVM Installation Status" --infobox "$LOGFILE" 30 78
     else
