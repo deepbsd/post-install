@@ -147,7 +147,6 @@ create_homedirs(){
             echo "copying $user@$host.lan/$f ..."
             scp -o StrictHostKeyChecking=no -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
         done
-        ##scp -Br $user@"$whathost".lan:{adm,dotfiles,.vim,public_html,sounds,.gkrellm2,wallpaper,wallpaper1,bin,.ssh,.gnupg} .
 
         whiptail --backtitle "DIRECTORIES COPIED" --title "Folders copied" --infobox $LOGFILE  30 78
     else
