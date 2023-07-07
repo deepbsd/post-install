@@ -311,12 +311,12 @@ install_paru(){
     if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
     then
         if  $(! which paru &>/dev/null) ; then
-            echo "==== Building Paru ====" >>$LOGFILE
-            [[ -d $HOME/build ]] || mkdir $HOME/build >>$LOGFILE
+            echo "==== Building Paru ====" &>>$LOGFILE
+            [[ -d $HOME/build ]] || mkdir $HOME/build &>>$LOGFILE
             cd $HOME/build
-            git clone "$PARU_REPO" >>$LOGFILE
+            git clone "$PARU_REPO" &>>$LOGFILE
             cd paru
-            makepkg -si  >>$LOGFILE 
+            makepkg -si  &>>$LOGFILE 
             cd
             TERM=ansi whiptail --title "Paru installed successfully!" --msgbox "Congrats! Paru Installed!" 10 78
         else
