@@ -145,7 +145,8 @@ create_homedirs(){
         homedirs=( $( echo "${folders}" | sed -e 's/\"//g' )  )
         for f in "${homedirs[@]}"; do
             echo "copying $user@$host.lan/$f ..."
-            scp -o StrictHostKeyChecking=no -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
+            #scp -o StrictHostKeyChecking=no -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
+            scp -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
         done
 
         whiptail --backtitle "DIRECTORIES COPIED" --title "Folders copied" --infobox $LOGFILE  30 78
