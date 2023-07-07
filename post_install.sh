@@ -185,7 +185,7 @@ ssh_agent_service(){
     Please enter your ssh passphrase: "  10 78
 
     sleep 2      # won't see the infobox without a sleep statement
-    #[[ -f ~/.ssh/id_rsa ]] && eval $(ssh-agent) 2&>/dev/null
+
     [[ -f "$SSH_KEY" ]] && eval $(ssh-agent) &>>$LOGFILE 
 
     password=$(whiptail --backtitle "SUDO PASSWORD CHECKER" --title "Check sudo with auto password" --passwordbox "Please enter your SUDO password" 8 78 3>&1 1>&2 2>&3 )
@@ -197,7 +197,7 @@ ssh_agent_service(){
     ## NOTE: ADD CHECK FOR SSH_ASKPASS PROGRAM BEFORE THIS
     export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
     export SSH_ASKPASS_REQUIRE="prefer"
-    #ssh-add ~/.ssh/id_rsa  &>>$LOGFILE
+
     eval $(ssh-agent) && ssh-add "$SSH_KEY"   &>>$LOGFILE
 
     # determine whether the key got added properly or not and inform the user
