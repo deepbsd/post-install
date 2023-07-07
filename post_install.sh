@@ -312,12 +312,13 @@ install_paru(){
     then
         if  $(! which paru &>/dev/null) ; then
             echo "==== Building Paru ====" >>$LOGFILE
-            [[ -d $HOME/build ]] || mkdir $HOME/build
+            [[ -d $HOME/build ]] || mkdir $HOME/build >>$LOGFILE
             cd $HOME/build
-            git clone "$PARU_REPO"
+            git clone "$PARU_REPO" >>$LOGFILE
             cd paru
-            makepkg -si   
+            makepkg -si  >>$LOGFILE 
             cd
+            TERM=ansi whiptail --title "Paru installed successfully!" --msgbox "Congrats! Paru Installed!" 10 78
         else
             TERM=ansi whiptail --title "Paru is already installed" --msgbox "Paru is already installed" 10 78
         fi
