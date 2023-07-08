@@ -310,7 +310,7 @@ install_paru(){
     echo "=== Clone and install paru ===" &>>$LOGFILE
     if $(whiptail --backtitle "INSTALL PARU" --title "Install Paru?"  --yesno "Install Paru?" 10 78 3>&1 1>&2 2>&3)
     then
-        if  $(! which paru &>/dev/null) ; then
+        if  $(! which paru &>>$LOGFILE) ; then
             echo "==== Building Paru ====" &>>$LOGFILE
             [[ -d $HOME/build ]] || mkdir $HOME/build &>>$LOGFILE
             cd $HOME/build
