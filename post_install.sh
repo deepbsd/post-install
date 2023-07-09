@@ -83,6 +83,52 @@ pambase_reminder(){
     Also, reinstall pambase if necessary.  Hit OK to Continue."  10 78
 }
 
+# NOTE:  Showing a progress gauge in whiptail is a pain.  I do it by 
+# passing the name of the process to measure (a function name) to a
+# calling function.  The calling function calls the function and sends
+# it to the background, and then immediately captures its PID.  
+# We check for that PID and keep showing the progress meter if its still
+# in the PID table.  If it drops out of the PID table, then we immediately
+# show 98 99 100 pct progress with a 3 second wait between each.
+# If the process is taking a very long time, we show 97pct 98pct 97pct 
+# 98pct until the PID drops out of the PID table.  This way the user
+# never suspects the install has frozen, just that he's going spastic.
+
+
+# FOR SHOWING PROGRESS GAUGE FOR WHIPTAIL (this does the counting)
+showprogress(){
+    # start count, end count, shortest sleep, longest sleep
+    start=$1; end=$2; shortest=$3; longest=$4
+
+    for n in $(seq $start $end); do
+        echo $n
+        pause=$(shuf -i ${shortest:=1}-${longest:=3} -n 1)  # random wait between 1 and 3 seconds
+        sleep $pause
+    done
+}
+
+# CALL FOR SHOWING PROGRESS GAUGE (this calls the function)
+specialprogressgauge(){
+    process_to_measure=$1   # This is the function we're going to measure progress for
+    message=$2              # Message on Whiptail progress window
+    backmessage=$3          # Message on Background Window
+    eval $process_to_measure &      # Start the process in the background
+    thepid=$!               # Immediately capture the PID for this process
+    echo "=== Watching PID $thepid for progress ===" &>>$LOGFILE
+    num=10                  # Shortest progress bar could be 10 sec to 30 sec
+    while true; do
+        showprogress 1 $num 1 3 
+        sleep 2             # Max of 47 sec before we check for completion
+        while $(ps aux | grep -v 'grep' | grep "$thepid" &>/dev/null); do
+            if [[ $num -gt 97 ]] ; then num=$(( num-1 )); fi
+            showprogress $num $((num+1)) 
+            num=$(( num+1 ))
+        done
+        showprogress 99 100 3 3  # If we have completion, we add 6 sec. Max of 53 sec.
+        echo "=== No longer watching PID: $thepid ===" &>>$LOGFILE
+        break
+    done  | whiptail --backtitle "$backmessage" --title "Progress Gauge" --gauge "$message" 9 70 0
+}
 
 ####  START CREATING AND MOVING ASSETS
 
