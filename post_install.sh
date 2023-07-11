@@ -40,6 +40,7 @@ create_logfile(){
 check_install(){
     app=$1
     if paru -Qi $app &>>$LOGFILE ; then
+        echo "=== checking installation status for $app ===" &>>$LOGFILE
         whiptail --title "$app Installation Status" --backtitle "$app IS INSTALLED"  --msgbox "  
         "$app is installed already."
 
