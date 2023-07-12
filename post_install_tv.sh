@@ -271,6 +271,7 @@ main_menu(){
 
 
 ## CAll MAIN_MENU
+check_for_update
 clear
 while : ; do main_menu; done
 
