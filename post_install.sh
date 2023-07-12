@@ -190,10 +190,10 @@ create_homedirs(){
 
         # CREATE AND COPY HOMEDIRS (Replace each space with a comma between dir names)
         homedirs=( $( echo "${folders}" | sed -e 's/\"//g' )  )
-        for f in "${homedirs[@]}"; do
-            echo "copying $user@$host.lan/$f ..."
-            #scp -o StrictHostKeyChecking=no -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
-            scp -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
+        for dir in "${homedirs[@]}"; do
+            echo "copying $user@$host.lan/$dir ..."
+            scp -o StrictHostKeyChecking=no -r $user@"$host".lan:"$dir" .  &>>$LOGFILE
+            #scp -r $user@"$host".lan:"$f" .  #&>>$LOGFILE
         done
 
         whiptail --backtitle "DIRECTORIES COPIED" --title "Folders copied" --infobox $LOGFILE  30 78

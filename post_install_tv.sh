@@ -99,7 +99,7 @@ start_dir_copy(){
     echo "Starting to recursively copy following directories:  ${MY_DIRS[@]}"
     for dir in "${MY_DIRS[@]}" ; do
         echo "recursively copying $dir ..."
-        scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:$dir .
+        scp -o StrictHostKeyChecking=no -r "$user"@"$whathost".lan:"$dir" .
     done
 }
 
