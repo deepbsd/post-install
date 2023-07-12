@@ -8,7 +8,10 @@ user=dsj
 PERS_DIRECTORIES=( dwhelper Documents movies Downloads tmp build repos )
 MY_DIRS=( .ssh adm .gnupg sounds .gkrellm2 bin public_html wallpaper wallpaper1 )
 MUSIC_DIR=( Music )
-MY_DOTFILES="https://github.com/deepbsd/dotfiles.git"
+declare -A CLONED_REPOS=( [dotfiles]="https://github.com/deepbsd/dotfiles.git" [paru]="https://aur.archlinux.org/paru.git" [nvm]="https://github.com/nvm-sh/nvm.git" )
+MY_DOTFILES="${CLONED_REPOS[dotfiles]}"
+PARU_REPO="${CLONED_REPOS[paru]}"
+NVM_REPO="${CLONED_REPOS[nvm]}"
 BASICS=( vlc libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
@@ -161,7 +164,8 @@ install_nvm(){
         ## [[ -x $(which git &>/dev/null) ]] && cd && git clone https://github.com/nvm-sh/nvm.git .nvm/.
         if [[ -d $HOME/.nvm ]]; then
             cd $HOME/.nvm 
-            git clone https://github.com/nvm-sh/nvm.git  
+            #git clone https://github.com/nvm-sh/nvm.git  
+            git clone "$NVM_REPO"
             echo "\n NVM Installed!!"
             source $HOME/.nvm/nvm.sh && cd
             echo "\nnvm.sh sourced in this terminal..."
@@ -171,7 +175,8 @@ install_nvm(){
             cd $HOME
             mkdir $HOME/.nvm
             cd $HOME/.nvm
-            git clone https://github.com/nvm-sh/nvm.git  && echo "\n NVM Installed!!"
+            #git clone https://github.com/nvm-sh/nvm.git  && echo "\n NVM Installed!!"
+            git clone "$NVM_REPO"  && echo "\n NVM Installed!!"
             cd
         fi
 
@@ -188,7 +193,8 @@ install_paru(){
     echo "Installing paru: "
     [ -d $HOME/build ] || mkdir $HOME/build
     cd ~/build
-    git clone https://aur.archlinux.org/paru.git
+    #git clone https://aur.archlinux.org/paru.git
+    git clone "$PARU_REPO"
     cd paru
     makepkg -si
     ( echo $? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
