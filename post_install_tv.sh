@@ -21,9 +21,11 @@ whathost=""
 
 
 check_install(){
-    if $( paru -Qi $1 &>/dev/null ); then
+    if $( sudo pacman -Qi $1 &>/dev/null ); then
+        echo "$1 is already installed..."
         return 0
     else
+        echo "$1 is NOT installed.."
         return 1
     fi
 }
