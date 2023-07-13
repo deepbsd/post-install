@@ -241,7 +241,6 @@ main_menu(){
     echo 
     echo 
 
-
     PS3="Please enter your choice: "
     options=( "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" "bashrc copy" \
         "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
@@ -265,8 +264,6 @@ main_menu(){
             * ) echo "invalid option" ;;
         esac
     done
-
-
 }
 
 
