@@ -242,12 +242,13 @@ main_menu(){
     echo 
 
     PS3="Please enter your choice: "
-    options=( "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" "bashrc copy" \
-        "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
+    options=(   "update your system" "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" \
+        "bashrc copy" "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
 
     select opt in "${options[@]}"
     do
         case $opt in 
+            "update your system" ) check_for_update; break 1 ;;
             "make directories" ) make_directories; break 1 ;;
             "get keys" ) get_keys; break 1 ;;
             "clone dotfiles" ) clone_dotfiles; break 1 ;;
@@ -268,7 +269,6 @@ main_menu(){
 
 
 ## CAll MAIN_MENU
-check_for_update
 clear
 while : ; do main_menu; done
 

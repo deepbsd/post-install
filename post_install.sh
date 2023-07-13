@@ -449,43 +449,46 @@ main_menu(){
     while true ; do
         menupick=$(
         whiptail --backtitle "Post Install Installer" --title "Main Menu" --menu "Your choice?" 30 70 20 \
-            "H"   "[$(echo ${completed_tasks[1]}]    Creat and copy your home directories )"  \
-            "D"   "[$(echo ${completed_tasks[2]}]    Clone your dotfiles )"  \
-            "L"   "[$(echo ${completed_tasks[3]}]    Link your dotfiles )"  \
-            "S"   "[$(echo ${completed_tasks[4]}]    Start SSH Agent service )"  \
-            "P"   "[$(echo ${completed_tasks[5]}]    Install Paru )"          \
-            "M"   "[$(echo ${completed_tasks[6]}]    Install MyStuff )"        \
-            "V"   "[$(echo ${completed_tasks[7]}]    Install Programmer Dev Stuff )"    \
-            "N"   "[$(echo ${completed_tasks[8]}]    Install NVM )"           \
-            "A"   "[$(echo ${completed_tasks[9]}]    Install Anaconda  )" \
-            "R"   "[$(echo ${completed_tasks[10]}]   Install AUR Goodies  ) "   \
-            "O"   "[$(echo ${completed_tasks[11]}]   Install Optional  ) "   \
-            "Q"   "[$(echo ${completed_tasks[17]}]   Quit Script) "  3>&1 1>&2 2>&3
+            "U"   "[$(echo ${completed_tasks[1]}]    Creat and copy your home directories )"  \
+            "H"   "[$(echo ${completed_tasks[2]}]    Creat and copy your home directories )"  \
+            "D"   "[$(echo ${completed_tasks[3]}]    Clone your dotfiles )"  \
+            "L"   "[$(echo ${completed_tasks[4]}]    Link your dotfiles )"  \
+            "S"   "[$(echo ${completed_tasks[5]}]    Start SSH Agent service )"  \
+            "P"   "[$(echo ${completed_tasks[6]}]    Install Paru )"          \
+            "M"   "[$(echo ${completed_tasks[7]}]    Install MyStuff )"        \
+            "V"   "[$(echo ${completed_tasks[8]}]    Install Programmer Dev Stuff )"    \
+            "N"   "[$(echo ${completed_tasks[9]}]    Install NVM )"           \
+            "A"   "[$(echo ${completed_tasks[10]}]    Install Anaconda  )" \
+            "R"   "[$(echo ${completed_tasks[11]}]   Install AUR Goodies  ) "   \
+            "O"   "[$(echo ${completed_tasks[12]}]   Install Optional  ) "   \
+            "Q"   "[$(echo ${completed_tasks[13]}]   Quit Script) "  3>&1 1>&2 2>&3
         )
 
         case $menupick in
 
-            "H")  create_homedirs;  check_tasks 1 ;;
+            "U") system_update; check_tasks 1 ;;
 
-            "D")  cloning_dotfiles; check_tasks 2 ;;
+            "H")  create_homedirs;  check_tasks 2 ;;
 
-            "L")  link_dotfiles;  check_tasks 3 ;;
+            "D")  cloning_dotfiles; check_tasks 3 ;;
 
-            "S")  ssh_agent_service; check_tasks 4 ;;
+            "L")  link_dotfiles;  check_tasks 4 ;;
+
+            "S")  ssh_agent_service; check_tasks 5 ;;
  
-            "P")  install_paru; check_tasks 5 ;;
+            "P")  install_paru; check_tasks 6 ;;
             
-            "M")  install_mystuff; check_tasks 6 ;;
+            "M")  install_mystuff; check_tasks 7 ;;
 
-            "V")  install_devstuff; check_tasks 7 ;;
+            "V")  install_devstuff; check_tasks 8 ;;
 
-            "N")  install_nvm; check_tasks 8 ;;
+            "N")  install_nvm; check_tasks 9 ;;
            
-            "A")  install_anaconda; check_tasks 9 ;;
+            "A")  install_anaconda; check_tasks 10 ;;
             
-            "R")  install_aur_goodies; check_tasks 10 ;;
+            "R")  install_aur_goodies; check_tasks 11 ;;
             
-            "O")  install_optional; check_tasks 11 ;;
+            "O")  install_optional; check_tasks 12 ;;
             
             "Q")  echo "Have a nice day!" ; exit 0 ;;
 
