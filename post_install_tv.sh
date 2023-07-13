@@ -19,7 +19,7 @@ OPTIONAL=( pamac-aur libreoffice-still aisleriot gparted )
 ## This is the remote hostname (to copy dirs from) make it global for script
 whathost=""
 
-====================  FUNCTIONS  ========================
+#====================  FUNCTIONS  ========================
 
 check_for_update(){
     sudo pacman -Syy
