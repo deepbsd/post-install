@@ -35,6 +35,9 @@ create_logfile(){
     echo "===== STARTING post_install.sh ==== $date ====" &>$LOGFILE
 }
 
+system_update(){
+    sudo pacman -Syyu
+}
 
 # check if a program is already installed
 check_install(){
