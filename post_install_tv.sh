@@ -242,13 +242,14 @@ main_menu(){
     echo 
     echo 
 
+    
+    echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
     PS3="Please enter your choice: "
     options=(   "update your system" "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" \
         "bashrc copy" "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
 
     select opt in "${options[@]}"
     do
-        echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
         case $opt in 
             "update your system" ) check_for_update; break 1 ;;
             "make directories" ) make_directories; break 1 ;;
