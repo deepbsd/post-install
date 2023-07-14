@@ -238,12 +238,12 @@ add_optional(){
 main_menu(){
 
     # make some space before the menu
+    echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
     echo 
     echo 
     echo 
 
     
-    echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
     PS3="Please enter your choice: "
     options=(   "update your system" "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" \
         "bashrc copy" "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
