@@ -238,7 +238,7 @@ add_optional(){
 main_menu(){
 
     # make some space before the menu
-    echo -e "\n===> Welcome to Post-Install for brand new Archlinux systems! <===\n\n"
+    echo -e "\n\n===> Welcome to Post-Install for brand new Archlinux systems! <===\n"
     
     PS3="Please enter your choice: "
     options=(   "update your system" "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" \
