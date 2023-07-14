@@ -248,6 +248,7 @@ main_menu(){
 
     select opt in "${options[@]}"
     do
+        echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
         case $opt in 
             "update your system" ) check_for_update; break 1 ;;
             "make directories" ) make_directories; break 1 ;;
