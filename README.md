@@ -4,6 +4,11 @@ I use this script to set up a new Archlinux installation on my network.  It's ju
 my standard software installed and my SSH and GPG keys installed.  Also to automate the installation
 of the stuff I normally install every time.
 
+## Two Versions
+
+There are text and whiptail versions of this script.  They operate a little differently.  The text version will always be
+the most reliable and preferred. But I also like the whiptail version because it's just a little different.
+
 ## Reminders
 
 The first thing is to remind about Pambase and Homed.  Sometimes Pambase needs to be reinstalled.
@@ -26,6 +31,3 @@ assets.
 
 If you have a dotfile repository, you can clone it into your new directory.
 
-## Text version
-
-In case you don't need whiptail, the older text version still works.  Just edit as needed.
