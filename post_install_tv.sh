@@ -238,8 +238,8 @@ add_optional(){
 main_menu(){
 
     # make some space before the menu
-    echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
     echo 
+    echo "===> Welcome to Post-Install for brand new Archlinux systems! <==="
     echo 
     echo 
 
