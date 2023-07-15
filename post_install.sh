@@ -469,7 +469,7 @@ main_menu(){
 
         case $menupick in
 
-            "U") special_progress_gauge system_update "Updating System" "UPDATING SYSTEM"; check_tasks 1 ;;
+            "U") specialprogressgauge system_update "Updating System" "UPDATING SYSTEM"; check_tasks 1 ;;
 
             "H")  create_homedirs;  check_tasks 2 ;;
 
