@@ -153,6 +153,12 @@ cloning_dotfiles(){
 }
 
 
+# COPY DIRECTORIES FROM DESIGNATED HOST
+do_dir_copy(){
+    #  Have to figure out how to do this...
+    continue 
+}
+
 # CREATE AND COPY HOME DIRS
 create_homedirs(){
     ## Create the empty directories, copy recursively the non-empty directories
