@@ -36,7 +36,7 @@ create_logfile(){
 }
 
 system_update(){
-    sudo pacman -Syyu
+    sudo pacman -Syyu --noconfirm  &>>$LOGFILE
 }
 
 # check if a program is already installed
@@ -469,7 +469,7 @@ main_menu(){
 
         case $menupick in
 
-            "U") system_update; check_tasks 1 ;;
+            "U") special_progress_gauge system_update "Updating System" "UPDATING SYSTEM"; check_tasks 1 ;;
 
             "H")  create_homedirs;  check_tasks 2 ;;
 
