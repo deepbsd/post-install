@@ -243,16 +243,17 @@ desktop_menu(){
     echo "M)   Mate\n"
     echo "Q)   Qtile\n"
     echo "E)   Exit\n"
+
     read choice
 
     case $choice in 
-        "K" ) sudo pacman -S plasma plasma-wayland-session kde-applications ;;
-        "X" ) sudo pacman -S xfce4 xfce4-goodies ;;
-        "G" ) sudo pacman -S gnome gnome-tweaks ;;
-        "I" ) sudo pacman -S i3-gaps i3status ;;
-        "M" ) sudo pacman -S mate mate-extra ;;
-        "Q" ) sudo pacman -S qtile ;;
-        *) echo -n "\nThanks for installing $choice!\n\n"; sleep 3; clear; return 0;;
+        "K") sudo pacman -S plasma plasma-wayland-session kde-applications ;;
+        "X") sudo pacman -S xfce4 xfce4-goodies ;;
+        "G") sudo pacman -S gnome gnome-tweaks ;;
+        "I") sudo pacman -S i3-gaps i3status ;;
+        "M") sudo pacman -S mate mate-extra ;;
+        "Q") sudo pacman -S qtile ;;
+        "E") echo -n "\nThanks for installing $choice!\n\n"; sleep 3; clear; return 0;;
     esac
 }
 
