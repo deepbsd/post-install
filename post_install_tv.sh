@@ -233,6 +233,28 @@ add_optional(){
     fi
 }
 
+desktop_menu(){
+    clear
+    echo -e "\n\nInstall More Desktops?\n\n"
+    echo "K)   KDE\n"
+    echo "X)   XFCE\n"
+    echo "G)   Gnome\n"
+    echo "I)   i3wm\n"
+    echo "M)   Mate\n"
+    echo "Q)   Qtile\n"
+    echo "E)   Exit\n"
+    read choice
+
+    case $choice in 
+        "K" ) sudo pacman -S plasma plasma-wayland-session kde-applications ;;
+        "X" ) sudo pacman -S xfce4 xfce4-goodies ;;
+        "G" ) sudo pacman -S gnome gnome-tweaks ;;
+        "I" ) sudo pacman -S i3-gaps i3status ;;
+        "M" ) sudo pacman -S mate mate-extra ;;
+        "Q" ) sudo pacman -S qtile ;;
+        *) echo -n "\nThanks for installing $choice!\n\n"; sleep 3; clear; return 0;;
+    esac
+}
 
 main_menu(){
 
@@ -243,7 +265,7 @@ main_menu(){
     options=(   "update your system" "make directories" "get keys" "clone dotfiles" \
         "start ssh-agent" "start dir copy" "copy music dir" "bashrc copy" \
         "install basics" "install paru" "add faves" "install dev stuff" \
-        "install nvm" "install optional" "quit" )
+        "install nvm" "install optional" "install desktops" "quit" )
 
     select opt in "${options[@]}"
     do
@@ -262,6 +284,7 @@ main_menu(){
             "install dev stuff" ) install_dev_stuff; break 1 ;;
             "install nvm" ) install_nvm; break 1 ;;
             "install optional" ) add_optional; break 1 ;; 
+            "install desktops" ) desktop_menu; break 1 ;; 
             "quit" ) echo "Thanks for using POST-INSTALL!"; echo; exit 0 ;;
             * ) echo "invalid option" ;;
         esac
