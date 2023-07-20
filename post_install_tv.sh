@@ -240,8 +240,9 @@ main_menu(){
     echo -e "\n\n===> Welcome to Post-Install for brand new Archlinux systems! <===\n"
     
     PS3="Please enter your choice: "
-    options=(   "update your system" "make directories" "get keys" "clone dotfiles" "start ssh-agent" "start dir copy" \
-        "copy music dir" "bashrc copy" "install basics" "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
+    options=(   "update your system" "make directories" "get keys" "clone dotfiles" \
+        "start ssh-agent" "start dir copy" "copy music dir" "bashrc copy" "install basics" \
+        "install paru" "add faves" "install dev stuff" "install nvm" "install optional" "quit" )
 
     select opt in "${options[@]}"
     do
