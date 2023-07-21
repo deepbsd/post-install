@@ -113,11 +113,11 @@ start_dir_copy(){
 
 # Copy Music directory from hostname
 copy_music_dir(){
-   [ ! -z ${whathost} ] && get_hostname
-   echo "Want to download big Music directory from ${whathost}? (y/n)"
-   read yesno
+   #[ ! -z ${whathost} ] && get_hostname
+   echo "What host do you want to download your Music directory from?"
+   read music_host
    if [[ "$yesno" =~ 'y' ]] ; then
-        scp -r "$user"@"${whathost}"/Music ~/.
+        scp -r "$user"@"${music_host}"/Music ~/.
    else
        echo "Skipping Music downloads..." && return 0
    fi
