@@ -15,7 +15,8 @@ NVM_REPO="${CLONED_REPOS[nvm]}"
 BASICS=( vlc libdvdread libdvdcss libdvdnav gkrellm mlocate fzf )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
-OPTIONAL=( pamac-aur libreoffice-still aisleriot gparted slack-desktop telegram-desktop galculator atril )
+OPTIONAL=( pamac-aur libreoffice-still aisleriot gparted slack-desktop \
+    telegram-desktop galculator atril virtualbox virtualbox-guest-iso virtualbox-host-dkms )
 ## This is the remote hostname (to copy dirs from) make it global for script
 whathost=""
 
