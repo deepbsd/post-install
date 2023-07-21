@@ -238,13 +238,13 @@ desktop_menu(){
     clear
     
     echo -e "\n\nInstall More Desktops?\n\n"
-    echo -e "K)   KDE\n"
-    echo -e "X)   XFCE\n"
-    echo -e "G)   Gnome\n"
-    echo -e "I)   i3wm\n"
-    echo -e "M)   Mate\n"
-    echo -e "Q)   Qtile\n"
-    echo -e "E)   Exit\n"
+    echo  "K)   KDE"
+    echo  "X)   XFCE"
+    echo  "G)   Gnome"
+    echo  "I)   i3wm"
+    echo  "M)   Mate"
+    echo  "Q)   Qtile"
+    echo  "E)   Exit"
 
     echo "Your Desktop?  ==> "; read choice
 
