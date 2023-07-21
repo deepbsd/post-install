@@ -255,7 +255,7 @@ desktop_menu(){
         "I") sudo pacman -S i3-gaps i3status ;;
         "M") sudo pacman -S mate mate-extra ;;
         "Q") sudo pacman -S qtile ;;
-        "E") echo -n "\nThanks for installing $choice!\n\n"; sleep 3; clear; return 0;;
+        "E") echo -en "\nThanks for installing $choice!\n\n"; sleep 3; clear; return 0;;
     esac
 }
 
