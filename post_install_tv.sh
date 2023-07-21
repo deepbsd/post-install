@@ -236,16 +236,17 @@ add_optional(){
 
 desktop_menu(){
     clear
+    
     echo -e "\n\nInstall More Desktops?\n\n"
-    echo "K)   KDE\n"
-    echo "X)   XFCE\n"
-    echo "G)   Gnome\n"
-    echo "I)   i3wm\n"
-    echo "M)   Mate\n"
-    echo "Q)   Qtile\n"
-    echo "E)   Exit\n"
+    echo -e "K)   KDE\n"
+    echo -e "X)   XFCE\n"
+    echo -e "G)   Gnome\n"
+    echo -e "I)   i3wm\n"
+    echo -e "M)   Mate\n"
+    echo -e "Q)   Qtile\n"
+    echo -e "E)   Exit\n"
 
-    read choice
+    echo "Your Desktop?  ==> "; read choice
 
     case $choice in 
         "K") sudo pacman -S plasma plasma-wayland-session kde-applications ;;
