@@ -132,7 +132,7 @@ install_basics(){
         if check_install $f; then
             continue
         else
-            echo "Installing $f"
+            echo -e "\n\nInstalling $f \n"
             sudo pacman -S $f
         fi
     done
@@ -144,7 +144,7 @@ install_dev_stuff(){
     echo "Want to install dev_stuff? (ie ${DEV_STUFF[@]}) (y/n)?" 
     read yes_no
     if [[ "$yes_no" =~ 'y' ]] ; then
-        echo "Installing Dev Stuff:  ${DEV_STUFF[@]}"
+        echo -e "\nInstalling Dev Stuff:  ${DEV_STUFF[@]} \n"
         for f in ${DEV_STUFF[@]}; do
             check_install "$f" || sudo pacman -S $f
         done
@@ -185,7 +185,7 @@ install_nvm(){
             cd $HOME
             mkdir $HOME/.nvm
             cd $HOME/.nvm
-            git clone "$NVM_REPO"  && echo "\n NVM Installed!!"
+            git clone "$NVM_REPO"  && echo -e "\n NVM Installed!!"
             cd
         fi
 
@@ -199,14 +199,14 @@ install_nvm(){
 ## INSTALL PARU  
 install_paru(){
     $( check_install paru ) && echo "Paru already installed!!" && sleep 4 && return 0
-    echo "Installing paru: "
+    echo -e "\nInstalling paru: \n"
     [ -d $HOME/build ] || mkdir $HOME/build
     cd ~/build
     #git clone https://aur.archlinux.org/paru.git
     git clone "$PARU_REPO"
     cd paru
     makepkg -si
-    ( echo $? && echo "Paru successfully built.") || echo "Problem with building Paru!!!"
+    ( echo $? && echo -e "\nParu successfully built.\n") || echo -e "\nProblem with building Paru!!!\n"
     cd  # return to $HOME
 }
 
@@ -214,6 +214,7 @@ install_paru(){
 add_faves(){
     echo "Installing ${FAVES[@]}:"    
     for pkg in "${FAVES[@]}"; do
+        echo -e "\nLooking at $pkg \n"
         check_install "$pkg" || paru -S "$pkg"
     done
 }
@@ -223,7 +224,7 @@ add_optional(){
     if [[ "$yesno" =~ [yY] ]]; then
         for f in "${OPTIONAL[@]}"; do
           if  check_install "$f"; then
-              echo "$f already installed"
+              echo -e "\n $f already installed \n"
               sleep 1
           else
               paru -S "$f"
