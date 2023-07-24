@@ -18,7 +18,7 @@ EMPTY_FOLDERS=( repos tmp build Downloads Documents dwhelper movies )
 NORMAL_PKGS=( gvim htop gkrellm scrot libdvdread libdvdcss libdvdnav mlocate fzf powerline powerline-fonts powerline-vim )
 DEV_PKGS=( ruby nodejs npm npm-check-updates bash-bats bash-bats-support bash-bats-asserts )
 AUR_PKGS=( gparted aisleriot gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze pamac-aur )
-OPTIONAL=( libreoffice-still slack-desktop telegram-desktop galculator atril )
+OPTIONAL=( libreoffice-still slack-desktop telegram-desktop galculator atril timeshift-bin )
 
 # Need this array to keep track of what's completed
 completed_tasks=( "X" )
