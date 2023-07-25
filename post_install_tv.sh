@@ -17,7 +17,7 @@ DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
 OPTIONAL=( pamac-aur libreoffice-still aisleriot gparted slack-desktop \
     telegram-desktop galculator atril timeshift-bin virtualbox virtualbox-guest-iso \
-    virtualbox-host-dkms )
+    virtualbox-host-dkms ntfs-3g )
 ## This is the remote hostname (to copy dirs from) make it global for script
 whathost=""
 
