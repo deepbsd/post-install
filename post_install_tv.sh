@@ -12,7 +12,7 @@ declare -A CLONED_REPOS=( [dotfiles]="https://github.com/deepbsd/dotfiles.git" [
 MY_DOTFILES="${CLONED_REPOS[dotfiles]}"
 PARU_REPO="${CLONED_REPOS[paru]}"
 NVM_REPO="${CLONED_REPOS[nvm]}"
-BASICS=( vlc libdvdread libdvdcss libdvdnav gkrellm mlocate fzf feh )
+BASICS=( vlc libdvdread libdvdcss libdvdnav gkrellm mlocate fzf feh nitrogen )
 DEV_STUFF=( nodejs ruby npm npm-check-updates gvim anaconda )
 FAVES=( gnome-terminal-transparency mate-terminal google-chrome oranchelo-icon-theme-git xcursor-breeze )
 OPTIONAL=( pamac-aur libreoffice-still aisleriot gparted slack-desktop \
