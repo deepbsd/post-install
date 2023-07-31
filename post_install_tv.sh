@@ -176,7 +176,7 @@ install_nvm(){
         if [[ -d $HOME/.nvm ]]; then
             cd $HOME/.nvm 
             #git clone https://github.com/nvm-sh/nvm.git  
-            git clone "$NVM_REPO"
+            git clone "$NVM_REPO" .
             echo "\n NVM Installed!!"
             source $HOME/.nvm/nvm.sh && cd
             echo "\nnvm.sh sourced in this terminal..."
@@ -186,7 +186,7 @@ install_nvm(){
             cd $HOME
             mkdir $HOME/.nvm
             cd $HOME/.nvm
-            git clone "$NVM_REPO"  && echo -e "\n NVM Installed!!"
+            git clone "$NVM_REPO" .  && echo -e "\n NVM Installed!!"
             cd
         fi
 
