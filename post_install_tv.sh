@@ -160,10 +160,10 @@ copy_dotfiles(){
     echo "Link dotfiles from cloned dotfiles repo..."
     cp ~/.bashrc ~/.bashrc.orig
     cp ~/.bash_profile ~/.bash_profile.orig
-    ln -sf ~/dotfiles/.bashrc .
-    ln -sf ~/dotfiles/.bash_profile .
-    ln -sf ~/dotfiles/.vim .
-    ln -sf ~/dotfiles/.vimrc .
+    ln -sf ~/dotfiles/.bashrc $HOME/.
+    ln -sf ~/dotfiles/.bash_profile $HOME/.
+    ln -sf ~/dotfiles/.vim $HOME/.
+    ln -sf ~/dotfiles/.vimrc $HOME/.
 }
 
 # NVM

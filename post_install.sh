@@ -223,10 +223,10 @@ link_dotfiles(){
     then
         cp ~/.bashrc ~/.bashrc.orig  &>>$LOGFILE
         cp ~/.bash_profile ~/.bash_profile.orig &>>$LOGFILE
-        ln -sf ~/dotfiles/.bashrc .   &>>$LOGFILE
-        ln -sf ~/dotfiles/.bash_profile .  &>>$LOGFILE
-        ln -sf ~/dotfiles/.vimrc .  &>>$LOGFILE
-        ln -sf ~/dotfiles/.vim .    &>>$LOGFILE
+        ln -sf ~/dotfiles/.bashrc $HOME/.   &>>$LOGFILE
+        ln -sf ~/dotfiles/.bash_profile $HOME/.  &>>$LOGFILE
+        ln -sf ~/dotfiles/.vimrc $HOME/.  &>>$LOGFILE
+        ln -sf ~/dotfiles/.vim $HOME/.    &>>$LOGFILE
         sleep 2
     else
         TERM=ansi whiptail --backtitle "NOT CREATING DOTFILES NOW" --title "Not Creating Dotfiles Now"  --infobox "NOT Creating Dotfiles now" 10 78
