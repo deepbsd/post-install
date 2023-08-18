@@ -2,6 +2,8 @@
 
 # Run this script on Arch systems after desktop are already installed
 # This script uses whiptail
+#
+# NOTE: PARTS OF THIS SCRIPT ARE AT BETA or ALPHA LEVEL!!!
 
 ##########################
 ### VARIABLES, ARRAYS ####
